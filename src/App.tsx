@@ -1,9 +1,9 @@
-const App = () => {
-  return (
-    <div>
-      <h1>React Typescript Starter</h1>
-    </div>
-  )
-}
+import { Heading } from '@chakra-ui/react'
+
+const App = () => (
+  <Heading as="h1" textAlign="center" color="brand.low">
+    React Vite Typescript
+  </Heading>
+)
 
 export default App
