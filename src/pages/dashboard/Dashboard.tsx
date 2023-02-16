@@ -1,4 +1,6 @@
 import { Box, Button, HStack, Text } from '@chakra-ui/react'
+import { AddIcon } from '@chakra-ui/icons'
+
 import { Illustration } from '../../components'
 
 export const Dashboard = () => {
@@ -10,7 +12,7 @@ export const Dashboard = () => {
         </Text>
         <Button
           type="button"
-          paddingX="8"
+          paddingX="7"
           paddingY="6"
           bgColor="brand.primary"
           color="white"
@@ -18,6 +20,7 @@ export const Dashboard = () => {
           fontWeight="medium"
           borderRadius="full"
           transition="background-color 150ms ease"
+          leftIcon={<AddIcon />}
           _hover={{ bgColor: 'brand.lightPrimary' }}>
           Tambah
         </Button>
