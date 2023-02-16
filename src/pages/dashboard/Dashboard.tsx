@@ -24,9 +24,9 @@ export const Dashboard = () => {
       </HStack>
       <Illustration
         desc="Buat activity pertamamu"
-        illustrationHuman="/human-activity.png"
-        illustrationIcon="/activity.png"
-        illustrationGround="/ground-two.svg"
+        illustrationHuman="/images/human-activity.png"
+        illustrationIcon="/images/activity.png"
+        illustrationGround="/icons/ground-two.svg"
       />
     </Box>
   )
