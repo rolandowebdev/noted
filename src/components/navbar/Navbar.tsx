@@ -1,3 +1,4 @@
+import { Link as RouterLink } from 'react-router-dom'
 import { Box, Container, Link } from '@chakra-ui/react'
 
 export const Navbar = () => {
@@ -15,7 +16,8 @@ export const Navbar = () => {
       alignItems="center">
       <Container maxW="container.md">
         <Link
-          href="/"
+          as={RouterLink}
+          to="/"
           fontSize="3xl"
           fontWeight="bold"
           color="white"
