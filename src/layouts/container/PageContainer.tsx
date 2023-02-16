@@ -9,8 +9,8 @@ export const PageContainer = ({ children }: PageContainerProps) => {
   return (
     <Container
       as="main"
-      px={[8, 6, 4, 2]}
-      maxW="container.md"
+      px={[8, 6, 4]}
+      maxW="container.lg"
       sx={{ minHeight: `calc(100vh - ${navHeight})` }}>
       {children}
     </Container>

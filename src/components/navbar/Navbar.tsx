@@ -13,7 +13,7 @@ export const Navbar = () => {
       minHeight="16"
       display="flex"
       alignItems="center">
-      <Container maxW="container.md">
+      <Container maxW="container.lg">
         <Link
           as={RouterLink}
           to="/"

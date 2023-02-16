@@ -18,7 +18,6 @@ export const Illustration = ({
       pos="relative"
       alignItems={['center', 'center', 'flex-start']}
       justifyContent="center"
-      mt={[16, 14, 12]}
       maxW="container.sm"
       mx="auto"
       gap={12}>
