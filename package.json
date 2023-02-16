@@ -1,6 +1,6 @@
 {
-  "name": "react-ts-starter",
-  "description": "React typescript starter for easy setup project",
+  "name": "noted",
+  "description": "todo list application",
   "version": "0.0.0",
   "private": true,
   "author": {
@@ -16,7 +16,8 @@
     "preview": "vite preview",
     "lint": "eslint \"./src/**/*.{js,jsx,ts,tsx}\" --max-warnings 0",
     "lint:fix": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx}\" --max-warnings 0",
-    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx}\""
+    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx}\"",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.5.1",
