@@ -8,6 +8,7 @@ const fonts = {
 const colors = {
   brand: {
     primary: '#16ABF8',
+    lightPrimary: '#5bc8ff',
     highest: '#ED4C5C',
     high: '#FFCE31',
     medium: '#00A790',
