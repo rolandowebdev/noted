@@ -1,13 +1,17 @@
-import { Box } from '@chakra-ui/react'
+import { Container } from '@chakra-ui/react'
 
 interface PageContainerProps {
   children: React.ReactNode
 }
 
 export const PageContainer = ({ children }: PageContainerProps) => {
+  const navHeight = '64px'
   return (
-    <Box as="main" maxW="container.md">
+    <Container
+      as="main"
+      maxW="container.md"
+      sx={{ minHeight: `calc(100vh - ${navHeight})` }}>
       {children}
-    </Box>
+    </Container>
   )
 }
