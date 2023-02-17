@@ -5,10 +5,9 @@ import {
   CardHeader,
   Heading,
   Text,
-  Button,
   Link,
 } from '@chakra-ui/react'
-import { DeleteIcon } from '@chakra-ui/icons'
+import DeleteButton from './DeleteButton'
 
 interface CardActivityProps {
   title: string
@@ -35,14 +34,7 @@ export const CardActivity = ({
         <Text as="time" dateTime={dateTime}>
           {dateText}
         </Text>
-        <Button size="xs" variant="unstyled">
-          <DeleteIcon
-            color="gray.500"
-            fontSize="xl"
-            transition="color 150ms ease-in-out"
-            _hover={{ color: 'gray.700' }}
-          />
-        </Button>
+        <DeleteButton />
       </CardFooter>
     </Card>
   )

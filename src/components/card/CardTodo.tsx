@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import {
   Box,
   Button,
@@ -7,8 +8,8 @@ import {
   HStack,
   Text,
 } from '@chakra-ui/react'
-import { DeleteIcon, EditIcon } from '@chakra-ui/icons'
-import { useState } from 'react'
+import { EditIcon } from '@chakra-ui/icons'
+import DeleteButton from './DeleteButton'
 
 interface CardTodoProps {
   title: string
@@ -53,14 +54,7 @@ export const CardTodo = ({ title, comment, checked }: CardTodoProps) => {
               />
             </Button>
           </HStack>
-          <Button size="xs" variant="unstyled">
-            <DeleteIcon
-              color="gray.500"
-              fontSize="lg"
-              transition="color 150ms ease-in-out"
-              _hover={{ color: 'gray.700' }}
-            />
-          </Button>
+          <DeleteButton />
         </HStack>
       </CardBody>
     </Card>
