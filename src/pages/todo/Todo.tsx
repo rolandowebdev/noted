@@ -1,4 +1,4 @@
-import { UpDownIcon } from '@chakra-ui/icons'
+import { Link as RouterLink } from 'react-router-dom'
 import {
   Box,
   Heading,
@@ -11,8 +11,11 @@ import {
   MenuList,
   MenuOptionGroup,
   Stack,
+  Link,
   Text,
 } from '@chakra-ui/react'
+import { ChevronLeftIcon, UpDownIcon } from '@chakra-ui/icons'
+
 import { CardTodo, Illustration, ModalTodo } from '../../components'
 import { PageContainer } from '../../layouts'
 import { sortOptions } from '../../constants/sortOptions'
@@ -70,9 +73,18 @@ export const Todo = () => {
     <PageContainer>
       <HStack justify="space-between" align="center">
         <HStack alignItems="center" spacing="24px">
-          <Heading as="h1" size="lg" fontWeight="bold">
-            List Food
-          </Heading>
+          <Link
+            as={RouterLink}
+            to="/"
+            size="xs"
+            display="flex"
+            alignItems="center"
+            _hover={{ textDecor: 'none', color: 'gray.500' }}>
+            <ChevronLeftIcon fontSize="5xl" />
+            <Heading as="h1" size="lg" fontWeight="bold">
+              List Food
+            </Heading>
+          </Link>
           <ModalActivity type="update" />
         </HStack>
         <Stack direction="row" alignItems="center" spacing="16px">

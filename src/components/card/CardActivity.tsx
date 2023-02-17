@@ -23,7 +23,7 @@ export const CardActivity = ({
   return (
     <Card size="lg">
       <CardHeader>
-        <Link as={RouterLink} to="/todo">
+        <Link as={RouterLink} to="/todos">
           <Heading size="md">{title}</Heading>
         </Link>
       </CardHeader>

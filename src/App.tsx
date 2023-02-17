@@ -8,7 +8,7 @@ export const App = () => (
     <Navbar />
     <Routes>
       <Route path="/" element={<Dashboard />} />
-      <Route path="/todo" element={<Todo />} />
+      <Route path="/todos" element={<Todo />} />
     </Routes>
   </BrowserRouter>
 )
