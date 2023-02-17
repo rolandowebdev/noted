@@ -76,12 +76,15 @@ export const Todo = () => {
           <ModalActivity type="update" />
         </HStack>
         <Stack direction="row" alignItems="center" spacing="16px">
-          <Menu placement="left-start" strategy="fixed">
+          <Menu strategy="fixed">
             <MenuButton
               as={IconButton}
+              variant="outline"
+              rounded="full"
+              height="48px"
               aria-label="sort todos"
               icon={<UpDownIcon color="gray.500" />}
-              variant="outline"
+              sx={{ aspectRatio: '1/1' }}
             />
             <MenuList>
               <MenuOptionGroup defaultValue="terbaru" type="radio">

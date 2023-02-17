@@ -34,7 +34,8 @@ export const CardTodo = ({ title, comment, checked }: CardTodoProps) => {
             />
             <Text
               fontSize="lg"
-              decoration={isChecked ? 'line-through' : 'none'}>
+              decoration={isChecked ? 'line-through' : 'none'}
+              color={isChecked ? 'gray.500' : 'black'}>
               {title}
             </Text>
             <ModalTodo type="update" />

@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { AddIcon, EditIcon } from '@chakra-ui/icons'
 import {
+  Box,
   Button,
   Divider,
   FormControl,
@@ -104,9 +105,12 @@ export const ModalTodo = ({ type }: ModalTodoProps) => {
                 </FormLabel>
                 <Select placeholder="Select priority" w="max-content">
                   {priorities.map((priority) => (
-                    <option key={priority.comment} value={priority.comment}>
+                    <Box
+                      as="option"
+                      key={priority.comment}
+                      value={priority.comment}>
                       {priority.name}
-                    </option>
+                    </Box>
                   ))}
                 </Select>
               </InputGroup>
