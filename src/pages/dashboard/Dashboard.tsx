@@ -1,4 +1,4 @@
-import { Box, Button, Grid, HStack, Text } from '@chakra-ui/react'
+import { Box, Button, Grid, Heading, HStack } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 
 import { CardActivity, Illustration } from '../../components'
@@ -59,9 +59,9 @@ export const Dashboard = () => {
   return (
     <Box as="nav" role="navigation" marginBlock={8}>
       <HStack justify="space-between" align="center">
-        <Text as="h1" fontSize="3xl" fontWeight="bold">
+        <Heading as="h1" size="lg" fontWeight="bold">
           Activity
-        </Text>
+        </Heading>
         <Button
           type="button"
           paddingX="7"

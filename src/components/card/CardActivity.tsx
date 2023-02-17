@@ -22,9 +22,7 @@ export const CardActivity = ({
   return (
     <Card size="lg">
       <CardHeader>
-        <Heading as="h2" size="md">
-          {title}
-        </Heading>
+        <Heading size="md">{title}</Heading>
       </CardHeader>
       <CardFooter
         display="flex"
