@@ -1,8 +1,8 @@
-import { Box, Button, Grid, Heading, HStack } from '@chakra-ui/react'
-import { AddIcon } from '@chakra-ui/icons'
+import { Box, Grid, Heading, HStack } from '@chakra-ui/react'
 
 import { CardActivity, Illustration } from '../../components'
 import { PageContainer } from '../../layouts'
+import { ModalActivity } from '../../components/modal/ModalActivity'
 
 const activities = [
   {
@@ -64,20 +64,7 @@ export const Dashboard = () => {
           <Heading as="h1" size="lg" fontWeight="bold">
             Activity
           </Heading>
-          <Button
-            type="button"
-            paddingX="7"
-            paddingY="6"
-            bgColor="brand.primary"
-            color="white"
-            letterSpacing="wider"
-            fontWeight="medium"
-            borderRadius="full"
-            transition="background-color 150ms ease"
-            leftIcon={<AddIcon />}
-            _hover={{ bgColor: 'brand.lightPrimary' }}>
-            Tambah
-          </Button>
+          <ModalActivity type="create" />
         </HStack>
       </Box>
       <Box mt={[16, 14, 12]}>

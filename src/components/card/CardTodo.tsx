@@ -1,15 +1,7 @@
 import { useState } from 'react'
-import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  Checkbox,
-  HStack,
-  Text,
-} from '@chakra-ui/react'
-import { EditIcon } from '@chakra-ui/icons'
+import { Box, Card, CardBody, Checkbox, HStack, Text } from '@chakra-ui/react'
 import DeleteButton from './DeleteButton'
+import { ModalTodo } from '../modal/ModalTodo'
 
 interface CardTodoProps {
   title: string
@@ -45,14 +37,7 @@ export const CardTodo = ({ title, comment, checked }: CardTodoProps) => {
               decoration={isChecked ? 'line-through' : 'none'}>
               {title}
             </Text>
-            <Button size="xs" variant="unstyled">
-              <EditIcon
-                fontSize="lg"
-                color="gray.500"
-                transition="color 150ms ease-in-out"
-                _hover={{ color: 'gray.700' }}
-              />
-            </Button>
+            <ModalTodo type="update" />
           </HStack>
           <DeleteButton />
         </HStack>

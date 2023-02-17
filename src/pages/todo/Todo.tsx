@@ -1,7 +1,6 @@
-import { AddIcon, UpDownIcon } from '@chakra-ui/icons'
+import { UpDownIcon } from '@chakra-ui/icons'
 import {
   Box,
-  Button,
   Heading,
   HStack,
   IconButton,
@@ -14,17 +13,11 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
-import { CardTodo, Illustration } from '../../components'
+import { CardTodo, Illustration, ModalTodo } from '../../components'
 import { PageContainer } from '../../layouts'
 import { sortOptions } from '../../constants/sortOptions'
-
-const comment = {
-  veryHigh: 'very-high',
-  high: 'high',
-  normal: 'normal',
-  low: 'low',
-  veryLow: 'very-low',
-}
+import { comment } from '../../constants/todoPriority'
+import { ModalActivity } from '../../components/modal/ModalActivity'
 
 const todos = [
   {
@@ -76,9 +69,12 @@ export const Todo = () => {
   return (
     <PageContainer>
       <HStack justify="space-between" align="center">
-        <Heading as="h1" size="lg" fontWeight="bold">
-          List Food
-        </Heading>
+        <HStack alignItems="center" spacing="24px">
+          <Heading as="h1" size="lg" fontWeight="bold">
+            List Food
+          </Heading>
+          <ModalActivity type="update" />
+        </HStack>
         <Stack direction="row" alignItems="center" spacing="16px">
           <Menu placement="left-start" strategy="fixed">
             <MenuButton
@@ -102,20 +98,7 @@ export const Todo = () => {
               </MenuOptionGroup>
             </MenuList>
           </Menu>
-          <Button
-            type="button"
-            paddingX="7"
-            paddingY="6"
-            bgColor="brand.primary"
-            color="white"
-            letterSpacing="wider"
-            fontWeight="medium"
-            borderRadius="full"
-            transition="background-color 150ms ease"
-            leftIcon={<AddIcon />}
-            _hover={{ bgColor: 'brand.lightPrimary' }}>
-            Tambah
-          </Button>
+          <ModalTodo type="create" />
         </Stack>
       </HStack>
       <Box mt={[16, 14, 12]}>
