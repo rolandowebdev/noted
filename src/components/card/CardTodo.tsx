@@ -30,7 +30,7 @@ export const CardTodo = ({ title, comment, checked }: CardTodoProps) => {
           <HStack alignItems="center" spacing="20px">
             <Checkbox
               colorScheme="green"
-              isChecked={checked}
+              isChecked={isChecked}
               onChange={handleChange}
             />
             <Box

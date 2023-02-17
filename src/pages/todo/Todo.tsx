@@ -1,7 +1,22 @@
-import { AddIcon } from '@chakra-ui/icons'
-import { Box, Button, Heading, HStack, Stack } from '@chakra-ui/react'
+import { AddIcon, UpDownIcon } from '@chakra-ui/icons'
+import {
+  Box,
+  Button,
+  Heading,
+  HStack,
+  IconButton,
+  Image,
+  Menu,
+  MenuButton,
+  MenuItemOption,
+  MenuList,
+  MenuOptionGroup,
+  Stack,
+  Text,
+} from '@chakra-ui/react'
 import { CardTodo, Illustration } from '../../components'
 import { PageContainer } from '../../layouts'
+import { sortOptions } from '../../constants/sortOptions'
 
 const comment = {
   veryHigh: 'very-high',
@@ -62,22 +77,46 @@ export const Todo = () => {
     <PageContainer>
       <HStack justify="space-between" align="center">
         <Heading as="h1" size="lg" fontWeight="bold">
-          Activity
+          List Food
         </Heading>
-        <Button
-          type="button"
-          paddingX="7"
-          paddingY="6"
-          bgColor="brand.primary"
-          color="white"
-          letterSpacing="wider"
-          fontWeight="medium"
-          borderRadius="full"
-          transition="background-color 150ms ease"
-          leftIcon={<AddIcon />}
-          _hover={{ bgColor: 'brand.lightPrimary' }}>
-          Tambah
-        </Button>
+        <Stack direction="row" alignItems="center" spacing="16px">
+          <Menu placement="left-start" strategy="fixed">
+            <MenuButton
+              as={IconButton}
+              aria-label="sort todos"
+              icon={<UpDownIcon color="gray.500" />}
+              variant="outline"
+            />
+            <MenuList>
+              <MenuOptionGroup defaultValue="terbaru" type="radio">
+                {sortOptions.map((sortOption) => (
+                  <MenuItemOption
+                    key={sortOption.text}
+                    value={sortOption.value}>
+                    <HStack alignItems="center">
+                      <Image src={sortOption.icon} />
+                      <Text>{sortOption.text}</Text>
+                    </HStack>
+                  </MenuItemOption>
+                ))}
+              </MenuOptionGroup>
+            </MenuList>
+          </Menu>
+          <Button
+            type="button"
+            paddingX="7"
+            paddingY="6"
+            bgColor="brand.primary"
+            color="white"
+            letterSpacing="wider"
+            fontWeight="medium"
+            borderRadius="full"
+            transition="background-color 150ms ease"
+            leftIcon={<AddIcon />}
+            _hover={{ bgColor: 'brand.lightPrimary' }}>
+            Tambah
+          </Button>
+        </Stack>
       </HStack>
       <Box mt={[16, 14, 12]}>
         {card ? (
@@ -87,7 +126,7 @@ export const Todo = () => {
                 key={todo.id}
                 title={todo.title}
                 comment={todo.comment}
-                isChecked={todo.isChecked}
+                checked={todo.isChecked}
               />
             ))}
           </Stack>
