@@ -55,7 +55,7 @@ const dataExamples = [
 ]
 
 export const Dashboard = () => {
-  const card = false
+  const card = true
   return (
     <Box as="nav" role="navigation" marginBlock={8}>
       <HStack justify="space-between" align="center">

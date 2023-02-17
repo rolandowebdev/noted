@@ -20,7 +20,7 @@ export const CardActivity = ({
   dateTime,
 }: CardActivityProps) => {
   return (
-    <Card>
+    <Card size="lg">
       <CardHeader>
         <Heading as="h2" size="md">
           {title}
@@ -33,11 +33,7 @@ export const CardActivity = ({
         <Text as="time" dateTime={dateTime}>
           {dateText}
         </Text>
-        <Button
-          bgColor="transparent"
-          rounded="full"
-          variant="unstyled"
-          sx={{ aspectRatio: '1/1' }}>
+        <Button size="xs" variant="unstyled">
           <DeleteIcon
             color="gray.500"
             fontSize="xl"
