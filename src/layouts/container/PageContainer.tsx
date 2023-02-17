@@ -5,12 +5,13 @@ interface PageContainerProps {
 }
 
 export const PageContainer = ({ children }: PageContainerProps) => {
-  const navHeight = '96px'
+  const navHeight = '128px'
   return (
     <Container
       as="main"
-      px={[8, 6, 4]}
       maxW="container.lg"
+      marginBlock={8}
+      px={[8, 6, 4]}
       sx={{ minHeight: `calc(100vh - ${navHeight})` }}>
       {children}
     </Container>

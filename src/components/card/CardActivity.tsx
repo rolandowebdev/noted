@@ -1,3 +1,4 @@
+import { Link as RouterLink } from 'react-router-dom'
 import {
   Card,
   CardFooter,
@@ -5,6 +6,7 @@ import {
   Heading,
   Text,
   Button,
+  Link,
 } from '@chakra-ui/react'
 import { DeleteIcon } from '@chakra-ui/icons'
 
@@ -22,7 +24,9 @@ export const CardActivity = ({
   return (
     <Card size="lg">
       <CardHeader>
-        <Heading size="md">{title}</Heading>
+        <Link as={RouterLink} to="/todo">
+          <Heading size="md">{title}</Heading>
+        </Link>
       </CardHeader>
       <CardFooter
         display="flex"

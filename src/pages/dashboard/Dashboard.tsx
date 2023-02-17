@@ -2,8 +2,9 @@ import { Box, Button, Grid, Heading, HStack } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
 
 import { CardActivity, Illustration } from '../../components'
+import { PageContainer } from '../../layouts'
 
-const dataExamples = [
+const activities = [
   {
     id: 1,
     title: 'Daftar Belanja Bulanan',
@@ -57,26 +58,28 @@ const dataExamples = [
 export const Dashboard = () => {
   const card = true
   return (
-    <Box as="nav" role="navigation" marginBlock={8}>
-      <HStack justify="space-between" align="center">
-        <Heading as="h1" size="lg" fontWeight="bold">
-          Activity
-        </Heading>
-        <Button
-          type="button"
-          paddingX="7"
-          paddingY="6"
-          bgColor="brand.primary"
-          color="white"
-          letterSpacing="wider"
-          fontWeight="medium"
-          borderRadius="full"
-          transition="background-color 150ms ease"
-          leftIcon={<AddIcon />}
-          _hover={{ bgColor: 'brand.lightPrimary' }}>
-          Tambah
-        </Button>
-      </HStack>
+    <PageContainer>
+      <Box as="nav" role="navigation">
+        <HStack justify="space-between" align="center">
+          <Heading as="h1" size="lg" fontWeight="bold">
+            Activity
+          </Heading>
+          <Button
+            type="button"
+            paddingX="7"
+            paddingY="6"
+            bgColor="brand.primary"
+            color="white"
+            letterSpacing="wider"
+            fontWeight="medium"
+            borderRadius="full"
+            transition="background-color 150ms ease"
+            leftIcon={<AddIcon />}
+            _hover={{ bgColor: 'brand.lightPrimary' }}>
+            Tambah
+          </Button>
+        </HStack>
+      </Box>
       <Box mt={[16, 14, 12]}>
         {card ? (
           <Grid
@@ -87,24 +90,24 @@ export const Dashboard = () => {
               'repeat(4, 1fr)',
             ]}
             gap={6}>
-            {dataExamples.map((dataExample) => (
+            {activities.map((activity) => (
               <CardActivity
-                key={dataExample.id}
-                title={dataExample.title}
-                dateTime={dataExample.dateTime}
-                dateText={dataExample.dateText}
+                key={activity.id}
+                title={activity.title}
+                dateTime={activity.dateTime}
+                dateText={activity.dateText}
               />
             ))}
           </Grid>
         ) : (
           <Illustration
-            desc="Buat activity pertamamu"
+            desc="Create your first activity"
             illustrationHuman="/images/human-activity.png"
             illustrationIcon="/images/activity.png"
-            illustrationGround="/icons/ground-two.svg"
+            illustrationGround="/icons/ground-one.svg"
           />
         )}
       </Box>
-    </Box>
+    </PageContainer>
   )
 }
