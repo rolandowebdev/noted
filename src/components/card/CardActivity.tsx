@@ -8,22 +8,13 @@ import {
   Link,
 } from '@chakra-ui/react'
 import DeleteButton from './DeleteButton'
+import { Activity } from '../../models/activity'
 
-interface CardActivityProps {
-  title: string
-  dateText: string
-  dateTime: string
-}
-
-export const CardActivity = ({
-  title,
-  dateText,
-  dateTime,
-}: CardActivityProps) => {
+export const CardActivity = ({ id, title, created_at }: Activity) => {
   return (
     <Card size="lg">
       <CardHeader>
-        <Link as={RouterLink} to="/todos">
+        <Link as={RouterLink} to={`/todos/${id}`}>
           <Heading size="md">{title}</Heading>
         </Link>
       </CardHeader>
@@ -31,8 +22,8 @@ export const CardActivity = ({
         display="flex"
         justifyContent="space-between"
         alignItems="center">
-        <Text as="time" dateTime={dateTime}>
-          {dateText}
+        <Text as="time" dateTime={created_at}>
+          {created_at}
         </Text>
         <DeleteButton />
       </CardFooter>
