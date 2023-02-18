@@ -25,7 +25,7 @@ export const CardActivity = ({ id, title, created_at }: Activity) => {
         <Text as="time" dateTime={created_at}>
           {created_at}
         </Text>
-        <DeleteButton />
+        <DeleteButton type="activity" id={id} title={title} />
       </CardFooter>
     </Card>
   )

@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { DeleteIcon, WarningTwoIcon } from '@chakra-ui/icons'
 import {
   AlertDialog,
   AlertDialogBody,
@@ -7,13 +7,31 @@ import {
   AlertDialogHeader,
   AlertDialogOverlay,
   Button,
+  Text,
   useDisclosure,
 } from '@chakra-ui/react'
-import { DeleteIcon, WarningTwoIcon } from '@chakra-ui/icons'
+import { useRef } from 'react'
+import { useActivityContext } from '../../context'
+import { useCustomToast } from '../../hooks'
 
-const DeleteButton = () => {
+interface DeleteButtonProps {
+  id: number
+  title: string
+  type: string
+}
+
+const DeleteButton = ({ id, title, type }: DeleteButtonProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+  const { deleteActivity } = useActivityContext()
+
   const cancelRef = useRef<HTMLButtonElement>(null)
+  const showToast = useCustomToast()
+
+  const handleDelete = () => {
+    if (type === 'activity') deleteActivity(id)
+    onClose()
+    showToast(`Successfully deleted ${type}`, 'success')
+  }
 
   return (
     <>
@@ -36,8 +54,11 @@ const DeleteButton = () => {
             <AlertDialogHeader>
               <WarningTwoIcon fontSize="8xl" color="brand.very-high" />
             </AlertDialogHeader>
-            <AlertDialogBody>
-              Are you sure want to delete your todo?
+            <AlertDialogBody letterSpacing="unset">
+              Are you sure want to delete your {type}
+              <Text as="span" display="block" fontWeight="semibold">
+                {title}?
+              </Text>
             </AlertDialogBody>
             <AlertDialogFooter mx="auto">
               <Button
@@ -56,7 +77,7 @@ const DeleteButton = () => {
                 color="white"
                 fontWeight="normal"
                 letterSpacing="wider"
-                onClick={onClose}
+                onClick={handleDelete}
                 ml={3}
                 _hover={{ bgColor: 'red' }}>
                 Delete

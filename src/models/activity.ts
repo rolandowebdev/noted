@@ -1,6 +1,6 @@
 export interface Activity {
-  id?: number
-  title?: string
+  id: number
+  title: string
   created_at?: string
   updated_at?: string
   email?: string
