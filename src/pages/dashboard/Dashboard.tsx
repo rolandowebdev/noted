@@ -1,12 +1,18 @@
 import { Box, Grid, Heading, HStack } from '@chakra-ui/react'
+import { useEffect } from 'react'
 
 import { CardActivity, Illustration } from '../../components'
 import { ModalActivity } from '../../components/modal/ModalActivity'
-import { useActivityContext } from '../../context'
+import { useActivityData } from '../../hooks'
 import { PageContainer } from '../../layouts'
 
 export const Dashboard = () => {
-  const { activities } = useActivityContext()
+  const { getActivity, activities } = useActivityData()
+
+  useEffect(() => {
+    getActivity()
+  }, [])
+
   return (
     <PageContainer>
       <Box as="nav" role="navigation">
