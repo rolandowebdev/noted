@@ -47,24 +47,6 @@ const todos = [
     comment: comment.veryLow,
     isChecked: false,
   },
-  {
-    id: 5,
-    title: 'Seafood',
-    comment: comment.normal,
-    isChecked: false,
-  },
-  {
-    id: 6,
-    title: 'Vegetables Food',
-    comment: comment.veryHigh,
-    isChecked: false,
-  },
-  {
-    id: 7,
-    title: 'Diet Food',
-    comment: comment.high,
-    isChecked: false,
-  },
 ]
 
 export const Todo = () => {
@@ -77,9 +59,10 @@ export const Todo = () => {
             as={RouterLink}
             to="/"
             size="xs"
+            ml="-17px"
             display="flex"
             alignItems="center"
-            _hover={{ textDecor: 'none', color: 'gray.500' }}>
+            _hover={{ textDecor: 'underline', color: 'brand.primary' }}>
             <ChevronLeftIcon fontSize="5xl" />
             <Heading as="h1" size="lg" fontWeight="bold">
               List Food
