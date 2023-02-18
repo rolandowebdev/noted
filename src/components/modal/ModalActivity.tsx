@@ -54,7 +54,7 @@ export const ModalActivity = ({ type }: ModalTodoProps) => {
           leftIcon={<AddIcon />}
           _hover={{ bgColor: 'brand.lightPrimary' }}
           onClick={onOpen}>
-          Tambah
+          Add Activity
         </Button>
       )}
       {type === 'update' && (
