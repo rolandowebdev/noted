@@ -37,10 +37,6 @@ export const ActivityProvider = ({ children }: ActivityProviderProps) => {
   } = useActivityData()
 
   useEffect(() => {
-    activities.map((activity) => getOneActivity(activity.id))
-  }, [])
-
-  useEffect(() => {
     getAllActivity()
   }, [])
 

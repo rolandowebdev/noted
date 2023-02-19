@@ -60,7 +60,7 @@ export const Todo = () => {
 
   useEffect(() => {
     getOneActivity(id)
-  }, [])
+  }, [id])
 
   return (
     <PageContainer>
