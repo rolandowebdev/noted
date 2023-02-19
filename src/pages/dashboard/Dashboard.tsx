@@ -24,7 +24,14 @@ export const Dashboard = () => {
         </HStack>
       </Box>
       <Box mt={[16, 14, 12]}>
-        {activities && activities !== null ? (
+        {activities.length === 0 ? (
+          <Illustration
+            desc="Create your first activity"
+            illustrationHuman="/images/human-activity.png"
+            illustrationIcon="/images/activity.png"
+            illustrationGround="/icons/ground-one.svg"
+          />
+        ) : (
           <Grid
             templateColumns={[
               'repeat(1, 1fr)',
@@ -42,13 +49,6 @@ export const Dashboard = () => {
               />
             ))}
           </Grid>
-        ) : (
-          <Illustration
-            desc="Create your first activity"
-            illustrationHuman="/images/human-activity.png"
-            illustrationIcon="/images/activity.png"
-            illustrationGround="/icons/ground-one.svg"
-          />
         )}
       </Box>
     </PageContainer>
