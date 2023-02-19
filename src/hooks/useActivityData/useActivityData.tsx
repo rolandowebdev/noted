@@ -7,6 +7,7 @@ const EMAIL = import.meta.env.VITE_EMAIL
 
 export const useActivityData = () => {
   const [activities, setActivities] = useState<Activity[]>([])
+  const [activity, setActivity] = useState<Activity | null>(null)
   const defaultActivity = {
     title: 'New Activity',
     email: EMAIL,
@@ -22,13 +23,23 @@ export const useActivityData = () => {
     }
   }
 
-  const getActivity = async () => {
+  const getAllActivity = async () => {
     const url = `${BASE_URL}/activity-groups?email=${EMAIL}`
     try {
       const response = await axios.get<ResponseActivity>(url)
       setActivities(response.data.data)
     } catch (error) {
-      throw new Error('Failed to fetch activity')
+      throw new Error('Failed to fetch all activity')
+    }
+  }
+
+  const getOneActivity = async (id: string) => {
+    const url = `${BASE_URL}/activity-groups/${id}?email=${EMAIL}`
+    try {
+      const response = await axios.get<Activity>(url)
+      setActivity(response.data)
+    } catch (error) {
+      throw new Error('Failed to fetch one activity')
     }
   }
 
@@ -60,8 +71,10 @@ export const useActivityData = () => {
 
   return {
     activities,
+    activity,
     createActivity,
-    getActivity,
+    getAllActivity,
+    getOneActivity,
     updateActivity,
     deleteActivity,
   }

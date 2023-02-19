@@ -1,7 +1,11 @@
 import { Editable, EditablePreview, EditableInput } from '@chakra-ui/react'
 import { EditableControls } from './EditableControls'
 
-export const CustomControls = () => {
+interface CustomControlsProps {
+  title: string
+}
+
+export const CustomControls = ({ title }: CustomControlsProps) => {
   return (
     <Editable
       display="flex"
@@ -9,7 +13,7 @@ export const CustomControls = () => {
       gap={3}
       fontWeight="semibold"
       textAlign="center"
-      defaultValue="Example Title"
+      value={title}
       fontSize="3xl"
       selectAllOnFocus={false}>
       <EditablePreview />

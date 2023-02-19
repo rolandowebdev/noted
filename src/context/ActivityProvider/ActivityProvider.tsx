@@ -4,8 +4,10 @@ import { Activity } from '../../models/activity'
 
 interface ActivityContextType {
   activities: Activity[]
+  activity: object | any
   createActivity: () => Promise<void>
-  getActivity: () => Promise<void>
+  getAllActivity: () => Promise<void>
+  getOneActivity: (id: string | any) => Promise<void>
   deleteActivity: (id: number) => Promise<void>
 }
 
@@ -15,24 +17,50 @@ interface ActivityProviderProps {
 
 const ActivityContext = createContext<ActivityContextType>({
   activities: [],
+  activity: {},
   createActivity: async () => {},
-  getActivity: async () => {},
+  getAllActivity: async () => {},
+  getOneActivity: async () => {},
   deleteActivity: async () => {},
 })
 
 export const useActivityContext = () => useContext(ActivityContext)
 
 export const ActivityProvider = ({ children }: ActivityProviderProps) => {
-  const { activities, createActivity, getActivity, deleteActivity } =
-    useActivityData()
+  const {
+    activities,
+    activity,
+    createActivity,
+    getAllActivity,
+    getOneActivity,
+    deleteActivity,
+  } = useActivityData()
 
   useEffect(() => {
-    getActivity()
+    activities.map((activity) => getOneActivity(activity.id))
+  }, [])
+
+  useEffect(() => {
+    getAllActivity()
   }, [])
 
   const values = useMemo(
-    () => ({ activities, createActivity, getActivity, deleteActivity }),
-    [activities, createActivity, getActivity, deleteActivity]
+    () => ({
+      activities,
+      activity,
+      createActivity,
+      getAllActivity,
+      getOneActivity,
+      deleteActivity,
+    }),
+    [
+      activities,
+      activity,
+      createActivity,
+      getAllActivity,
+      getOneActivity,
+      deleteActivity,
+    ]
   )
   return (
     <ActivityContext.Provider value={values}>

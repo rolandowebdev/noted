@@ -14,6 +14,7 @@ export const Dashboard = () => {
     createActivity()
     showToast(`Successfully created activity`, 'success')
   }
+
   return (
     <PageContainer>
       <Box as="nav" role="navigation">

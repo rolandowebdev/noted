@@ -1,19 +1,20 @@
-import { Link as RouterLink } from 'react-router-dom'
+import { ChevronLeftIcon, UpDownIcon } from '@chakra-ui/icons'
 import {
   Box,
   HStack,
   IconButton,
   Image,
+  Link,
   Menu,
   MenuButton,
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
   Stack,
-  Link,
   Text,
 } from '@chakra-ui/react'
-import { ChevronLeftIcon, UpDownIcon } from '@chakra-ui/icons'
+import { useEffect } from 'react'
+import { Link as RouterLink, useParams } from 'react-router-dom'
 
 import {
   CardTodo,
@@ -21,9 +22,10 @@ import {
   Illustration,
   ModalTodo,
 } from '../../components'
-import { PageContainer } from '../../layouts'
 import { sortOptions } from '../../constants/sortOptions'
 import { comment } from '../../constants/todoPriority'
+import { useActivityContext } from '../../context'
+import { PageContainer } from '../../layouts'
 
 const todos: any[] = [
   {
@@ -53,6 +55,13 @@ const todos: any[] = [
 ]
 
 export const Todo = () => {
+  const { id } = useParams()
+  const { activity, getOneActivity } = useActivityContext()
+
+  useEffect(() => {
+    getOneActivity(id)
+  }, [])
+
   return (
     <PageContainer>
       <HStack justify="space-between" align="center">
@@ -67,7 +76,7 @@ export const Todo = () => {
             _hover={{ textDecor: 'underline', color: 'brand.primary' }}>
             <ChevronLeftIcon fontSize="5xl" />
           </Link>
-          <CustomControls />
+          <CustomControls title={activity?.title} />
         </HStack>
         <Stack direction="row" alignItems="center" spacing="16px">
           <Menu strategy="fixed">
