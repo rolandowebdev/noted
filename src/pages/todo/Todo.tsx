@@ -1,7 +1,6 @@
 import { Link as RouterLink } from 'react-router-dom'
 import {
   Box,
-  Heading,
   HStack,
   IconButton,
   Image,
@@ -16,11 +15,15 @@ import {
 } from '@chakra-ui/react'
 import { ChevronLeftIcon, UpDownIcon } from '@chakra-ui/icons'
 
-import { CardTodo, Illustration, ModalTodo } from '../../components'
+import {
+  CardTodo,
+  CustomControls,
+  Illustration,
+  ModalTodo,
+} from '../../components'
 import { PageContainer } from '../../layouts'
 import { sortOptions } from '../../constants/sortOptions'
 import { comment } from '../../constants/todoPriority'
-import { ModalActivity } from '../../components/modal/ModalActivity'
 
 const todos = [
   {
@@ -54,7 +57,7 @@ export const Todo = () => {
   return (
     <PageContainer>
       <HStack justify="space-between" align="center">
-        <HStack alignItems="center" spacing="24px">
+        <HStack alignItems="center">
           <Link
             as={RouterLink}
             to="/"
@@ -64,11 +67,8 @@ export const Todo = () => {
             alignItems="center"
             _hover={{ textDecor: 'underline', color: 'brand.primary' }}>
             <ChevronLeftIcon fontSize="5xl" />
-            <Heading as="h1" size="lg" fontWeight="bold">
-              List Food
-            </Heading>
           </Link>
-          <ModalActivity type="update" />
+          <CustomControls />
         </HStack>
         <Stack direction="row" alignItems="center" spacing="16px">
           <Menu strategy="fixed">
