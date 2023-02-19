@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { AddIcon, EditIcon } from '@chakra-ui/icons'
+import { EditIcon } from '@chakra-ui/icons'
 import {
   Button,
   Divider,
@@ -17,11 +17,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 
-interface ModalTodoProps {
-  type: string
-}
-
-export const ModalActivity = ({ type }: ModalTodoProps) => {
+export const ModalActivity = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [isDisabled, setIsDisabled] = useState(false)
   const [input, setInput] = useState('')
@@ -40,34 +36,15 @@ export const ModalActivity = ({ type }: ModalTodoProps) => {
 
   return (
     <>
-      {type === 'create' && (
-        <Button
-          type="button"
-          paddingX="7"
-          paddingY="6"
-          bgColor="brand.primary"
-          color="white"
-          letterSpacing="wider"
-          fontWeight="medium"
-          borderRadius="full"
-          transition="background-color 150ms ease"
-          leftIcon={<AddIcon />}
-          _hover={{ bgColor: 'brand.lightPrimary' }}
-          onClick={onOpen}>
-          Add Activity
-        </Button>
-      )}
-      {type === 'update' && (
-        <Button size="xs" variant="unstyled">
-          <EditIcon
-            fontSize="2xl"
-            color="gray.500"
-            transition="color 150ms ease-in-out"
-            _hover={{ color: 'gray.700' }}
-            onClick={onOpen}
-          />
-        </Button>
-      )}
+      <Button size="xs" variant="unstyled">
+        <EditIcon
+          fontSize="2xl"
+          color="gray.500"
+          transition="color 150ms ease-in-out"
+          _hover={{ color: 'gray.700' }}
+          onClick={onOpen}
+        />
+      </Button>
       <Modal
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
@@ -77,10 +54,7 @@ export const ModalActivity = ({ type }: ModalTodoProps) => {
         isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>
-            {type === 'update' && 'Update'} {type === 'create' && 'Create'}{' '}
-            Activity
-          </ModalHeader>
+          <ModalHeader>Update</ModalHeader>
           <Divider />
           <ModalCloseButton />
           <ModalBody mt={4}>

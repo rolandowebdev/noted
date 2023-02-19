@@ -7,11 +7,15 @@ const EMAIL = import.meta.env.VITE_EMAIL
 
 export const useActivityData = () => {
   const [activities, setActivities] = useState<Activity[]>([])
+  const defaultActivity = {
+    title: 'New Activity',
+    email: EMAIL,
+  }
 
-  const createActivity = async (newActivity: Activity) => {
+  const createActivity = async () => {
     const url = `${BASE_URL}/activity-groups?email=${EMAIL}`
     try {
-      const response = await axios.post<Activity>(url, newActivity)
+      const response = await axios.post<Activity>(url, defaultActivity)
       setActivities((prevActivity) => [...prevActivity, response.data])
     } catch (error) {
       throw new Error('Failed to create activity')

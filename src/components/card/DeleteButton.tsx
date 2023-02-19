@@ -11,7 +11,8 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useRef } from 'react'
-import { useActivityData, useCustomToast } from '../../hooks'
+import { useActivityContext } from '../../context'
+import { useCustomToast } from '../../hooks'
 
 interface DeleteButtonProps {
   id?: number | any
@@ -21,7 +22,7 @@ interface DeleteButtonProps {
 
 const DeleteButton = ({ id, title, type }: DeleteButtonProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const { deleteActivity } = useActivityData()
+  const { deleteActivity } = useActivityContext()
 
   const cancelRef = useRef<HTMLButtonElement>(null)
   const showToast = useCustomToast()
