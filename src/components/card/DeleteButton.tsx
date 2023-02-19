@@ -14,8 +14,8 @@ import { useRef } from 'react'
 import { useActivityData, useCustomToast } from '../../hooks'
 
 interface DeleteButtonProps {
-  id: number
-  title: string
+  id?: number | any
+  title?: string
   type: string
 }
 
