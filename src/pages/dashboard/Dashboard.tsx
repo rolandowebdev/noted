@@ -47,7 +47,7 @@ export const Dashboard = () => {
               'repeat(3, 1fr)',
               'repeat(4, 1fr)',
             ]}
-            gap={6}>
+            gap={4}>
             {activities.map((activity) => (
               <CardActivity
                 key={activity.id}

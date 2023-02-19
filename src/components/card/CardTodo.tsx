@@ -40,7 +40,7 @@ export const CardTodo = ({ title, comment, checked }: CardTodoProps) => {
             </Text>
             <ModalTodo type="update" />
           </HStack>
-          <DeleteButton type="update" />
+          <DeleteButton type="todo" />
         </HStack>
       </CardBody>
     </Card>

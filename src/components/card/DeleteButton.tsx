@@ -11,34 +11,28 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useRef } from 'react'
-import { useActivityContext } from '../../context'
-import { useCustomToast } from '../../hooks'
 
 interface DeleteButtonProps {
-  id?: number | any
   title?: string
   type: string
+  handleDelete?: (e: any) => void
 }
 
-const DeleteButton = ({ id, title, type }: DeleteButtonProps) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const { deleteActivity } = useActivityContext()
-
+const DeleteButton = ({ title, type, handleDelete }: DeleteButtonProps) => {
   const cancelRef = useRef<HTMLButtonElement>(null)
-  const showToast = useCustomToast()
-
-  const handleDelete = () => {
-    if (type === 'activity') deleteActivity(id)
-    onClose()
-    showToast(`Successfully deleted ${type}`, 'success')
-  }
-
+  const { isOpen, onOpen, onClose } = useDisclosure()
   return (
     <>
-      <Button size="xs" variant="unstyled" onClick={onOpen}>
+      <Button
+        size="xs"
+        variant="unstyled"
+        onClick={(e) => {
+          e.preventDefault()
+          onOpen()
+        }}>
         <DeleteIcon
           color="gray.500"
-          fontSize="lg"
+          fontSize="xl"
           transition="color 150ms ease-in-out"
           _hover={{ color: 'gray.700' }}
         />
