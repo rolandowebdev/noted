@@ -25,7 +25,7 @@ import { PageContainer } from '../../layouts'
 import { sortOptions } from '../../constants/sortOptions'
 import { comment } from '../../constants/todoPriority'
 
-const todos = [
+const todos: any[] = [
   {
     id: 1,
     title: 'Steak Food',
@@ -53,7 +53,6 @@ const todos = [
 ]
 
 export const Todo = () => {
-  const card = true
   return (
     <PageContainer>
       <HStack justify="space-between" align="center">
@@ -100,7 +99,7 @@ export const Todo = () => {
         </Stack>
       </HStack>
       <Box mt={[16, 14, 12]}>
-        {card ? (
+        {todos.length < 0 ? (
           <Stack spacing="16px">
             {todos.map((todo) => (
               <CardTodo
@@ -116,7 +115,7 @@ export const Todo = () => {
             desc="Create your todo here"
             illustrationHuman="/images/human-todo.png"
             illustrationIcon="/images/todo.png"
-            illustrationGround="/icons/ground-two.svg"
+            illustrationGround="/icons/ground.svg"
           />
         )}
       </Box>

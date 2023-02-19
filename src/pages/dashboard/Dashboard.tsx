@@ -59,10 +59,11 @@ export const Dashboard = () => {
           </Grid>
         ) : (
           <Illustration
+            type="activity"
             desc="Create your first activity"
             illustrationHuman="/images/human-activity.png"
             illustrationIcon="/images/activity.png"
-            illustrationGround="/icons/ground-one.svg"
+            illustrationGround="/icons/ground.svg"
           />
         )}
       </Box>
