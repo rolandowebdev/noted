@@ -13,9 +13,9 @@ import {
 import { useRef } from 'react'
 
 interface DeleteButtonProps {
-  title?: string
+  title: string
   type: string
-  handleDelete?: (e: any) => void
+  handleDelete: (e: any) => void
 }
 
 const DeleteButton = ({ title, type, handleDelete }: DeleteButtonProps) => {

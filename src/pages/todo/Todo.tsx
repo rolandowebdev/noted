@@ -24,16 +24,21 @@ import {
 } from '../../components'
 import { sortOptions } from '../../constants/sortOptions'
 import { useActivityContext } from '../../context'
+import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
 import { PageContainer } from '../../layouts'
 
 export const Todo = () => {
   const { id } = useParams()
-  const { activity, setActivity, getOneActivity } = useActivityContext()
-  const todoItems = activity?.todo_items
+  const { setActivity, getOneActivity } = useActivityContext()
+  const { todoItems, getAllTodo } = useTodoContext()
 
   const handleInputChange = (newValue: string) => {
     setActivity({ title: newValue })
   }
+
+  useEffect(() => {
+    getAllTodo(id)
+  }, [id])
 
   useEffect(() => {
     getOneActivity(id)
@@ -91,6 +96,7 @@ export const Todo = () => {
             {todoItems.map((todo: any) => (
               <CardTodo
                 key={todo.id}
+                id={todo.id}
                 title={todo.title}
                 comment={todo.priority}
                 checked={todo.isChecked}

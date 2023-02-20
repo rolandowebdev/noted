@@ -40,7 +40,7 @@ export const Dashboard = () => {
         </HStack>
       </Box>
       <Box as="section" mt={[16, 14, 12]}>
-        {activities.length > 0 ? (
+        {activities?.length > 0 ? (
           <Grid
             templateColumns={[
               'repeat(1, 1fr)',
