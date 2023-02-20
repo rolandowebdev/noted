@@ -43,6 +43,7 @@ export const ModalTodo = ({ type, title, id }: Todo) => {
     createTodo({
       title: input,
       activity_group_id: id,
+      is_active: 0,
       priority: selectRef.current?.value,
     })
     setInput('')
