@@ -105,6 +105,7 @@ export const Todo = () => {
           </Stack>
         ) : (
           <Illustration
+            type="todo"
             desc="Create your todo here"
             illustrationHuman="/images/human-todo.png"
             illustrationIcon="/images/todo.png"

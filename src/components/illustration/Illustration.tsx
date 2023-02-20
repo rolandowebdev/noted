@@ -3,7 +3,7 @@ import { useActivityContext } from '../../context'
 import { useCustomToast } from '../../hooks'
 
 interface IllustrationProps {
-  type?: string
+  type: string
   desc: string
   illustrationHuman: string
   illustrationIcon: string
@@ -26,9 +26,10 @@ export const Illustration = ({
       showToast(`Successfully created activity`, 'success')
     }
   }
+
   return (
     <Flex
-      as="button"
+      as={type === 'activity' ? 'button' : 'div'}
       pos="relative"
       alignItems={['center', 'center', 'flex-start']}
       justifyContent="center"
@@ -41,7 +42,13 @@ export const Illustration = ({
       </Box>
       <Box>
         <Image src={illustrationIcon} alt="activity add illustration" />
-        <Text as="p" mt={6} fontSize="xl" fontWeight="semibold" marginRight={8}>
+        <Text
+          as="p"
+          textAlign="center"
+          mt={6}
+          fontSize="xl"
+          fontWeight="semibold"
+          marginRight={type === 'activity' ? 8 : 12}>
           {desc}
         </Text>
       </Box>
