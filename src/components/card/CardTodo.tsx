@@ -17,13 +17,13 @@ interface CardTodoProps {
   id: any
   title: string
   priority: string
-  checked: boolean
+  isActive: boolean
 }
 
-export const CardTodo = ({ id, title, priority, checked }: CardTodoProps) => {
-  const { deleteTodo } = useTodoContext()
+export const CardTodo = ({ id, title, priority, isActive }: CardTodoProps) => {
+  const [isChecked, setIsChecked] = useState<boolean>(Boolean(isActive))
+  const { updateTodo, deleteTodo } = useTodoContext()
   const { onClose } = useDisclosure()
-  const [isChecked, setIsChecked] = useState(checked)
   const showToast = useCustomToast()
 
   const handleDeleteTodo = () => {
@@ -32,8 +32,9 @@ export const CardTodo = ({ id, title, priority, checked }: CardTodoProps) => {
     showToast('Successfully deleted todo', 'success')
   }
 
-  const handleChange = (e: { target: { checked: boolean } }) => {
-    setIsChecked(e.target.checked)
+  const handleCheckboxChange = () => {
+    setIsChecked(!isChecked)
+    updateTodo({ id, is_active: isChecked ? 0 : 1 })
   }
 
   return (
@@ -44,7 +45,7 @@ export const CardTodo = ({ id, title, priority, checked }: CardTodoProps) => {
             <Checkbox
               colorScheme="green"
               isChecked={isChecked}
-              onChange={handleChange}
+              onChange={handleCheckboxChange}
             />
             <Box
               width={3}
