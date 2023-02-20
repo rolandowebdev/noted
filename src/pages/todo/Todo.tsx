@@ -18,7 +18,7 @@ import { Link as RouterLink, useParams } from 'react-router-dom'
 
 import {
   CardTodo,
-  CustomControls,
+  EditableText,
   Illustration,
   ModalTodo,
 } from '../../components'
@@ -56,7 +56,11 @@ const todos: any[] = [
 
 export const Todo = () => {
   const { id } = useParams()
-  const { activity, getOneActivity } = useActivityContext()
+  const { activity, setActivity, getOneActivity } = useActivityContext()
+
+  const handleInputChange = (newValue: string) => {
+    setActivity({ title: newValue })
+  }
 
   useEffect(() => {
     getOneActivity(id)
@@ -64,7 +68,7 @@ export const Todo = () => {
 
   return (
     <PageContainer>
-      <HStack justify="space-between" align="center">
+      <HStack justify="space-between" align="center" height="50px">
         <HStack alignItems="center">
           <Link
             as={RouterLink}
@@ -76,7 +80,11 @@ export const Todo = () => {
             _hover={{ textDecor: 'underline', color: 'brand.primary' }}>
             <ChevronLeftIcon fontSize="5xl" />
           </Link>
-          <CustomControls title={activity?.title} />
+          <EditableText
+            title={activity?.title}
+            id={id}
+            onChange={handleInputChange}
+          />
         </HStack>
         <Stack direction="row" alignItems="center" spacing="16px">
           <Menu strategy="fixed">

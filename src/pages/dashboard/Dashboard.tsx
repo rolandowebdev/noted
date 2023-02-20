@@ -18,7 +18,7 @@ export const Dashboard = () => {
   return (
     <PageContainer>
       <Box as="nav" role="navigation">
-        <HStack justify="space-between" align="center">
+        <HStack justify="space-between" align="center" height="50px">
           <Heading as="h1" size="lg" fontWeight="bold">
             Activity
           </Heading>

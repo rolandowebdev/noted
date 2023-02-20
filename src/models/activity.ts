@@ -1,5 +1,5 @@
 export interface Activity {
-  id: number | any
+  id: any
   title: string
   created_at?: string
   updated_at?: string

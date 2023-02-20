@@ -15,7 +15,7 @@ export const EditableControls = () => {
   } = useEditableControls()
 
   return isEditing ? (
-    <ButtonGroup justifyContent="center" size="sm">
+    <ButtonGroup justifyContent="center" alignItems="center" size="sm">
       <IconButton
         aria-label="check icon"
         icon={<CheckIcon />}
@@ -28,10 +28,9 @@ export const EditableControls = () => {
       />
     </ButtonGroup>
   ) : (
-    <Flex justifyContent="center">
+    <Flex justifyContent="center" alignItems="center">
       <IconButton
         aria-label="edit icon"
-        size="sm"
         icon={<EditIcon />}
         {...getEditButtonProps()}
       />

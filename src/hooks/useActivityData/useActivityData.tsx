@@ -46,7 +46,7 @@ export const useActivityData = () => {
   const updateActivity = async (newActivity: Activity) => {
     const url = `${BASE_URL}/activity-groups/${newActivity.id}?email=${EMAIL}`
     try {
-      const response = await axios.put<Activity>(url, newActivity)
+      const response = await axios.patch<Activity>(url, newActivity)
       setActivities((prevActivity) =>
         prevActivity.map((activity) =>
           activity.id === response.data.id ? response.data : activity
@@ -72,6 +72,7 @@ export const useActivityData = () => {
   return {
     activities,
     activity,
+    setActivity,
     createActivity,
     getAllActivity,
     getOneActivity,
