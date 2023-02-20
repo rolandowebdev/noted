@@ -6,13 +6,23 @@ import { ResponseTodo, Todo } from '../../models/todo'
 export const useTodoData = () => {
   const [todoItems, setTodoItems] = useState<Todo[]>([])
 
+  const createTodo = async (newTodo: Todo) => {
+    const url = `${BASE_URL}/todo-items`
+    try {
+      const response = await axios.post<Todo>(url, newTodo)
+      setTodoItems((prevTodo) => [...prevTodo, response.data])
+    } catch (error) {
+      throw new Error('Failed to create todo')
+    }
+  }
+
   const getAllTodo = async (id: any) => {
     const url = `${BASE_URL}/todo-items?activity_group_id=${id}`
     try {
       const response = await axios.get<ResponseTodo>(url)
       setTodoItems(response.data.data)
     } catch (error) {
-      throw new Error('Failed to fetch all activity')
+      throw new Error('Failed to fetch all todo')
     }
   }
 
@@ -22,9 +32,9 @@ export const useTodoData = () => {
       await axios.delete(url)
       setTodoItems((prevTodo) => prevTodo.filter((todo) => todo.id !== id))
     } catch (error) {
-      throw new Error('Failed to delete activity')
+      throw new Error('Failed to delete todo')
     }
   }
 
-  return { todoItems, getAllTodo, deleteTodo }
+  return { todoItems, createTodo, getAllTodo, deleteTodo }
 }

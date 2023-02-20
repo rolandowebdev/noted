@@ -1,4 +1,4 @@
-export const comment = {
+export const priority = {
   veryHigh: 'very-high',
   high: 'high',
   normal: 'normal',
@@ -9,22 +9,22 @@ export const comment = {
 export const priorities = [
   {
     name: 'Very High',
-    comment: comment.veryHigh,
+    priority: priority.veryHigh,
   },
   {
     name: 'High',
-    comment: comment.high,
+    priority: priority.high,
   },
   {
     name: 'Normal',
-    comment: comment.normal,
+    priority: priority.normal,
   },
   {
     name: 'Low',
-    comment: comment.low,
+    priority: priority.low,
   },
   {
     name: 'Very Low',
-    comment: comment.veryLow,
+    priority: priority.veryLow,
   },
 ]

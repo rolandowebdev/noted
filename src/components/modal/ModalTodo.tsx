@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react'
 import { AddIcon, EditIcon } from '@chakra-ui/icons'
 import {
   Box,
@@ -18,18 +17,25 @@ import {
   Select,
   useDisclosure,
 } from '@chakra-ui/react'
+import { useEffect, useRef, useState } from 'react'
 
 import { priorities } from '../../constants/todoPriority'
+import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
+import { useCustomToast } from '../../hooks'
 
 interface ModalTodoProps {
   type: string
+  id?: string
 }
 
-export const ModalTodo = ({ type }: ModalTodoProps) => {
+export const ModalTodo = ({ type, id }: ModalTodoProps) => {
+  const showToast = useCustomToast()
+  const { createTodo } = useTodoContext()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [isDisabled, setIsDisabled] = useState(false)
-  const [input, setInput] = useState('')
+  const [isDisabled, setIsDisabled] = useState<boolean>(false)
+  const [input, setInput] = useState<string>('')
 
+  const selectRef = useRef<HTMLSelectElement>(null)
   const initialRef = useRef<HTMLInputElement>(null)
   const finalRef = useRef<HTMLButtonElement>(null)
 
@@ -37,8 +43,19 @@ export const ModalTodo = ({ type }: ModalTodoProps) => {
     setInput(e.target.value)
   }
 
+  const handleCreateTodo = () => {
+    createTodo({
+      title: input,
+      activity_group_id: id,
+      priority: selectRef.current?.value,
+    })
+    setInput('')
+    onClose()
+    showToast('Successfully created todo', 'success')
+  }
+
   useEffect(() => {
-    if (input?.trim() === '') setIsDisabled(true)
+    if (input.trim() === '') setIsDisabled(true)
     else setIsDisabled(false)
   }, [input])
 
@@ -103,12 +120,17 @@ export const ModalTodo = ({ type }: ModalTodoProps) => {
                 <FormLabel fontWeight="semibold" mb={0}>
                   Priority
                 </FormLabel>
-                <Select placeholder="Select priority" w="max-content">
+                <Select
+                  ref={selectRef}
+                  pos="relative"
+                  defaultValue="very-high"
+                  placeholder="Select priority"
+                  w="max-content">
                   {priorities.map((priority) => (
                     <Box
                       as="option"
-                      key={priority.comment}
-                      value={priority.comment}>
+                      key={priority.priority}
+                      value={priority.priority}>
                       {priority.name}
                     </Box>
                   ))}
@@ -117,7 +139,11 @@ export const ModalTodo = ({ type }: ModalTodoProps) => {
             </FormControl>
           </ModalBody>
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} isDisabled={isDisabled}>
+            <Button
+              onClick={handleCreateTodo}
+              colorScheme="blue"
+              mr={3}
+              isDisabled={isDisabled}>
               Save
             </Button>
           </ModalFooter>

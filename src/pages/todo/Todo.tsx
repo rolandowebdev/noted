@@ -87,7 +87,7 @@ export const Todo = () => {
               </MenuOptionGroup>
             </MenuList>
           </Menu>
-          <ModalTodo type="create" />
+          <ModalTodo type="create" id={id} />
         </Stack>
       </HStack>
       <Box as="section" mt={[16, 14, 12]}>
@@ -98,7 +98,7 @@ export const Todo = () => {
                 key={todo.id}
                 id={todo.id}
                 title={todo.title}
-                comment={todo.priority}
+                priority={todo.priority}
                 checked={todo.isChecked}
               />
             ))}

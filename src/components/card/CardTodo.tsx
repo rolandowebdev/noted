@@ -16,11 +16,11 @@ import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
 interface CardTodoProps {
   id: any
   title: string
-  comment: string
+  priority: string
   checked: boolean
 }
 
-export const CardTodo = ({ id, title, comment, checked }: CardTodoProps) => {
+export const CardTodo = ({ id, title, priority, checked }: CardTodoProps) => {
   const [isChecked, setIsChecked] = useState(checked)
   const { onClose } = useDisclosure()
   const { deleteTodo } = useTodoContext()
@@ -49,7 +49,7 @@ export const CardTodo = ({ id, title, comment, checked }: CardTodoProps) => {
               width={3}
               height={3}
               rounded="full"
-              bgColor={`brand.${comment}`}
+              bgColor={`brand.${priority}`}
             />
             <Text
               fontSize="lg"
