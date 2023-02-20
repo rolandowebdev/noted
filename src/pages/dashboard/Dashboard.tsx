@@ -39,7 +39,7 @@ export const Dashboard = () => {
           </Button>
         </HStack>
       </Box>
-      <Box mt={[16, 14, 12]}>
+      <Box as="section" mt={[16, 14, 12]}>
         {activities.length > 0 ? (
           <Grid
             templateColumns={[

@@ -10,14 +10,15 @@ import { EditableControls } from './EditableControls'
 
 interface EditableTextProps {
   id: any
+  onChange: (value: string) => void
 }
 
-export const EditableText = ({ id }: EditableTextProps) => {
-  const { activity, setActivity, updateActivity } = useActivityContext()
+export const EditableText = ({ id, onChange }: EditableTextProps) => {
+  const { activity, updateActivity } = useActivityContext()
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleChange = (newValue: string) => {
-    setActivity({ title: newValue })
+    onChange(newValue)
   }
 
   const handleSubmit = () => {
@@ -28,7 +29,7 @@ export const EditableText = ({ id }: EditableTextProps) => {
     if (event.key === 'Enter') {
       event.preventDefault()
       if (inputRef.current) {
-        setActivity(inputRef.current.value)
+        onChange(inputRef.current.value)
         inputRef.current.blur()
       }
     }

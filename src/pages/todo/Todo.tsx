@@ -56,7 +56,11 @@ const todos: any[] = [
 
 export const Todo = () => {
   const { id } = useParams()
-  const { getOneActivity } = useActivityContext()
+  const { setActivity, getOneActivity } = useActivityContext()
+
+  const handleInputChange = (newValue: string) => {
+    setActivity({ title: newValue })
+  }
 
   useEffect(() => {
     getOneActivity(id)
@@ -64,7 +68,7 @@ export const Todo = () => {
 
   return (
     <PageContainer>
-      <HStack justify="space-between" align="center" height="50px">
+      <HStack as="nav" justify="space-between" align="center" height="50px">
         <HStack alignItems="center">
           <RouterLink
             link="/"
@@ -77,7 +81,7 @@ export const Todo = () => {
             hover={{ textDecor: 'underline', color: 'brand.primary' }}>
             <ChevronLeftIcon fontSize="5xl" />
           </RouterLink>
-          <EditableText id={id} />
+          <EditableText id={id} onChange={handleInputChange} />
         </HStack>
         <Stack direction="row" alignItems="center" spacing="16px">
           <Menu strategy="fixed">
@@ -108,7 +112,7 @@ export const Todo = () => {
           <ModalTodo type="create" />
         </Stack>
       </HStack>
-      <Box mt={[16, 14, 12]}>
+      <Box as="section" mt={[16, 14, 12]}>
         {todos.length < 0 ? (
           <Stack spacing="16px">
             {todos.map((todo) => (
