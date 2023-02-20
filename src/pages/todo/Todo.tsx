@@ -56,11 +56,7 @@ const todos: any[] = [
 
 export const Todo = () => {
   const { id } = useParams()
-  const { activity, setActivity, getOneActivity } = useActivityContext()
-
-  const handleInputChange = (newValue: string) => {
-    setActivity({ title: newValue })
-  }
+  const { getOneActivity } = useActivityContext()
 
   useEffect(() => {
     getOneActivity(id)
@@ -81,11 +77,7 @@ export const Todo = () => {
             hover={{ textDecor: 'underline', color: 'brand.primary' }}>
             <ChevronLeftIcon fontSize="5xl" />
           </RouterLink>
-          <EditableText
-            title={activity?.title}
-            id={id}
-            onChange={handleInputChange}
-          />
+          <EditableText id={id} />
         </HStack>
         <Stack direction="row" alignItems="center" spacing="16px">
           <Menu strategy="fixed">
