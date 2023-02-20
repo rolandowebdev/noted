@@ -1,9 +1,9 @@
 export interface Todo {
-  id: number
-  title: string
-  activity_group_id?: number
-  is_active: number
-  priority: string
+  id: any
+  title?: string
+  activity_group_id?: string
+  is_active?: number
+  priority?: string
   created_at?: string
   updated_at?: string
 }

@@ -23,40 +23,13 @@ import {
   RouterLink,
 } from '../../components'
 import { sortOptions } from '../../constants/sortOptions'
-import { comment } from '../../constants/todoPriority'
 import { useActivityContext } from '../../context'
 import { PageContainer } from '../../layouts'
 
-const todos: any[] = [
-  {
-    id: 1,
-    title: 'Steak Food',
-    comment: comment.high,
-    isChecked: false,
-  },
-  {
-    id: 2,
-    title: 'Spagheti Food',
-    comment: comment.low,
-    isChecked: true,
-  },
-  {
-    id: 3,
-    title: 'Chicken Fried Food',
-    comment: comment.veryHigh,
-    isChecked: false,
-  },
-  {
-    id: 4,
-    title: 'Lobster Food',
-    comment: comment.veryLow,
-    isChecked: false,
-  },
-]
-
 export const Todo = () => {
   const { id } = useParams()
-  const { setActivity, getOneActivity } = useActivityContext()
+  const { activity, setActivity, getOneActivity } = useActivityContext()
+  const todoItems = activity?.todo_items
 
   const handleInputChange = (newValue: string) => {
     setActivity({ title: newValue })
@@ -113,13 +86,13 @@ export const Todo = () => {
         </Stack>
       </HStack>
       <Box as="section" mt={[16, 14, 12]}>
-        {todos.length < 0 ? (
+        {todoItems?.length > 0 ? (
           <Stack spacing="16px">
-            {todos.map((todo) => (
+            {todoItems.map((todo: any) => (
               <CardTodo
                 key={todo.id}
                 title={todo.title}
-                comment={todo.comment}
+                comment={todo.priority}
                 checked={todo.isChecked}
               />
             ))}

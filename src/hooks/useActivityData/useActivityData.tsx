@@ -1,9 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { BASE_URL, EMAIL } from '../../constants/apiUrl'
 import { Activity, ResponseActivity } from '../../models/activity'
-
-const BASE_URL = import.meta.env.VITE_BASE_URL
-const EMAIL = import.meta.env.VITE_EMAIL
 
 export const useActivityData = () => {
   const [activities, setActivities] = useState<Activity[]>([])
