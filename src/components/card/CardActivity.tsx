@@ -6,7 +6,7 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
-import { Link } from 'react-router-dom'
+import { Link as RouterLink } from 'react-router-dom'
 import { useActivityContext } from '../../context'
 import { useCustomToast } from '../../hooks'
 import { Activity } from '../../models/activity'
@@ -25,25 +25,23 @@ export const CardActivity = ({ id, title, created_at }: Activity) => {
   }
 
   return (
-    <Link to={`/todos/${id}`}>
-      <Card size="lg">
-        <CardHeader>
-          <Heading size="md">{title}</Heading>
-        </CardHeader>
-        <CardFooter
-          display="flex"
-          justifyContent="space-between"
-          alignItems="center">
-          <Text as="time" fontSize="sm" dateTime={created_at}>
-            {formatDate(created_at)}
-          </Text>
-          <DeleteButton
-            type="activity"
-            title={title}
-            handleDelete={handleDeleteActivity}
-          />
-        </CardFooter>
-      </Card>
-    </Link>
+    <Card as={RouterLink} to={`/todos/${id}`} size="lg">
+      <CardHeader>
+        <Heading size="md">{title}</Heading>
+      </CardHeader>
+      <CardFooter
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center">
+        <Text as="time" fontSize="sm" dateTime={created_at}>
+          {formatDate(created_at)}
+        </Text>
+        <DeleteButton
+          type="activity"
+          title={title}
+          handleDelete={handleDeleteActivity}
+        />
+      </CardFooter>
+    </Card>
   )
 }

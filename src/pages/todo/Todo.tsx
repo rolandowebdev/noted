@@ -4,7 +4,6 @@ import {
   HStack,
   IconButton,
   Image,
-  Link,
   Menu,
   MenuButton,
   MenuItemOption,
@@ -14,13 +13,14 @@ import {
   Text,
 } from '@chakra-ui/react'
 import { useEffect } from 'react'
-import { Link as RouterLink, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import {
   CardTodo,
   EditableText,
   Illustration,
   ModalTodo,
+  RouterLink,
 } from '../../components'
 import { sortOptions } from '../../constants/sortOptions'
 import { comment } from '../../constants/todoPriority'
@@ -70,16 +70,17 @@ export const Todo = () => {
     <PageContainer>
       <HStack justify="space-between" align="center" height="50px">
         <HStack alignItems="center">
-          <Link
-            as={RouterLink}
-            to="/"
-            size="xs"
-            ml="-17px"
-            display="flex"
-            alignItems="center"
-            _hover={{ textDecor: 'underline', color: 'brand.primary' }}>
+          <RouterLink
+            link="/"
+            styles={{
+              size: 'xs',
+              ml: '-17px',
+              display: 'flex',
+              alignItems: 'center',
+            }}
+            hover={{ textDecor: 'underline', color: 'brand.primary' }}>
             <ChevronLeftIcon fontSize="5xl" />
-          </Link>
+          </RouterLink>
           <EditableText
             title={activity?.title}
             id={id}

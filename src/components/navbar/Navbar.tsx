@@ -1,5 +1,5 @@
-import { Link as RouterLink } from 'react-router-dom'
-import { Box, Container, Link } from '@chakra-ui/react'
+import { Box, Container } from '@chakra-ui/react'
+import { RouterLink } from '../link/RouterLink'
 
 export const Navbar = () => {
   return (
@@ -14,15 +14,17 @@ export const Navbar = () => {
       display="flex"
       alignItems="center">
       <Container maxW="container.lg">
-        <Link
-          as={RouterLink}
-          to="/"
-          fontSize="3xl"
-          fontWeight="bold"
-          color="white"
-          letterSpacing="wider">
+        <RouterLink
+          link="/"
+          styles={{
+            fontSize: '3xl',
+            fontWeight: 'bold',
+            color: 'white',
+            letterSpacing: 'wider',
+          }}
+          hover={{ textDecor: 'underline' }}>
           Noted
-        </Link>
+        </RouterLink>
       </Container>
     </Box>
   )
