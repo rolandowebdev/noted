@@ -21,9 +21,9 @@ interface CardTodoProps {
 }
 
 export const CardTodo = ({ id, title, priority, checked }: CardTodoProps) => {
-  const [isChecked, setIsChecked] = useState(checked)
-  const { onClose } = useDisclosure()
   const { deleteTodo } = useTodoContext()
+  const { onClose } = useDisclosure()
+  const [isChecked, setIsChecked] = useState(checked)
   const showToast = useCustomToast()
 
   const handleDeleteTodo = () => {
@@ -35,6 +35,7 @@ export const CardTodo = ({ id, title, priority, checked }: CardTodoProps) => {
   const handleChange = (e: { target: { checked: boolean } }) => {
     setIsChecked(e.target.checked)
   }
+
   return (
     <Card>
       <CardBody>
@@ -57,7 +58,7 @@ export const CardTodo = ({ id, title, priority, checked }: CardTodoProps) => {
               color={isChecked ? 'gray.500' : 'black'}>
               {title}
             </Text>
-            <ModalTodo type="update" />
+            <ModalTodo id={id} title={title} type="update" />
           </HStack>
           <DeleteButton
             type="todo"

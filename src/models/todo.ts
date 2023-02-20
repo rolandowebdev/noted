@@ -1,4 +1,5 @@
 export interface Todo {
+  type?: string
   id?: any
   title?: string
   activity_group_id?: any

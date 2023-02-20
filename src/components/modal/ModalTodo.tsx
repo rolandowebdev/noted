@@ -22,22 +22,18 @@ import { useEffect, useRef, useState } from 'react'
 import { priorities } from '../../constants/todoPriority'
 import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
 import { useCustomToast } from '../../hooks'
+import { Todo } from '../../models/todo'
 
-interface ModalTodoProps {
-  type: string
-  id?: string
-}
-
-export const ModalTodo = ({ type, id }: ModalTodoProps) => {
+export const ModalTodo = ({ type, title, id }: Todo) => {
   const showToast = useCustomToast()
-  const { createTodo } = useTodoContext()
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const [isDisabled, setIsDisabled] = useState<boolean>(false)
-  const [input, setInput] = useState<string>('')
-
   const selectRef = useRef<HTMLSelectElement>(null)
   const initialRef = useRef<HTMLInputElement>(null)
   const finalRef = useRef<HTMLButtonElement>(null)
+
+  const { createTodo, updateTodo } = useTodoContext()
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [isDisabled, setIsDisabled] = useState<boolean>(false)
+  const [input, setInput] = useState<string | undefined>(title)
 
   const handleChange = (e: { target: { value: string } }) => {
     setInput(e.target.value)
@@ -54,8 +50,18 @@ export const ModalTodo = ({ type, id }: ModalTodoProps) => {
     showToast('Successfully created todo', 'success')
   }
 
+  const handleUpdateTodo = () => {
+    updateTodo({
+      id,
+      title: input,
+      priority: selectRef.current?.value,
+    })
+    onClose()
+    showToast('Successfully updated todo', 'success')
+  }
+
   useEffect(() => {
-    if (input.trim() === '') setIsDisabled(true)
+    if (input === '') setIsDisabled(true)
     else setIsDisabled(false)
   }, [input])
 
@@ -111,7 +117,7 @@ export const ModalTodo = ({ type, id }: ModalTodoProps) => {
                 </FormLabel>
                 <Input
                   ref={initialRef}
-                  value={input}
+                  value={type === 'update' ? input : undefined}
                   onChange={handleChange}
                   placeholder="Type your todo name..."
                 />
@@ -140,7 +146,7 @@ export const ModalTodo = ({ type, id }: ModalTodoProps) => {
           </ModalBody>
           <ModalFooter>
             <Button
-              onClick={handleCreateTodo}
+              onClick={type === 'create' ? handleCreateTodo : handleUpdateTodo}
               colorScheme="blue"
               mr={3}
               isDisabled={isDisabled}>
