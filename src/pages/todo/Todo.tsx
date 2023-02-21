@@ -88,7 +88,7 @@ export const Todo = () => {
                   value={selectedOption}>
                   {sortOptions.map((sortOption) => (
                     <MenuItemOption
-                      data-cy={sortOption['data-cy']}
+                      data-cy="sort-selection"
                       key={sortOption.text}
                       value={sortOption.value}>
                       <HStack alignItems="center">

@@ -49,7 +49,7 @@ const DeleteButton = ({ title, type, handleDelete }: DeleteButtonProps) => {
         isOpen={isOpen}
         isCentered>
         <AlertDialogOverlay>
-          <AlertDialogContent data-cy="modal-delete" textAlign="center">
+          <AlertDialogContent textAlign="center" data-cy="modal-delete">
             <AlertDialogHeader>
               <WarningTwoIcon
                 data-cy="modal-delete-icon"

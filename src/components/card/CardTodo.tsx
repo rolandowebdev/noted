@@ -15,7 +15,7 @@ import { ModalTodo } from '../modal/ModalTodo'
 import DeleteButton from './DeleteButton'
 
 export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
-  const [isChecked, setIsChecked] = useState<boolean>(Boolean(is_active))
+  const [isChecked, setIsChecked] = useState<any>(is_active)
   const { updateTodo, deleteTodo } = useTodoContext()
   const { onClose } = useDisclosure()
   const showToast = useCustomToast()

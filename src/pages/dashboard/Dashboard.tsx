@@ -1,16 +1,21 @@
 import { AddIcon } from '@chakra-ui/icons'
 import { Box, Button, Grid, Heading, HStack } from '@chakra-ui/react'
+import { useEffect } from 'react'
 
 import { CardActivity, Illustration } from '../../components'
 import { useActivityContext } from '../../context'
 import { PageContainer } from '../../layouts'
 
 export const Dashboard = () => {
-  const { activities, createActivity } = useActivityContext()
+  const { activities, createActivity, getAllActivity } = useActivityContext()
 
   const handleCreateActivity = () => {
     createActivity()
   }
+
+  useEffect(() => {
+    getAllActivity()
+  }, [])
 
   return (
     <PageContainer>
