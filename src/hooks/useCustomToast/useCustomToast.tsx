@@ -8,9 +8,11 @@ export const useCustomToast = () => {
       status,
       duration: TIMER,
       render: () => (
-        <Alert status="success">
-          <AlertIcon />
-          <Text as="p">{title}</Text>
+        <Alert data-cy="modal-information" status="success">
+          <AlertIcon data-cy="modal-information-icon" />
+          <Text data-cy="modal-information-title" as="p">
+            {title}
+          </Text>
         </Alert>
       ),
     })

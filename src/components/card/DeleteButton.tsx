@@ -24,6 +24,11 @@ const DeleteButton = ({ title, type, handleDelete }: DeleteButtonProps) => {
   return (
     <>
       <Button
+        data-cy={
+          type === 'activity'
+            ? 'activity-item-delete-button'
+            : 'todo-item-delete-button'
+        }
         size="xs"
         variant="unstyled"
         onClick={(e) => {
@@ -44,11 +49,15 @@ const DeleteButton = ({ title, type, handleDelete }: DeleteButtonProps) => {
         isOpen={isOpen}
         isCentered>
         <AlertDialogOverlay>
-          <AlertDialogContent textAlign="center">
+          <AlertDialogContent data-cy="modal-delete" textAlign="center">
             <AlertDialogHeader>
-              <WarningTwoIcon fontSize="8xl" color="brand.very-high" />
+              <WarningTwoIcon
+                data-cy="modal-delete-icon"
+                fontSize="8xl"
+                color="brand.very-high"
+              />
             </AlertDialogHeader>
-            <AlertDialogBody letterSpacing="unset">
+            <AlertDialogBody data-cy="modal-delete-title" letterSpacing="unset">
               Apakah anda yakin menghapus activity {type}
               <Text as="span" display="block" fontWeight="bold">
                 {`"${title}"`}?
@@ -56,6 +65,7 @@ const DeleteButton = ({ title, type, handleDelete }: DeleteButtonProps) => {
             </AlertDialogBody>
             <AlertDialogFooter mx="auto">
               <Button
+                data-cy="modal-delete-cancel-button"
                 ref={cancelRef}
                 px={6}
                 w={28}
@@ -66,6 +76,7 @@ const DeleteButton = ({ title, type, handleDelete }: DeleteButtonProps) => {
                 Batal
               </Button>
               <Button
+                data-cy="modal-delete-confirm-button"
                 rounded="full"
                 px={6}
                 w={28}

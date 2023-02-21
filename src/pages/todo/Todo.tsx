@@ -64,7 +64,7 @@ export const Todo = () => {
               alignItems: 'center',
             }}
             hover={{ textDecor: 'underline', color: 'brand.primary' }}>
-            <ChevronLeftIcon fontSize="5xl" />
+            <ChevronLeftIcon data-cy="todo-back-button" fontSize="5xl" />
           </RouterLink>
           <EditableText id={id} onChange={handleInputChange} />
         </HStack>
@@ -72,6 +72,7 @@ export const Todo = () => {
           {todoItems?.length > 0 ? (
             <Menu isLazy>
               <MenuButton
+                data-cy="todo-sort-button"
                 as={IconButton}
                 variant="outline"
                 rounded="full"
@@ -80,13 +81,14 @@ export const Todo = () => {
                 icon={<UpDownIcon color="gray.500" />}
                 sx={{ aspectRatio: '1/1' }}
               />
-              <MenuList>
+              <MenuList data-cy="sort-parent">
                 <MenuOptionGroup
                   type="radio"
                   onChange={handleSelectChange}
                   value={selectedOption}>
                   {sortOptions.map((sortOption) => (
                     <MenuItemOption
+                      data-cy={sortOption['data-cy']}
                       key={sortOption.text}
                       value={sortOption.value}>
                       <HStack alignItems="center">

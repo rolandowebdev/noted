@@ -26,19 +26,27 @@ export const CardActivity = ({ id, title, created_at }: Activity) => {
 
   return (
     <Card
+      data-cy="activity-item"
       as={RouterLink}
       to={`/todos/${id}`}
       size="lg"
       transition="box-shadow 200ms ease-in-out"
       _hover={{ boxShadow: '4px 4px 4px 2px rgba(181,181,181,0.23)' }}>
       <CardHeader>
-        <Heading size="md">{title}</Heading>
+        <Heading data-cy="activity-item-title" size="md">
+          {title}
+        </Heading>
       </CardHeader>
       <CardFooter
         display="flex"
         justifyContent="space-between"
         alignItems="center">
-        <Text as="time" fontSize="sm" color="gray.500" dateTime={created_at}>
+        <Text
+          as="time"
+          data-cy="activity-item-date"
+          fontSize="sm"
+          color="gray.500"
+          dateTime={created_at}>
           {formatDate(created_at)}
         </Text>
         <DeleteButton

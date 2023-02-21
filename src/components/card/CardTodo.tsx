@@ -33,23 +33,27 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
 
   return (
     <Card
+      data-cy="todo-item"
       transition="box-shadow 200ms ease-in-out"
       _hover={{ boxShadow: '4px 4px 4px 2px rgba(181,181,181,0.23)' }}>
       <CardBody>
         <HStack alignItems="center" justifyContent="space-between">
           <HStack alignItems="center" spacing="20px">
             <Checkbox
+              data-cy="todo-item-checkbox"
               colorScheme="green"
               isChecked={isChecked}
               onChange={handleCheckboxChange}
             />
             <Box
+              data-cy="todo-item-priority-indicator"
               width={3}
               height={3}
               rounded="full"
               bgColor={`brand.${priority}`}
             />
             <Text
+              data-cy="todo-item-title"
               fontSize="lg"
               decoration={isChecked ? 'line-through' : 'none'}
               color={isChecked ? 'gray.500' : 'black'}>

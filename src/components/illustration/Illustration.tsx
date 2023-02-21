@@ -26,6 +26,9 @@ export const Illustration = ({
 
   return (
     <Flex
+      data-cy={
+        type === 'activity' ? 'activity-empty-state' : 'todo-empty-state'
+      }
       as={type === 'activity' ? 'button' : 'div'}
       pos="relative"
       alignItems={['center', 'center', 'flex-start']}

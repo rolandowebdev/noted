@@ -16,10 +16,15 @@ export const Dashboard = () => {
     <PageContainer>
       <Box as="nav" role="navigation">
         <HStack justify="space-between" align="center" height="50px">
-          <Heading as="h1" fontSize="3xl" fontWeight="bold">
+          <Heading
+            data-cy="activity-title"
+            as="h1"
+            fontSize="3xl"
+            fontWeight="bold">
             Activity
           </Heading>
           <Button
+            data-cy="activity-add-button"
             type="button"
             paddingX="7"
             paddingY="6"

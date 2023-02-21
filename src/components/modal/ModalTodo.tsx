@@ -15,6 +15,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Select,
+  Text,
   useDisclosure,
 } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
@@ -75,6 +76,7 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
     <>
       {type === 'create' && (
         <Button
+          data-cy="todo-add-button"
           type="button"
           paddingX="7"
           paddingY="6"
@@ -91,7 +93,7 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
         </Button>
       )}
       {type === 'update' && (
-        <Button size="xs" variant="unstyled">
+        <Button data-cy="todo-item-edit-button" size="xs" variant="unstyled">
           <EditIcon
             fontSize="lg"
             color="gray.500"
@@ -109,22 +111,27 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
         motionPreset="slideInBottom"
         isCentered>
         <ModalOverlay />
-        <ModalContent>
+        <ModalContent data-cy="modal-add">
           <ModalHeader>
-            {type === 'update' && 'Update'} {type === 'create' && 'Create'} Todo
+            <Text data-cy="modal-add-title">
+              {type === 'update' && 'Update'} {type === 'create' && 'Create'}{' '}
+              Todo
+            </Text>
           </ModalHeader>
           <Divider />
-          <ModalCloseButton />
+          <ModalCloseButton data-cy="modal-add-close-button" />
           <ModalBody mt={4}>
             <FormControl>
               <InputGroup display="flex" flexDirection="column" gap={2}>
                 <FormLabel
+                  data-cy="modal-add-name-title"
                   textTransform="uppercase"
                   fontWeight="semibold"
                   mb={0}>
                   Nama list item
                 </FormLabel>
                 <Input
+                  data-cy="modal-add-name-input"
                   ref={initialRef}
                   value={type === 'update' ? input : undefined}
                   onChange={handleChange}
@@ -133,12 +140,14 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
               </InputGroup>
               <InputGroup display="flex" flexDirection="column" gap={2} mt={6}>
                 <FormLabel
+                  data-cy="modal-add-priority-title"
                   textTransform="uppercase"
                   fontWeight="semibold"
                   mb={0}>
                   Priority
                 </FormLabel>
                 <Select
+                  data-cy="modal-add-priority-dropdown"
                   ref={selectRef}
                   pos="relative"
                   defaultValue={type === 'update' ? priority : 'normal'}
@@ -148,6 +157,7 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
                   </Box>
                   {priorities.map((priority) => (
                     <Box
+                      data-cy="modal-add-priority-item"
                       as="option"
                       key={priority.priority}
                       value={priority.priority}>
@@ -160,11 +170,12 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
           </ModalBody>
           <ModalFooter>
             <Button
+              data-cy="modal-add-save-button"
               onClick={type === 'create' ? handleCreateTodo : handleUpdateTodo}
               colorScheme="blue"
               mr={3}
               isDisabled={isDisabled}>
-              Save
+              Simpan
             </Button>
           </ModalFooter>
         </ModalContent>

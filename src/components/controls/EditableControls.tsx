@@ -30,6 +30,7 @@ export const EditableControls = () => {
   ) : (
     <Flex justifyContent="center" alignItems="center">
       <IconButton
+        data-cy="todo-title-edit-button"
         aria-label="edit icon"
         icon={<EditIcon />}
         {...getEditButtonProps()}

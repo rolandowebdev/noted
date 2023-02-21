@@ -1,9 +1,9 @@
-import { Box, Container } from '@chakra-ui/react'
-import { RouterLink } from '../link/RouterLink'
+import { Box, Container, Text } from '@chakra-ui/react'
 
 export const Navbar = () => {
   return (
     <Box
+      data-cy="header-background"
       as="header"
       pos="sticky"
       top={0}
@@ -14,17 +14,15 @@ export const Navbar = () => {
       display="flex"
       alignItems="center">
       <Container maxW="container.lg">
-        <RouterLink
-          link="/"
-          styles={{
-            fontSize: '2xl',
-            fontWeight: 'bold',
-            color: 'white',
-            letterSpacing: 'wider',
-          }}
-          hover={{ textDecor: 'underline' }}>
+        <Text
+          as="p"
+          data-cy="header-title"
+          fontSize="2xl"
+          fontWeight="bold"
+          color="white"
+          letterSpacing="wider">
           TO DO LIST APP
-        </RouterLink>
+        </Text>
       </Container>
     </Box>
   )
