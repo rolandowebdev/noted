@@ -125,7 +125,6 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
               <InputGroup display="flex" flexDirection="column" gap={2}>
                 <FormLabel
                   data-cy="modal-add-name-title"
-                  textTransform="uppercase"
                   fontWeight="semibold"
                   mb={0}>
                   Nama list item
@@ -141,7 +140,6 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
               <InputGroup display="flex" flexDirection="column" gap={2} mt={6}>
                 <FormLabel
                   data-cy="modal-add-priority-title"
-                  textTransform="uppercase"
                   fontWeight="semibold"
                   mb={0}>
                   Priority
