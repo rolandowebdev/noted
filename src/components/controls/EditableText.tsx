@@ -17,10 +17,6 @@ export const EditableText = ({ id, onChange }: EditableTextProps) => {
   const { activity, updateActivity } = useActivityContext()
   const inputRef = useRef<HTMLInputElement>(null)
 
-  const handleChange = (newValue: string) => {
-    onChange(newValue)
-  }
-
   const handleSubmit = () => {
     updateActivity({ ...activity, title: activity?.title, id })
   }
@@ -45,7 +41,7 @@ export const EditableText = ({ id, onChange }: EditableTextProps) => {
       value={activity?.title}
       fontSize="3xl"
       selectAllOnFocus={false}
-      onChange={handleChange}
+      onChange={onChange}
       onSubmit={handleSubmit}>
       <EditablePreview />
       <Input as={EditableInput} ref={inputRef} onKeyDown={handleEnterKey} />

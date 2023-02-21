@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
   Box,
   Card,
@@ -8,20 +7,15 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
-import DeleteButton from './DeleteButton'
-import { ModalTodo } from '../modal/ModalTodo'
-import { useCustomToast } from '../../hooks'
+import { useState } from 'react'
 import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
+import { useCustomToast } from '../../hooks'
+import { Todo } from '../../models/todo'
+import { ModalTodo } from '../modal/ModalTodo'
+import DeleteButton from './DeleteButton'
 
-interface CardTodoProps {
-  id: any
-  title: string
-  priority: string
-  isActive: boolean
-}
-
-export const CardTodo = ({ id, title, priority, isActive }: CardTodoProps) => {
-  const [isChecked, setIsChecked] = useState<boolean>(Boolean(isActive))
+export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
+  const [isChecked, setIsChecked] = useState<boolean>(Boolean(is_active))
   const { updateTodo, deleteTodo } = useTodoContext()
   const { onClose } = useDisclosure()
   const showToast = useCustomToast()

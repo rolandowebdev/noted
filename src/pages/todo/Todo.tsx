@@ -107,7 +107,7 @@ export const Todo = () => {
               <CardTodo
                 key={todo.id}
                 id={todo.id}
-                isActive={todo.is_active}
+                is_active={todo.is_active}
                 title={todo.title}
                 priority={todo.priority}
               />
