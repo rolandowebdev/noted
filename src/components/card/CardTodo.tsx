@@ -59,7 +59,12 @@ export const CardTodo = ({ id, title, priority, isActive }: CardTodoProps) => {
               color={isChecked ? 'gray.500' : 'black'}>
               {title}
             </Text>
-            <ModalTodo id={id} title={title} type="update" />
+            <ModalTodo
+              id={id}
+              title={title}
+              priority={priority}
+              type="update"
+            />
           </HStack>
           <DeleteButton
             type="todo"

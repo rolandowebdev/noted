@@ -24,7 +24,7 @@ import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
 import { useCustomToast } from '../../hooks'
 import { Todo } from '../../models/todo'
 
-export const ModalTodo = ({ type, title, id }: Todo) => {
+export const ModalTodo = ({ type, title, priority, id }: Todo) => {
   const showToast = useCustomToast()
   const selectRef = useRef<HTMLSelectElement>(null)
   const initialRef = useRef<HTMLInputElement>(null)
@@ -32,8 +32,8 @@ export const ModalTodo = ({ type, title, id }: Todo) => {
 
   const { createTodo, updateTodo } = useTodoContext()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [isDisabled, setIsDisabled] = useState<boolean>(false)
-  const [input, setInput] = useState<string | undefined>(title)
+  const [isDisabled, setIsDisabled] = useState<boolean>(true)
+  const [input, setInput] = useState<any>(title)
 
   const handleChange = (e: { target: { value: string } }) => {
     setInput(e.target.value)
@@ -61,9 +61,18 @@ export const ModalTodo = ({ type, title, id }: Todo) => {
     showToast('Successfully updated todo', 'success')
   }
 
+  const handleCloseModal = () => {
+    setInput('')
+    onClose()
+  }
+
+  const handleOpenModal = () => {
+    setInput(title)
+    onOpen()
+  }
+
   useEffect(() => {
-    if (input === '') setIsDisabled(true)
-    else setIsDisabled(false)
+    setIsDisabled(!input?.length)
   }, [input])
 
   return (
@@ -92,7 +101,7 @@ export const ModalTodo = ({ type, title, id }: Todo) => {
             color="gray.500"
             transition="color 150ms ease-in-out"
             _hover={{ color: 'gray.700' }}
-            onClick={onOpen}
+            onClick={handleOpenModal}
           />
         </Button>
       )}
@@ -100,7 +109,7 @@ export const ModalTodo = ({ type, title, id }: Todo) => {
         initialFocusRef={initialRef}
         finalFocusRef={finalRef}
         isOpen={isOpen}
-        onClose={onClose}
+        onClose={handleCloseModal}
         motionPreset="slideInBottom"
         isCentered>
         <ModalOverlay />
@@ -130,7 +139,7 @@ export const ModalTodo = ({ type, title, id }: Todo) => {
                 <Select
                   ref={selectRef}
                   pos="relative"
-                  defaultValue="very-high"
+                  defaultValue={type === 'update' ? priority : 'normal'}
                   placeholder="Select priority"
                   w="max-content">
                   {priorities.map((priority) => (

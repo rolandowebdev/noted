@@ -28,9 +28,9 @@ import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
 import { PageContainer } from '../../layouts'
 
 export const Todo = () => {
-  const { id } = useParams()
-  const { setActivity, getOneActivity } = useActivityContext()
+  const { id } = useParams<string>()
   const { todoItems, getAllTodo } = useTodoContext()
+  const { setActivity, getOneActivity } = useActivityContext()
 
   const handleInputChange = (newValue: string) => {
     setActivity({ title: newValue })
@@ -62,7 +62,7 @@ export const Todo = () => {
           <EditableText id={id} onChange={handleInputChange} />
         </HStack>
         <Stack direction="row" alignItems="center" spacing="16px">
-          <Menu strategy="fixed">
+          <Menu isLazy strategy="fixed">
             <MenuButton
               as={IconButton}
               variant="outline"
@@ -73,7 +73,7 @@ export const Todo = () => {
               sx={{ aspectRatio: '1/1' }}
             />
             <MenuList>
-              <MenuOptionGroup defaultValue="terbaru" type="radio">
+              <MenuOptionGroup type="radio">
                 {sortOptions.map((sortOption) => (
                   <MenuItemOption
                     key={sortOption.text}
