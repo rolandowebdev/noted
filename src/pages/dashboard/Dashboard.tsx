@@ -1,13 +1,12 @@
 import { AddIcon } from '@chakra-ui/icons'
 import { Box, Button, Grid, Heading, HStack } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 
-import { CardActivity, Illustration, Loader } from '../../components'
+import { CardActivity, Illustration } from '../../components'
 import { useActivityContext } from '../../context'
 import { PageContainer } from '../../layouts'
 
 export const Dashboard = () => {
-  const [loading, setLoading] = useState(true)
   const { activities, createActivity, getAllActivity } = useActivityContext()
 
   const handleCreateActivity = () => {
@@ -16,7 +15,6 @@ export const Dashboard = () => {
 
   useEffect(() => {
     getAllActivity()
-    setLoading(false)
   }, [])
 
   return (
@@ -48,39 +46,36 @@ export const Dashboard = () => {
           </Button>
         </HStack>
       </Box>
-      {loading ? (
-        <Loader />
-      ) : (
-        <Box as="section" mt={[16, 14, 12]}>
-          {activities?.length < 0 ? (
-            <Illustration
-              type="activity"
-              desc="Create your first activity"
-              illustrationHuman="/images/human-activity.png"
-              illustrationIcon="/images/activity.png"
-              illustrationGround="/icons/ground.svg"
-            />
-          ) : (
-            <Grid
-              templateColumns={[
-                'repeat(1, 1fr)',
-                'repeat(2, 1fr)',
-                'repeat(3, 1fr)',
-                'repeat(4, 1fr)',
-              ]}
-              gap={4}>
-              {activities.map((activity) => (
-                <CardActivity
-                  key={activity.id}
-                  id={activity.id}
-                  title={activity.title}
-                  created_at={activity.created_at}
-                />
-              ))}
-            </Grid>
-          )}
-        </Box>
-      )}
+
+      <Box as="section" mt={[16, 14, 12]}>
+        {activities?.length < 0 ? (
+          <Illustration
+            type="activity"
+            desc="Create your first activity"
+            illustrationHuman="/images/human-activity.png"
+            illustrationIcon="/images/activity.png"
+            illustrationGround="/icons/ground.svg"
+          />
+        ) : (
+          <Grid
+            templateColumns={[
+              'repeat(1, 1fr)',
+              'repeat(2, 1fr)',
+              'repeat(3, 1fr)',
+              'repeat(4, 1fr)',
+            ]}
+            gap={4}>
+            {activities.map((activity) => (
+              <CardActivity
+                key={activity.id}
+                id={activity.id}
+                title={activity.title}
+                created_at={activity.created_at}
+              />
+            ))}
+          </Grid>
+        )}
+      </Box>
     </PageContainer>
   )
 }

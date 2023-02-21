@@ -18,7 +18,6 @@ import {
   CardTodo,
   EditableText,
   Illustration,
-  Loader,
   ModalTodo,
   RouterLink,
 } from '../../components'
@@ -33,7 +32,6 @@ export const Todo = () => {
   const { todoItems, getAllTodo } = useTodoContext()
   const { setActivity, getOneActivity } = useActivityContext()
 
-  const [loading, setLoading] = useState(true)
   const [selectedOption, setSelectedOption] = useState<string>('latest')
   const sortedTodoItems = sortData(todoItems, selectedOption)
 
@@ -51,7 +49,6 @@ export const Todo = () => {
 
   useEffect(() => {
     getOneActivity(id)
-    setLoading(false)
   }, [id])
 
   return (
@@ -107,33 +104,30 @@ export const Todo = () => {
           <ModalTodo type="create" id={id} />
         </Stack>
       </HStack>
-      {loading ? (
-        <Loader />
-      ) : (
-        <Box as="section" mt={[16, 14, 12]}>
-          {sortedTodoItems?.length < 1 ? (
-            <Illustration
-              type="todo"
-              desc="Create your todo here"
-              illustrationHuman="/images/human-todo.png"
-              illustrationIcon="/images/todo.png"
-              illustrationGround="/icons/ground.svg"
-            />
-          ) : (
-            <Stack spacing={4}>
-              {todoItems.map((todo: any) => (
-                <CardTodo
-                  key={todo.id}
-                  id={todo.id}
-                  is_active={todo.is_active}
-                  title={todo.title}
-                  priority={todo.priority}
-                />
-              ))}
-            </Stack>
-          )}
-        </Box>
-      )}
+
+      <Box as="section" mt={[16, 14, 12]}>
+        {sortedTodoItems?.length < 1 ? (
+          <Illustration
+            type="todo"
+            desc="Create your todo here"
+            illustrationHuman="/images/human-todo.png"
+            illustrationIcon="/images/todo.png"
+            illustrationGround="/icons/ground.svg"
+          />
+        ) : (
+          <Stack spacing={4}>
+            {todoItems.map((todo: any) => (
+              <CardTodo
+                key={todo.id}
+                id={todo.id}
+                is_active={todo.is_active}
+                title={todo.title}
+                priority={todo.priority}
+              />
+            ))}
+          </Stack>
+        )}
+      </Box>
     </PageContainer>
   )
 }
