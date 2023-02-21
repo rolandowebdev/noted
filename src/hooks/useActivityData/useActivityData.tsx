@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
-import { BASE_URL, EMAIL } from '../../constants/apiUrl'
+import { activityUrl, EMAIL } from '../../constants/apiUrl'
 import { Activity, ResponseActivity } from '../../models/activity'
 
 export const useActivityData = () => {
@@ -12,9 +12,11 @@ export const useActivityData = () => {
   }
 
   const createActivity = async () => {
-    const url = `${BASE_URL}/activity-groups?email=${EMAIL}`
     try {
-      const response = await axios.post<Activity>(url, defaultActivity)
+      const response = await axios.post<Activity>(
+        activityUrl.POST,
+        defaultActivity
+      )
       setActivities((prevActivity) => [...prevActivity, response.data])
     } catch (error) {
       throw new Error('Failed to create activity')
@@ -22,9 +24,8 @@ export const useActivityData = () => {
   }
 
   const getAllActivity = async () => {
-    const url = `${BASE_URL}/activity-groups?email=${EMAIL}`
     try {
-      const response = await axios.get<ResponseActivity>(url)
+      const response = await axios.get<ResponseActivity>(activityUrl.GET_ALL)
       setActivities(response.data.data)
     } catch (error) {
       throw new Error('Failed to fetch all activity')
@@ -32,19 +33,20 @@ export const useActivityData = () => {
   }
 
   const getOneActivity = async (id: string) => {
-    const url = `${BASE_URL}/activity-groups/${id}?email=${EMAIL}`
     try {
-      const response = await axios.get<Activity>(url)
+      const response = await axios.get<Activity>(activityUrl.GET_ONE(id))
       setActivity(response.data)
     } catch (error) {
       throw new Error('Failed to fetch one activity')
     }
   }
 
-  const updateActivity = async (newActivity: Activity) => {
-    const url = `${BASE_URL}/activity-groups/${newActivity.id}?email=${EMAIL}`
+  const updateActivity = async (updateActivity: Activity) => {
     try {
-      const response = await axios.patch<Activity>(url, newActivity)
+      const response = await axios.patch<Activity>(
+        activityUrl.UPDATE(updateActivity),
+        updateActivity
+      )
       setActivities((prevActivity) =>
         prevActivity.map((activity) =>
           activity.id === response.data.id ? response.data : activity
@@ -56,9 +58,8 @@ export const useActivityData = () => {
   }
 
   const deleteActivity = async (id: number) => {
-    const url = `${BASE_URL}/activity-groups/${id}?email=${EMAIL}`
     try {
-      await axios.delete(url)
+      await axios.delete(activityUrl.DELETE(id))
       setActivities((prevActivity) =>
         prevActivity.filter((activity) => activity.id !== id)
       )

@@ -9,7 +9,7 @@ interface ActivityContextType {
   createActivity: () => Promise<void>
   getAllActivity: () => Promise<void>
   getOneActivity: (id: any) => Promise<void | Activity>
-  updateActivity: (newActivity: Activity) => Promise<void>
+  updateActivity: (updateActivity: Activity) => Promise<void>
   deleteActivity: (id: number) => Promise<void>
 }
 

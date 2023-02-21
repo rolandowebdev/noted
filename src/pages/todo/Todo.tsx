@@ -14,7 +14,6 @@ import {
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-
 import {
   CardTodo,
   EditableText,
@@ -32,6 +31,7 @@ export const Todo = () => {
   const { id } = useParams<string>()
   const { todoItems, getAllTodo } = useTodoContext()
   const { setActivity, getOneActivity } = useActivityContext()
+
   const [selectedOption, setSelectedOption] = useState<string>('latest')
   const sortedTodoItems = sortData(todoItems, selectedOption)
 
