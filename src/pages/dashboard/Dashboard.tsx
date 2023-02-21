@@ -35,7 +35,7 @@ export const Dashboard = () => {
             leftIcon={<AddIcon />}
             _hover={{ bgColor: 'brand.lightPrimary' }}
             onClick={handleCreateActivity}>
-            Add Activity
+            Tambah
           </Button>
         </HStack>
       </Box>

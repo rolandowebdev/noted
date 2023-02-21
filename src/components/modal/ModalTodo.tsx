@@ -91,7 +91,7 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
           leftIcon={<AddIcon />}
           _hover={{ bgColor: 'brand.lightPrimary' }}
           onClick={onOpen}>
-          Add Todo
+          Tambah
         </Button>
       )}
       {type === 'update' && (
@@ -122,26 +122,34 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
           <ModalBody mt={4}>
             <FormControl>
               <InputGroup display="flex" flexDirection="column" gap={2}>
-                <FormLabel fontWeight="semibold" mb={0}>
-                  Todo name
+                <FormLabel
+                  textTransform="uppercase"
+                  fontWeight="semibold"
+                  mb={0}>
+                  Nama list item
                 </FormLabel>
                 <Input
                   ref={initialRef}
                   value={type === 'update' ? input : undefined}
                   onChange={handleChange}
-                  placeholder="Type your todo name..."
+                  placeholder="Tambahkan nama list item"
                 />
               </InputGroup>
               <InputGroup display="flex" flexDirection="column" gap={2} mt={6}>
-                <FormLabel fontWeight="semibold" mb={0}>
+                <FormLabel
+                  textTransform="uppercase"
+                  fontWeight="semibold"
+                  mb={0}>
                   Priority
                 </FormLabel>
                 <Select
                   ref={selectRef}
                   pos="relative"
                   defaultValue={type === 'update' ? priority : 'normal'}
-                  placeholder="Select priority"
                   w="max-content">
+                  <Box as="option" disabled selected value="">
+                    Pilih priority
+                  </Box>
                   {priorities.map((priority) => (
                     <Box
                       as="option"

@@ -17,13 +17,13 @@ export const Navbar = () => {
         <RouterLink
           link="/"
           styles={{
-            fontSize: '3xl',
+            fontSize: '2xl',
             fontWeight: 'bold',
             color: 'white',
             letterSpacing: 'wider',
           }}
           hover={{ textDecor: 'underline' }}>
-          Noted
+          TO DO LIST APP
         </RouterLink>
       </Container>
     </Box>

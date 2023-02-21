@@ -69,34 +69,36 @@ export const Todo = () => {
           <EditableText id={id} onChange={handleInputChange} />
         </HStack>
         <Stack direction="row" alignItems="center" spacing="16px">
-          <Menu isLazy>
-            <MenuButton
-              as={IconButton}
-              variant="outline"
-              rounded="full"
-              height="48px"
-              aria-label="sort todos"
-              icon={<UpDownIcon color="gray.500" />}
-              sx={{ aspectRatio: '1/1' }}
-            />
-            <MenuList>
-              <MenuOptionGroup
-                type="radio"
-                onChange={handleSelectChange}
-                value={selectedOption}>
-                {sortOptions.map((sortOption) => (
-                  <MenuItemOption
-                    key={sortOption.text}
-                    value={sortOption.value}>
-                    <HStack alignItems="center">
-                      <Image src={sortOption.icon} />
-                      <Text>{sortOption.text}</Text>
-                    </HStack>
-                  </MenuItemOption>
-                ))}
-              </MenuOptionGroup>
-            </MenuList>
-          </Menu>
+          {todoItems?.length > 0 ? (
+            <Menu isLazy>
+              <MenuButton
+                as={IconButton}
+                variant="outline"
+                rounded="full"
+                height="48px"
+                aria-label="sort todos"
+                icon={<UpDownIcon color="gray.500" />}
+                sx={{ aspectRatio: '1/1' }}
+              />
+              <MenuList>
+                <MenuOptionGroup
+                  type="radio"
+                  onChange={handleSelectChange}
+                  value={selectedOption}>
+                  {sortOptions.map((sortOption) => (
+                    <MenuItemOption
+                      key={sortOption.text}
+                      value={sortOption.value}>
+                      <HStack alignItems="center">
+                        <Image src={sortOption.icon} />
+                        <Text>{sortOption.text}</Text>
+                      </HStack>
+                    </MenuItemOption>
+                  ))}
+                </MenuOptionGroup>
+              </MenuList>
+            </Menu>
+          ) : null}
           <ModalTodo type="create" id={id} />
         </Stack>
       </HStack>

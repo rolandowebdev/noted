@@ -49,24 +49,26 @@ const DeleteButton = ({ title, type, handleDelete }: DeleteButtonProps) => {
               <WarningTwoIcon fontSize="8xl" color="brand.very-high" />
             </AlertDialogHeader>
             <AlertDialogBody letterSpacing="unset">
-              Are you sure want to delete your {type}
-              <Text as="span" display="block" fontWeight="semibold">
-                {title}?
+              Apakah anda yakin menghapus activity {type}
+              <Text as="span" display="block" fontWeight="bold">
+                {`"${title}"`}?
               </Text>
             </AlertDialogBody>
             <AlertDialogFooter mx="auto">
               <Button
                 ref={cancelRef}
                 px={6}
+                w={28}
                 rounded="full"
                 color="gray.500"
                 onClick={onClose}
                 _hover={{ bgColor: 'gray.300' }}>
-                Cancel
+                Batal
               </Button>
               <Button
                 rounded="full"
                 px={6}
+                w={28}
                 bgColor="brand.very-high"
                 color="white"
                 fontWeight="normal"
@@ -74,7 +76,7 @@ const DeleteButton = ({ title, type, handleDelete }: DeleteButtonProps) => {
                 onClick={handleDelete}
                 ml={3}
                 _hover={{ bgColor: 'red' }}>
-                Delete
+                Hapus
               </Button>
             </AlertDialogFooter>
           </AlertDialogContent>
