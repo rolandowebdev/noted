@@ -5,8 +5,14 @@ import {
   Divider,
   FormControl,
   FormLabel,
+  HStack,
   Input,
   InputGroup,
+  Menu,
+  MenuButton,
+  MenuItemOption,
+  MenuList,
+  MenuOptionGroup,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -14,7 +20,6 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Select,
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
@@ -25,17 +30,24 @@ import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
 import { Todo } from '../../models/todo'
 
 export const ModalTodo = ({ type, title, priority, id }: Todo) => {
-  const selectRef = useRef<HTMLSelectElement>(null)
   const initialRef = useRef<HTMLInputElement>(null)
   const finalRef = useRef<HTMLButtonElement>(null)
+  const selectedPriorityUpdate = type === 'update' ? priority : 'normal'
 
   const { createTodo, updateTodo } = useTodoContext()
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [isDisabled, setIsDisabled] = useState<boolean>(true)
   const [input, setInput] = useState<any>(title)
+  const [isDisabled, setIsDisabled] = useState<boolean>(true)
+  const [selectedOption, setSelectedOption] = useState<any>(
+    selectedPriorityUpdate
+  )
 
   const handleChange = (e: { target: { value: string } }) => {
     setInput(e.target.value)
+  }
+
+  const handleSelectChange = (value: any) => {
+    setSelectedOption(value)
   }
 
   const handleCreateTodo = () => {
@@ -43,7 +55,7 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
       title: input,
       activity_group_id: id,
       is_active: 0,
-      priority: selectRef.current?.value,
+      priority: selectedOption,
     })
     setInput('')
     onClose()
@@ -53,13 +65,14 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
     updateTodo({
       id,
       title: input,
-      priority: selectRef.current?.value,
+      priority: selectedOption,
     })
     onClose()
   }
 
   const handleCloseModal = () => {
     setInput('')
+    setSelectedOption(selectedPriorityUpdate)
     onClose()
   }
 
@@ -144,25 +157,48 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
                   mb={0}>
                   Priority
                 </FormLabel>
-                <Select
-                  data-cy="modal-add-priority-dropdown"
-                  ref={selectRef}
-                  pos="relative"
-                  defaultValue={type === 'update' ? priority : 'normal'}
-                  w="max-content">
-                  <Box as="option" disabled selected value="">
-                    Pilih priority
-                  </Box>
-                  {priorities.map((priority) => (
-                    <Box
-                      data-cy="modal-add-priority-item"
-                      as="option"
-                      key={priority.priority}
-                      value={priority.priority}>
-                      {priority.name}
-                    </Box>
-                  ))}
-                </Select>
+                <Menu>
+                  <MenuButton
+                    data-cy="modal-add-priority-dropdown"
+                    as={Button}
+                    variant="outline"
+                    width={36}
+                    aria-label="sort todos"
+                    sx={{ aspectRatio: '1/1' }}>
+                    <HStack align="center">
+                      <Box
+                        width={3}
+                        height={3}
+                        rounded="full"
+                        bgColor={`brand.${selectedOption}`}
+                      />
+                      <Text>{selectedOption}</Text>
+                    </HStack>
+                  </MenuButton>
+                  <MenuList>
+                    <MenuOptionGroup
+                      type="radio"
+                      onChange={handleSelectChange}
+                      value={selectedOption}>
+                      {priorities.map((priority) => (
+                        <MenuItemOption
+                          data-cy="modal-add-priority-item"
+                          key={priority.priority}
+                          value={priority.priority}>
+                          <HStack alignItems="center">
+                            <Box
+                              width={3}
+                              height={3}
+                              rounded="full"
+                              bgColor={`brand.${priority.priority}`}
+                            />
+                            <Text>{priority.priority}</Text>
+                          </HStack>
+                        </MenuItemOption>
+                      ))}
+                    </MenuOptionGroup>
+                  </MenuList>
+                </Menu>
               </InputGroup>
             </FormControl>
           </ModalBody>
