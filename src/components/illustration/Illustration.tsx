@@ -1,6 +1,5 @@
 import { Box, Flex, Image, Text } from '@chakra-ui/react'
 import { useActivityContext } from '../../context'
-import { useCustomToast } from '../../hooks'
 
 interface IllustrationProps {
   type: string
@@ -18,12 +17,10 @@ export const Illustration = ({
   illustrationGround,
 }: IllustrationProps) => {
   const { createActivity } = useActivityContext()
-  const showToast = useCustomToast()
 
   const handleCreateActivity = () => {
     if (type === 'activity') {
       createActivity()
-      showToast(`Successfully created activity`, 'success')
     }
   }
 

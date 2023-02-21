@@ -34,7 +34,7 @@ const DeleteButton = ({ title, type, handleDelete }: DeleteButtonProps) => {
           color="gray.500"
           fontSize="xl"
           transition="color 150ms ease-in-out"
-          _hover={{ color: 'gray.700' }}
+          _hover={{ color: 'brand.very-high' }}
         />
       </Button>
       <AlertDialog
@@ -75,7 +75,7 @@ const DeleteButton = ({ title, type, handleDelete }: DeleteButtonProps) => {
                 letterSpacing="wider"
                 onClick={handleDelete}
                 ml={3}
-                _hover={{ bgColor: 'red' }}>
+                _hover={{ bgColor: 'brand.very-high-hover' }}>
                 Hapus
               </Button>
             </AlertDialogFooter>

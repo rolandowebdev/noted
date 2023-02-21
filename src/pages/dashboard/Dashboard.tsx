@@ -3,23 +3,20 @@ import { Box, Button, Grid, Heading, HStack } from '@chakra-ui/react'
 
 import { CardActivity, Illustration } from '../../components'
 import { useActivityContext } from '../../context'
-import { useCustomToast } from '../../hooks'
 import { PageContainer } from '../../layouts'
 
 export const Dashboard = () => {
   const { activities, createActivity } = useActivityContext()
-  const showToast = useCustomToast()
 
   const handleCreateActivity = () => {
     createActivity()
-    showToast(`Successfully created activity`, 'success')
   }
 
   return (
     <PageContainer>
       <Box as="nav" role="navigation">
         <HStack justify="space-between" align="center" height="50px">
-          <Heading as="h1" size="lg" fontWeight="bold">
+          <Heading as="h1" fontSize="3xl" fontWeight="bold">
             Activity
           </Heading>
           <Button
@@ -29,7 +26,7 @@ export const Dashboard = () => {
             bgColor="brand.primary"
             color="white"
             letterSpacing="wider"
-            fontWeight="medium"
+            fontWeight="semibold"
             borderRadius="full"
             transition="background-color 150ms ease"
             leftIcon={<AddIcon />}

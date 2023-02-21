@@ -21,11 +21,16 @@ export const CardActivity = ({ id, title, created_at }: Activity) => {
   const handleDeleteActivity = () => {
     deleteActivity(id)
     onClose()
-    showToast('Successfully deleted activity', 'success')
+    showToast('Activity berhasil dihapus', 'success')
   }
 
   return (
-    <Card as={RouterLink} to={`/todos/${id}`} size="lg">
+    <Card
+      as={RouterLink}
+      to={`/todos/${id}`}
+      size="lg"
+      transition="box-shadow 200ms ease-in-out"
+      _hover={{ boxShadow: '4px 4px 4px 2px rgba(181,181,181,0.23)' }}>
       <CardHeader>
         <Heading size="md">{title}</Heading>
       </CardHeader>
@@ -33,7 +38,7 @@ export const CardActivity = ({ id, title, created_at }: Activity) => {
         display="flex"
         justifyContent="space-between"
         alignItems="center">
-        <Text as="time" fontSize="sm" dateTime={created_at}>
+        <Text as="time" fontSize="sm" color="gray.500" dateTime={created_at}>
           {formatDate(created_at)}
         </Text>
         <DeleteButton

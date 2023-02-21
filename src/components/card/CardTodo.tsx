@@ -23,7 +23,7 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
   const handleDeleteTodo = () => {
     deleteTodo(id)
     onClose()
-    showToast('Successfully deleted todo', 'success')
+    showToast('Todo berhasil dihapus', 'success')
   }
 
   const handleCheckboxChange = () => {
@@ -32,7 +32,9 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
   }
 
   return (
-    <Card>
+    <Card
+      transition="box-shadow 200ms ease-in-out"
+      _hover={{ boxShadow: '4px 4px 4px 2px rgba(181,181,181,0.23)' }}>
       <CardBody>
         <HStack alignItems="center" justifyContent="space-between">
           <HStack alignItems="center" spacing="20px">

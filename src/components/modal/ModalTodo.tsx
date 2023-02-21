@@ -21,11 +21,9 @@ import { useEffect, useRef, useState } from 'react'
 
 import { priorities } from '../../constants/todoPriority'
 import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
-import { useCustomToast } from '../../hooks'
 import { Todo } from '../../models/todo'
 
 export const ModalTodo = ({ type, title, priority, id }: Todo) => {
-  const showToast = useCustomToast()
   const selectRef = useRef<HTMLSelectElement>(null)
   const initialRef = useRef<HTMLInputElement>(null)
   const finalRef = useRef<HTMLButtonElement>(null)
@@ -48,7 +46,6 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
     })
     setInput('')
     onClose()
-    showToast('Successfully created todo', 'success')
   }
 
   const handleUpdateTodo = () => {
@@ -58,7 +55,6 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
       priority: selectRef.current?.value,
     })
     onClose()
-    showToast('Successfully updated todo', 'success')
   }
 
   const handleCloseModal = () => {
@@ -85,7 +81,7 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
           bgColor="brand.primary"
           color="white"
           letterSpacing="wider"
-          fontWeight="medium"
+          fontWeight="semibold"
           borderRadius="full"
           transition="background-color 150ms ease"
           leftIcon={<AddIcon />}
