@@ -12,7 +12,7 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
 import {
@@ -26,14 +26,21 @@ import { sortOptions } from '../../constants/sortOptions'
 import { useActivityContext } from '../../context'
 import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
 import { PageContainer } from '../../layouts'
+import { sortData } from '../../utils/sortData'
 
 export const Todo = () => {
   const { id } = useParams<string>()
   const { todoItems, getAllTodo } = useTodoContext()
   const { setActivity, getOneActivity } = useActivityContext()
+  const [selectedOption, setSelectedOption] = useState<string>('latest')
+  const sortedTodoItems = sortData(todoItems, selectedOption)
 
   const handleInputChange = (newValue: string) => {
     setActivity({ title: newValue })
+  }
+
+  const handleSelectChange = (value: any) => {
+    setSelectedOption(value)
   }
 
   useEffect(() => {
@@ -62,7 +69,7 @@ export const Todo = () => {
           <EditableText id={id} onChange={handleInputChange} />
         </HStack>
         <Stack direction="row" alignItems="center" spacing="16px">
-          <Menu isLazy strategy="fixed">
+          <Menu isLazy>
             <MenuButton
               as={IconButton}
               variant="outline"
@@ -73,7 +80,10 @@ export const Todo = () => {
               sx={{ aspectRatio: '1/1' }}
             />
             <MenuList>
-              <MenuOptionGroup type="radio">
+              <MenuOptionGroup
+                type="radio"
+                onChange={handleSelectChange}
+                value={selectedOption}>
                 {sortOptions.map((sortOption) => (
                   <MenuItemOption
                     key={sortOption.text}
@@ -91,7 +101,7 @@ export const Todo = () => {
         </Stack>
       </HStack>
       <Box as="section" mt={[16, 14, 12]}>
-        {todoItems?.length > 0 ? (
+        {sortedTodoItems?.length > 0 ? (
           <Stack spacing="16px">
             {todoItems.map((todo: any) => (
               <CardTodo

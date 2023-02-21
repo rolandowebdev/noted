@@ -1,11 +1,11 @@
 export const sortOptions = [
   {
-    value: 'newest',
+    value: 'latest',
     text: 'Terbaru',
     icon: '/icons/sort-new.svg',
   },
   {
-    value: 'oldest',
+    value: 'longest',
     text: 'Terlama',
     icon: '/icons/sort-old.svg',
   },
@@ -20,7 +20,7 @@ export const sortOptions = [
     icon: '/icons/sort-z-a.svg',
   },
   {
-    value: 'not finished',
+    value: 'is_active',
     text: 'Belum Selesai',
     icon: '/icons/sort-not-finished.svg',
   },

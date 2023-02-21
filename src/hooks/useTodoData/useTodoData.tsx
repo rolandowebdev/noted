@@ -10,7 +10,9 @@ export const useTodoData = () => {
     const url = `${BASE_URL}/todo-items`
     try {
       const response = await axios.post<Todo>(url, newTodo)
-      setTodoItems((prevTodo) => [...prevTodo, response.data])
+      setTodoItems((prevTodo) =>
+        [...prevTodo, response.data].sort((a, b) => a.id - b.id)
+      )
     } catch (error) {
       throw new Error('Failed to create todo')
     }
