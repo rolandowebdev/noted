@@ -28,7 +28,7 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked)
-    updateTodo({ id, is_active: isChecked ? 0 : 1 })
+    updateTodo({ id, is_active: isChecked === 1 ? 0 : 1 })
   }
 
   return (
