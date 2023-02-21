@@ -2,7 +2,7 @@ import { Alert, AlertIcon, Text, useToast } from '@chakra-ui/react'
 
 export const useCustomToast = () => {
   const toast = useToast()
-  const TIMER = 15000
+  const TIMER = 10000
   return (title: string, status: 'success') => {
     toast({
       status,

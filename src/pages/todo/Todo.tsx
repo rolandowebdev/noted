@@ -18,6 +18,7 @@ import {
   CardTodo,
   EditableText,
   Illustration,
+  Loader,
   ModalTodo,
   RouterLink,
 } from '../../components'
@@ -32,6 +33,7 @@ export const Todo = () => {
   const { todoItems, getAllTodo } = useTodoContext()
   const { setActivity, getOneActivity } = useActivityContext()
 
+  const [loading, setLoading] = useState(true)
   const [selectedOption, setSelectedOption] = useState<string>('latest')
   const sortedTodoItems = sortData(todoItems, selectedOption)
 
@@ -49,6 +51,7 @@ export const Todo = () => {
 
   useEffect(() => {
     getOneActivity(id)
+    setLoading(false)
   }, [id])
 
   return (
@@ -69,8 +72,8 @@ export const Todo = () => {
           <EditableText id={id} onChange={handleInputChange} />
         </HStack>
         <Stack direction="row" alignItems="center" spacing="16px">
-          {todoItems?.length > 0 ? (
-            <Menu isLazy>
+          {sortedTodoItems?.length < 1 ? null : (
+            <Menu>
               <MenuButton
                 data-cy="todo-sort-button"
                 as={IconButton}
@@ -100,33 +103,37 @@ export const Todo = () => {
                 </MenuOptionGroup>
               </MenuList>
             </Menu>
-          ) : null}
+          )}
           <ModalTodo type="create" id={id} />
         </Stack>
       </HStack>
-      <Box as="section" mt={[16, 14, 12]}>
-        {sortedTodoItems?.length > 0 ? (
-          <Stack spacing="16px">
-            {todoItems.map((todo: any) => (
-              <CardTodo
-                key={todo.id}
-                id={todo.id}
-                is_active={todo.is_active}
-                title={todo.title}
-                priority={todo.priority}
-              />
-            ))}
-          </Stack>
-        ) : (
-          <Illustration
-            type="todo"
-            desc="Create your todo here"
-            illustrationHuman="/images/human-todo.png"
-            illustrationIcon="/images/todo.png"
-            illustrationGround="/icons/ground.svg"
-          />
-        )}
-      </Box>
+      {loading ? (
+        <Loader />
+      ) : (
+        <Box as="section" mt={[16, 14, 12]}>
+          {sortedTodoItems?.length < 1 ? (
+            <Illustration
+              type="todo"
+              desc="Create your todo here"
+              illustrationHuman="/images/human-todo.png"
+              illustrationIcon="/images/todo.png"
+              illustrationGround="/icons/ground.svg"
+            />
+          ) : (
+            <Stack spacing={4}>
+              {todoItems.map((todo: any) => (
+                <CardTodo
+                  key={todo.id}
+                  id={todo.id}
+                  is_active={todo.is_active}
+                  title={todo.title}
+                  priority={todo.priority}
+                />
+              ))}
+            </Stack>
+          )}
+        </Box>
+      )}
     </PageContainer>
   )
 }
