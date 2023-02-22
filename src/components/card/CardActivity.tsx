@@ -11,7 +11,7 @@ import { useActivityContext } from '../../context'
 import { useCustomToast } from '../../hooks'
 import { Activity } from '../../models/activity'
 import { formatDate } from '../../utils/formatDate'
-import DeleteButton from './DeleteButton'
+import { ModalDelete } from '../modal/ModalDelete'
 
 export const CardActivity = ({ id, title, created_at }: Activity) => {
   const { onClose } = useDisclosure()
@@ -28,7 +28,7 @@ export const CardActivity = ({ id, title, created_at }: Activity) => {
     <Card
       data-cy="activity-item"
       as={RouterLink}
-      to={`/todos/${id}`}
+      to={`/detail/${id}`}
       size="lg"
       transition="box-shadow 200ms ease-in-out"
       _hover={{ boxShadow: '4px 4px 4px 2px rgba(181,181,181,0.23)' }}>
@@ -49,7 +49,7 @@ export const CardActivity = ({ id, title, created_at }: Activity) => {
           dateTime={created_at}>
           {formatDate(created_at)}
         </Text>
-        <DeleteButton
+        <ModalDelete
           type="activity"
           title={title}
           handleDelete={handleDeleteActivity}

@@ -9,7 +9,4 @@ export default defineConfig({
       usePolling: true,
     },
   },
-  build: {
-    outDir: 'dist',
-  },
 })

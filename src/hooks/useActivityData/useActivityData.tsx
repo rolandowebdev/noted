@@ -23,7 +23,7 @@ export const useActivityData = () => {
     }
   }
 
-  const getAllActivity = async () => {
+  const getActivities = async () => {
     try {
       const response = await axios.get<ResponseActivity>(activityUrl.GET_ALL)
       setActivities(response.data.data)
@@ -32,7 +32,7 @@ export const useActivityData = () => {
     }
   }
 
-  const getOneActivity = async (id: string) => {
+  const getActivity = async (id: string) => {
     try {
       const response = await axios.get<Activity>(activityUrl.GET_ONE(id))
       setActivity(response.data)
@@ -73,8 +73,8 @@ export const useActivityData = () => {
     activity,
     setActivity,
     createActivity,
-    getAllActivity,
-    getOneActivity,
+    getActivities,
+    getActivity,
     updateActivity,
     deleteActivity,
   }

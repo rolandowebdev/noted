@@ -8,6 +8,7 @@ export const PageContainer = ({ children }: PageContainerProps) => {
   const navHeight = '128px'
   return (
     <Container
+      data-cy="activity-dashboard"
       as="main"
       maxW="container.lg"
       marginBlock={8}

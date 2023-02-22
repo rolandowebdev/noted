@@ -1,4 +1,6 @@
-export const sortData = (data: any, criteria: string): any => {
+import { Todo } from '../models/todo'
+
+export const sortData = (data: Todo[], criteria: string): any => {
   switch (criteria) {
     case 'a-z':
       data.sort((a: any, b: any) => a.title.localeCompare(b.title))

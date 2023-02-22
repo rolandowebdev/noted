@@ -11,8 +11,8 @@ import { useState } from 'react'
 import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
 import { useCustomToast } from '../../hooks'
 import { Todo } from '../../models/todo'
+import { ModalDelete } from '../modal/ModalDelete'
 import { ModalTodo } from '../modal/ModalTodo'
-import DeleteButton from './DeleteButton'
 
 export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
   const [isChecked, setIsChecked] = useState<any>(is_active)
@@ -28,7 +28,7 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked)
-    updateTodo({ id, is_active: isChecked === 1 ? 0 : 1 })
+    updateTodo({ id, is_active: !isChecked ? 1 : 0 })
   }
 
   return (
@@ -66,7 +66,7 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
               type="update"
             />
           </HStack>
-          <DeleteButton
+          <ModalDelete
             type="todo"
             title={title}
             handleDelete={handleDeleteTodo}
