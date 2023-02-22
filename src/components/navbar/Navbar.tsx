@@ -10,15 +10,15 @@ export const Navbar = () => {
       zIndex="docked"
       width="full"
       backgroundColor="brand.primary"
-      minHeight="16"
+      minHeight="105px"
       display="flex"
       alignItems="center">
       <Container maxW="container.lg">
         <Text
-          as="p"
+          as="span"
           data-cy="header-title"
           fontSize="2xl"
-          fontWeight="bold"
+          fontWeight="900"
           color="white"
           letterSpacing="wider">
           TO DO LIST APP

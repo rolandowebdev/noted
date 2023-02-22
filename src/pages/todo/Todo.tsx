@@ -23,10 +23,9 @@ import {
 import { sortOptions } from '../../constants/sortOptions'
 import { useActivityContext } from '../../context'
 import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
-import { PageContainer } from '../../layouts'
 import { sortData } from '../../utils/sortData'
 
-export const Todo = () => {
+const Todo = () => {
   const { id } = useParams<string>()
   const { todoItems, getAllTodo } = useTodoContext()
   const { setActivity, getActivity } = useActivityContext()
@@ -42,7 +41,7 @@ export const Todo = () => {
   }
 
   useEffect(() => {
-    getActivity(id)
+    getActivity(id).then((activity: any) => setActivity(activity))
   }, [id])
 
   useEffect(() => {
@@ -50,7 +49,7 @@ export const Todo = () => {
   }, [id])
 
   return (
-    <PageContainer>
+    <>
       <HStack as="nav" justify="space-between" align="center" height="50px">
         <HStack alignItems="center">
           <RouterLink
@@ -128,6 +127,8 @@ export const Todo = () => {
           </>
         )}
       </Stack>
-    </PageContainer>
+    </>
   )
 }
+
+export default Todo

@@ -1,16 +1,24 @@
-import { createContext, ReactNode, useContext, useEffect, useMemo } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { useActivityData } from '../../hooks'
 import { Activity } from '../../models/activity'
 
 interface ActivityContextType {
   activities: Activity[]
+  setActivities: any
   activity: any
   setActivity: any
-  createActivity: () => Promise<void>
-  getActivities: () => Promise<void>
-  getActivity: (id: any) => Promise<void | Activity>
-  updateActivity: (updateActivity: Activity) => Promise<void>
-  deleteActivity: (id: number) => Promise<void>
+  createActivity: () => Promise<any>
+  getActivities: () => Promise<any>
+  getActivity: (id: any) => Promise<any>
+  updateActivity: (updateActivity: Activity) => Promise<any>
+  deleteActivity: (id: number) => Promise<any>
 }
 
 interface ActivityProviderProps {
@@ -19,6 +27,7 @@ interface ActivityProviderProps {
 
 const ActivityContext = createContext<ActivityContextType>({
   activities: [],
+  setActivities: [],
   activity: {},
   setActivity: {},
   createActivity: async () => {},
@@ -31,10 +40,9 @@ const ActivityContext = createContext<ActivityContextType>({
 export const useActivityContext = () => useContext(ActivityContext)
 
 export const ActivityProvider = ({ children }: ActivityProviderProps) => {
+  const [activities, setActivities] = useState<Activity[]>([])
+  const [activity, setActivity] = useState<Activity | null>(null)
   const {
-    activities,
-    activity,
-    setActivity,
     createActivity,
     getActivities,
     getActivity,
@@ -43,12 +51,13 @@ export const ActivityProvider = ({ children }: ActivityProviderProps) => {
   } = useActivityData()
 
   useEffect(() => {
-    getActivities()
+    getActivities().then((activity) => setActivities(activity))
   }, [])
 
   const values = useMemo(
     () => ({
       activities,
+      setActivities,
       activity,
       setActivity,
       createActivity,
@@ -59,6 +68,7 @@ export const ActivityProvider = ({ children }: ActivityProviderProps) => {
     }),
     [
       activities,
+      setActivities,
       activity,
       setActivity,
       createActivity,

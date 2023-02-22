@@ -2,19 +2,24 @@ import { AddIcon } from '@chakra-ui/icons'
 import { Box, Button, Heading, HStack } from '@chakra-ui/react'
 import { CardActivity, Illustration } from '../../components'
 import { useActivityContext } from '../../context'
-import { PageContainer } from '../../layouts'
 
-export const Dashboard = () => {
-  const { activities, createActivity } = useActivityContext()
+const Dashboard = () => {
+  const { activities, setActivities, createActivity } = useActivityContext()
+
+  const handleCreateActivity = () => {
+    createActivity().then((activity) =>
+      setActivities((prevActivity: any) => [...prevActivity, activity])
+    )
+  }
 
   return (
-    <PageContainer>
+    <>
       <Box as="nav" role="navigation">
         <HStack justify="space-between" align="center" height="50px">
           <Heading
             data-cy="activity-title"
             as="h1"
-            fontSize="3xl"
+            fontSize="4xl"
             fontWeight="bold">
             Activity
           </Heading>
@@ -31,7 +36,7 @@ export const Dashboard = () => {
             transition="background-color 150ms ease"
             leftIcon={<AddIcon />}
             _hover={{ bgColor: 'brand.lightPrimary' }}
-            onClick={() => createActivity()}>
+            onClick={handleCreateActivity}>
             Tambah
           </Button>
         </HStack>
@@ -66,6 +71,8 @@ export const Dashboard = () => {
             />
           ))}
       </Box>
-    </PageContainer>
+    </>
   )
 }
+
+export default Dashboard

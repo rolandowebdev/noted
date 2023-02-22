@@ -14,11 +14,18 @@ interface EditableTextProps {
 }
 
 export const EditableText = ({ id, onChange }: EditableTextProps) => {
-  const { activity, updateActivity } = useActivityContext()
+  const { activity, setActivities, updateActivity } = useActivityContext()
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleSubmit = () => {
-    updateActivity({ ...activity, title: activity?.title, id })
+    updateActivity({ ...activity, title: activity?.title, id }).then(
+      (response: any) =>
+        setActivities((prevActivity: any) =>
+          prevActivity.map((activity: any) =>
+            activity.id === response.id ? activity : activity
+          )
+        )
+    )
   }
 
   const handleEnterKey = (event: KeyboardEvent<HTMLInputElement>) => {
@@ -43,7 +50,7 @@ export const EditableText = ({ id, onChange }: EditableTextProps) => {
       selectAllOnFocus={false}
       onChange={onChange}
       onSubmit={handleSubmit}>
-      <EditablePreview data-cy="todo-title" fontSize="3xl" />
+      <EditablePreview data-cy="todo-title" fontSize="4xl" />
       <Input as={EditableInput} ref={inputRef} onKeyDown={handleEnterKey} />
       <EditableControls />
     </Editable>

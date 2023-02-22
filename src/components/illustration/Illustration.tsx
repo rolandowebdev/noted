@@ -16,11 +16,13 @@ export const Illustration = ({
   illustrationIcon,
   illustrationGround,
 }: IllustrationProps) => {
-  const { createActivity } = useActivityContext()
+  const { setActivities, createActivity } = useActivityContext()
 
   const handleCreateActivity = () => {
     if (type === 'activity') {
-      createActivity()
+      createActivity().then((activity) =>
+        setActivities((prevActivity: any) => [...prevActivity, activity])
+      )
     }
   }
 

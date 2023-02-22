@@ -15,12 +15,15 @@ import { ModalDelete } from '../modal/ModalDelete'
 
 export const CardActivity = ({ id, title, created_at }: Activity) => {
   const { onClose } = useDisclosure()
-  const { deleteActivity } = useActivityContext()
+  const { setActivities, deleteActivity } = useActivityContext()
   const navigate = useNavigate()
   const showToast = useCustomToast()
 
   const handleDeleteActivity = () => {
     deleteActivity(id)
+    setActivities((prevActivity: any) =>
+      prevActivity.filter((activity: any) => activity.id !== id)
+    )
     onClose()
     showToast('Activity berhasil dihapus', 'success')
   }
