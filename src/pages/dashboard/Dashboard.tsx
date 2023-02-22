@@ -1,16 +1,11 @@
 import { AddIcon } from '@chakra-ui/icons'
 import { Box, Button, Heading, HStack } from '@chakra-ui/react'
 import { CardActivity, Illustration } from '../../components'
-
 import { useActivityContext } from '../../context'
 import { PageContainer } from '../../layouts'
 
 export const Dashboard = () => {
   const { activities, createActivity } = useActivityContext()
-
-  const handleCreateActivity = () => {
-    createActivity()
-  }
 
   return (
     <PageContainer>
@@ -36,12 +31,11 @@ export const Dashboard = () => {
             transition="background-color 150ms ease"
             leftIcon={<AddIcon />}
             _hover={{ bgColor: 'brand.lightPrimary' }}
-            onClick={handleCreateActivity}>
+            onClick={() => createActivity()}>
             Tambah
           </Button>
         </HStack>
       </Box>
-
       <Box
         as="section"
         display={activities?.length > 0 ? 'grid' : 'initial'}
@@ -53,7 +47,7 @@ export const Dashboard = () => {
         ]}
         gap={4}
         mt={[16, 14, 12]}>
-        {activities?.length < 1 ? (
+        {activities?.length < 1 && (
           <Illustration
             type="activity"
             desc="Create your first activity"
@@ -61,18 +55,16 @@ export const Dashboard = () => {
             illustrationIcon="/images/activity.png"
             illustrationGround="/icons/ground.svg"
           />
-        ) : (
-          <>
-            {activities.map((activity) => (
-              <CardActivity
-                key={activity.id}
-                id={activity.id}
-                title={activity.title}
-                created_at={activity.created_at}
-              />
-            ))}
-          </>
         )}
+        {activities?.length > 0 &&
+          activities.map((activity) => (
+            <CardActivity
+              key={activity.id}
+              id={activity.id}
+              title={activity.title}
+              created_at={activity.created_at}
+            />
+          ))}
       </Box>
     </PageContainer>
   )

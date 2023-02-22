@@ -1,6 +1,5 @@
 import { ChevronLeftIcon, UpDownIcon } from '@chakra-ui/icons'
 import {
-  Box,
   Button,
   HStack,
   Image,
@@ -103,7 +102,10 @@ export const Todo = () => {
           <ModalTodo type="create" id={id} />
         </Stack>
       </HStack>
-      <Box as="section" mt={[16, 14, 12]}>
+      <Stack
+        as="section"
+        spacing={sortedTodoItems?.length > 1 ? 4 : 'initial'}
+        mt={[16, 14, 12]}>
         {sortedTodoItems?.length < 1 ? (
           <Illustration
             type="todo"
@@ -113,7 +115,7 @@ export const Todo = () => {
             illustrationGround="/icons/ground.svg"
           />
         ) : (
-          <Stack spacing={4}>
+          <>
             {sortedTodoItems.map((todo: any) => (
               <CardTodo
                 key={todo.id}
@@ -123,9 +125,9 @@ export const Todo = () => {
                 priority={todo.priority}
               />
             ))}
-          </Stack>
+          </>
         )}
-      </Box>
+      </Stack>
     </PageContainer>
   )
 }

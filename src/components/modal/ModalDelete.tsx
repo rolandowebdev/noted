@@ -35,7 +35,7 @@ export const ModalDelete = ({
         size="xs"
         variant="unstyled"
         onClick={(e) => {
-          e.preventDefault()
+          e.stopPropagation()
           onOpen()
         }}>
         <DeleteIcon
@@ -62,7 +62,7 @@ export const ModalDelete = ({
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody data-cy="modal-delete-title">
-            Apakah anda yakin menghapus activity
+            Apakah anda yakin menghapus {type}
             <Text as="span" display="block" fontWeight="bold">
               {`"${title}"`}?
             </Text>

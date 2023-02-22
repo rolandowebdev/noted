@@ -6,7 +6,7 @@ import {
   Text,
   useDisclosure,
 } from '@chakra-ui/react'
-import { Link as RouterLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useActivityContext } from '../../context'
 import { useCustomToast } from '../../hooks'
 import { Activity } from '../../models/activity'
@@ -16,6 +16,7 @@ import { ModalDelete } from '../modal/ModalDelete'
 export const CardActivity = ({ id, title, created_at }: Activity) => {
   const { onClose } = useDisclosure()
   const { deleteActivity } = useActivityContext()
+  const navigate = useNavigate()
   const showToast = useCustomToast()
 
   const handleDeleteActivity = () => {
@@ -27,13 +28,13 @@ export const CardActivity = ({ id, title, created_at }: Activity) => {
   return (
     <Card
       data-cy="activity-item"
-      as={RouterLink}
-      to={`/detail/${id}`}
       size="lg"
+      height="234px"
       transition="box-shadow 200ms ease-in-out"
-      _hover={{ boxShadow: '4px 4px 4px 2px rgba(181,181,181,0.23)' }}>
-      <CardHeader>
-        <Heading data-cy="activity-item-title" size="md">
+      _hover={{ boxShadow: '4px 4px 4px 2px rgba(181,181,181,0.23)' }}
+      onClick={() => navigate(`/activity/${id}`)}>
+      <CardHeader height="full">
+        <Heading as="h2" data-cy="activity-item-title" size="md">
           {title}
         </Heading>
       </CardHeader>
