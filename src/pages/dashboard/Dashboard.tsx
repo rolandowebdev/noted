@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { CardActivity } from '../../components'
 import { useActivityContext } from '../../context'
 
-export const Dashboard = () => {
+const Dashboard = () => {
   const { activities, setActivities, getActivities, createActivity } =
     useActivityContext()
 
@@ -56,3 +56,5 @@ export const Dashboard = () => {
     </Grid>
   )
 }
+
+export default Dashboard

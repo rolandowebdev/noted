@@ -7,7 +7,7 @@ import { useActivityContext } from '../../context'
 import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
 import { sortData } from '../../utils/sortData'
 
-export const Detail = () => {
+const Detail = () => {
   const { id } = useParams<string>()
   const { todoItems, getAllTodo } = useTodoContext()
   const { setActivity, getActivity } = useActivityContext()
@@ -55,3 +55,5 @@ export const Detail = () => {
     </>
   )
 }
+
+export default Detail

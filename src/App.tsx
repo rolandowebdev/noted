@@ -3,13 +3,8 @@ import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { PageContainer } from './layouts'
 
-const Dashboard = lazy(() =>
-  import('./pages').then((module) => ({ default: module.Dashboard }))
-)
-
-const Detail = lazy(() =>
-  import('./pages').then((module) => ({ default: module.Detail }))
-)
+const Dashboard = lazy(() => import('./pages/dashboard/Dashboard'))
+const Detail = lazy(() => import('./pages/detail/Detail'))
 
 export const App = () => (
   <BrowserRouter>
@@ -17,7 +12,7 @@ export const App = () => (
       <Suspense fallback={<Box display="none" />}>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/activity/:id" element={<Detail />} />
+          <Route path="/detail/:id" element={<Detail />} />
         </Routes>
       </Suspense>
     </PageContainer>
