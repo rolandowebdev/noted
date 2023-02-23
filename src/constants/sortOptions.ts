@@ -20,7 +20,7 @@ export const sortOptions = [
     icon: '/icons/sort-z-a.svg',
   },
   {
-    value: 'is_active',
+    value: 'unfinished',
     text: 'Belum Selesai',
     icon: '/icons/sort-not-finished.svg',
   },

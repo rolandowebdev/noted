@@ -1,9 +1,8 @@
-import { Box, Flex, Image, Text } from '@chakra-ui/react'
+import { Box, Flex, Image } from '@chakra-ui/react'
 import { useActivityContext } from '../../context'
 
 interface IllustrationProps {
   type: string
-  desc: string
   illustrationHuman: string
   illustrationIcon: string
   illustrationGround: string
@@ -11,7 +10,6 @@ interface IllustrationProps {
 
 export const Illustration = ({
   type,
-  desc,
   illustrationHuman,
   illustrationIcon,
   illustrationGround,
@@ -21,7 +19,9 @@ export const Illustration = ({
   const handleCreateActivity = () => {
     if (type === 'activity') {
       createActivity().then((activity) =>
-        setActivities((prevActivity: any) => [...prevActivity, activity])
+        setActivities((prevActivity: any) =>
+          [...prevActivity, activity].sort((a: any, b: any) => b.id - a.id)
+        )
       )
     }
   }
@@ -44,15 +44,6 @@ export const Illustration = ({
       </Box>
       <Box>
         <Image src={illustrationIcon} alt="activity add illustration" />
-        <Text
-          as="p"
-          textAlign="center"
-          mt={6}
-          fontSize="xl"
-          fontWeight="semibold"
-          marginRight={type === 'activity' ? 8 : 12}>
-          {desc}
-        </Text>
       </Box>
       <Box
         pos="absolute"

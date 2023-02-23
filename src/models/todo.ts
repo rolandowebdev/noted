@@ -3,7 +3,7 @@ export interface Todo {
   id?: any
   title?: any
   activity_group_id?: any
-  is_active?: number
+  is_active?: any
   priority?: string
 }
 

@@ -1,6 +1,6 @@
 import { Box, Container, Text } from '@chakra-ui/react'
 
-export const Navbar = () => {
+export const Header = () => {
   return (
     <Box
       data-cy="header-background"
@@ -10,7 +10,7 @@ export const Navbar = () => {
       zIndex="docked"
       width="full"
       backgroundColor="brand.primary"
-      minHeight="105px"
+      height="105px"
       display="flex"
       alignItems="center">
       <Container maxW="container.lg">

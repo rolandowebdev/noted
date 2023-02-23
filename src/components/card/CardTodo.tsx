@@ -26,9 +26,10 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
     showToast('Todo berhasil dihapus', 'success')
   }
 
-  const handleCheckboxChange = () => {
+  const handleCheckox = () => {
+    const newStatus = is_active ? 0 : 1
     setIsChecked(!isChecked)
-    updateTodo({ id, is_active: !isChecked ? 1 : 0 })
+    updateTodo({ id, is_active: newStatus })
   }
 
   return (
@@ -43,7 +44,7 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
               data-cy="todo-item-checkbox"
               colorScheme="green"
               isChecked={isChecked}
-              onChange={handleCheckboxChange}
+              onChange={handleCheckox}
             />
             <Box
               data-cy="todo-item-priority-indicator"

@@ -1,2 +1,2 @@
-export { default as Dashboard } from './dashboard/Dashboard'
-export { default as Todo } from './todo/Todo'
+export * from './dashboard/Dashboard'
+export * from './detail/Detail'

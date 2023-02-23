@@ -1,20 +1,24 @@
+import { Box } from '@chakra-ui/react'
 import { lazy, Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { Loader } from './components'
 import { PageContainer } from './layouts'
 
-const Dashboard = lazy(() => import('./pages/dashboard/Dashboard'))
-const Todo = lazy(() => import('./pages/todo/Todo'))
+const Dashboard = lazy(() =>
+  import('./pages').then((module) => ({ default: module.Dashboard }))
+)
+const Detail = lazy(() =>
+  import('./pages').then((module) => ({ default: module.Detail }))
+)
 
 export const App = () => (
-  <PageContainer>
-    <Suspense fallback={<Loader />}>
-      <BrowserRouter>
+  <BrowserRouter>
+    <PageContainer>
+      <Suspense fallback={<Box display="none" />}>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/activity/:id" element={<Todo />} />
+          <Route path="/activity/:id" element={<Detail />} />
         </Routes>
-      </BrowserRouter>
-    </Suspense>
-  </PageContainer>
+      </Suspense>
+    </PageContainer>
+  </BrowserRouter>
 )

@@ -53,8 +53,9 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
   const handleCreateTodo = () => {
     createTodo({
       title: input,
-      activity_group_id: id,
-      is_active: 0,
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+      activity_group_id: parseInt(id!, 10),
+      is_active: false,
       priority: selectedOption,
     })
     setInput('')

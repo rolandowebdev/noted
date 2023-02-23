@@ -2,20 +2,28 @@ import { Todo } from '../models/todo'
 
 export const sortData = (data: Todo[], criteria: string): any => {
   switch (criteria) {
-    case 'a-z':
-      data.sort((a: any, b: any) => a.title.localeCompare(b.title))
-      break
-    case 'z-a':
-      data.sort((a: any, b: any) => b.title.localeCompare(a.title))
-      break
     case 'latest':
       data.sort((a: any, b: any) => b.id - a.id)
       break
     case 'longest':
       data.sort((a: any, b: any) => a.id - b.id)
       break
-    case 'is_active':
-      data.sort((a: any, b: any) => a.is_active - b.is_active)
+    case 'a-z':
+      data.sort((a: any, b: any) => {
+        if (a.title < b.title) return -1
+        if (a.title > b.title) return 1
+        return 0
+      })
+      break
+    case 'z-a':
+      data.sort((a: any, b: any) => {
+        if (b.title < a.title) return -1
+        if (b.title > a.title) return 1
+        return 0
+      })
+      break
+    case 'unfinished':
+      data.sort((a: any, b: any) => +a.is_active - +b.is_active)
       break
     default:
       return data
