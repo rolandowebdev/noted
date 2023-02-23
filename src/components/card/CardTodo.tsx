@@ -15,7 +15,7 @@ import { ModalDelete } from '../modal/ModalDelete'
 import { ModalTodo } from '../modal/ModalTodo'
 
 export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
-  const [isChecked, setIsChecked] = useState<any>(is_active)
+  const [isChecked, setIsChecked] = useState(is_active === 0)
   const { updateTodo, deleteTodo } = useTodoContext()
   const { onClose } = useDisclosure()
   const showToast = useCustomToast()
@@ -26,8 +26,8 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
     showToast('Todo berhasil dihapus', 'success')
   }
 
-  const handleCheckox = () => {
-    const newStatus = is_active ? 0 : 1
+  const handleCheckboxChange = async () => {
+    const newStatus = isChecked ? 1 : 0
     setIsChecked(!isChecked)
     updateTodo({ id, is_active: newStatus })
   }
@@ -44,7 +44,7 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
               data-cy="todo-item-checkbox"
               colorScheme="green"
               isChecked={isChecked}
-              onChange={handleCheckox}
+              onChange={handleCheckboxChange}
             />
             <Box
               data-cy="todo-item-priority-indicator"

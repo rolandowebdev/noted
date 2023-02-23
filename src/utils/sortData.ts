@@ -23,7 +23,7 @@ export const sortData = (data: Todo[], criteria: string): any => {
       })
       break
     case 'unfinished':
-      data.sort((a: any, b: any) => +a.is_active - +b.is_active)
+      data.sort((a: any, b: any) => +b.is_active - +a.is_active)
       break
     default:
       return data
