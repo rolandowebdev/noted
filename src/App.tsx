@@ -6,6 +6,7 @@ import { PageContainer } from './layouts'
 const Dashboard = lazy(() =>
   import('./pages').then((module) => ({ default: module.Dashboard }))
 )
+
 const Detail = lazy(() =>
   import('./pages').then((module) => ({ default: module.Detail }))
 )

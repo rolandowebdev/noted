@@ -1,7 +1,7 @@
-import { Stack } from '@chakra-ui/react'
+import { Image, Stack } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { CardTodo, Illustration, MenuSort } from '../../components'
+import { CardTodo, MenuSort } from '../../components'
 
 import { useActivityContext } from '../../context'
 import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
@@ -30,30 +30,27 @@ export const Detail = () => {
         selectedOption={selectedOption}
         setSelectedOption={setSelectedOption}
       />
-      <Stack
-        as="section"
-        spacing={sortedTodoItems?.length > 1 ? 4 : 'initial'}
-        mt={[16, 14, 12]}>
-        {sortedTodoItems?.length < 1 ? (
-          <Illustration
-            type="todo"
-            illustrationHuman="/images/human-todo.png"
-            illustrationIcon="/images/todo.png"
-            illustrationGround="/icons/ground.svg"
+      {sortedTodoItems?.length < 1 && (
+        <Image
+          data-cy="todo-empty-state"
+          loading="lazy"
+          boxSize="sm"
+          objectFit="contain"
+          mx="auto"
+          src="/todo.svg"
+          alt="todo illustration"
+        />
+      )}
+      <Stack as="section" spacing={4} mt={[16, 14, 12]}>
+        {todoItems.map((todo: any) => (
+          <CardTodo
+            key={todo.id}
+            id={todo.id}
+            is_active={todo.is_active}
+            title={todo.title}
+            priority={todo.priority}
           />
-        ) : (
-          <>
-            {todoItems.map((todo: any) => (
-              <CardTodo
-                key={todo.id}
-                id={todo.id}
-                is_active={todo.is_active}
-                title={todo.title}
-                priority={todo.priority}
-              />
-            ))}
-          </>
-        )}
+        ))}
       </Stack>
     </>
   )

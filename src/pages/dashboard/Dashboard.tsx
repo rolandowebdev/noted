@@ -1,30 +1,42 @@
-import { Box } from '@chakra-ui/react'
+import { Grid, Image } from '@chakra-ui/react'
 import { useEffect } from 'react'
-import { CardActivity, Illustration } from '../../components'
+import { CardActivity } from '../../components'
 import { useActivityContext } from '../../context'
 
 export const Dashboard = () => {
-  const { activities, setActivities, getActivities } = useActivityContext()
+  const { activities, setActivities, getActivities, createActivity } =
+    useActivityContext()
 
   useEffect(() => {
     getActivities().then((activity) => setActivities(activity))
   }, [])
 
-  if (activities.length < 1) {
+  const handleCreateActivity = () => {
+    createActivity().then((activity) =>
+      setActivities((prevActivity: any) =>
+        [...prevActivity, activity].sort((a: any, b: any) => b.id - a.id)
+      )
+    )
+  }
+
+  if (activities?.length < 1) {
     return (
-      <Illustration
-        type="activity"
-        illustrationHuman="/images/human-activity.png"
-        illustrationIcon="/images/activity.png"
-        illustrationGround="/icons/ground.svg"
+      <Image
+        data-cy="activity-empty-state"
+        boxSize="sm"
+        objectFit="contain"
+        mx="auto"
+        cursor="pointer"
+        src="/activity.svg"
+        alt="activity illustration"
+        onClick={handleCreateActivity}
       />
     )
   }
 
   return (
-    <Box
+    <Grid
       as="section"
-      display={activities?.length > 0 ? 'grid' : 'initial'}
       gridTemplateColumns={[
         'repeat(1, 1fr)',
         'repeat(2, 1fr)',
@@ -41,6 +53,6 @@ export const Dashboard = () => {
           created_at={activity.created_at}
         />
       ))}
-    </Box>
+    </Grid>
   )
 }

@@ -3,6 +3,7 @@ import {
   Button,
   HStack,
   Icon,
+  Link,
   Menu,
   MenuButton,
   MenuItemOption,
@@ -11,11 +12,10 @@ import {
   Stack,
   Text,
 } from '@chakra-ui/react'
-import { useParams } from 'react-router-dom'
+import { Link as RouterLink, useParams } from 'react-router-dom'
 import { sortOptions } from '../../constants/sortOptions'
 import { useActivityContext } from '../../context'
 import { EditableText } from '../controls/EditableText'
-import { RouterLink } from '../link/RouterLink'
 import { ModalTodo } from '../modal/ModalTodo'
 
 interface MenuSortProps {
@@ -39,17 +39,18 @@ export const MenuSort = ({
   return (
     <HStack as="nav" justify="space-between" align="center" height="50px">
       <HStack alignItems="center">
-        <RouterLink
-          link="/"
-          styles={{
+        <Link
+          as={RouterLink}
+          to="/"
+          sx={{
             size: 'xs',
             ml: '-17px',
             display: 'flex',
             alignItems: 'center',
           }}
-          hover={{ textDecor: 'underline', color: 'brand.primary' }}>
+          _hover={{ textDecor: 'underline', color: 'brand.primary' }}>
           <ChevronLeftIcon data-cy="todo-back-button" fontSize="5xl" />
-        </RouterLink>
+        </Link>
         <EditableText id={id} onChange={handleInputChange} />
       </HStack>
       <Stack direction="row" alignItems="center" spacing={3}>

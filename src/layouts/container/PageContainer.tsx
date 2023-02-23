@@ -1,9 +1,10 @@
 import { Container } from '@chakra-ui/react'
+import { ReactNode } from 'react'
 import { useLocation } from 'react-router-dom'
-import { NavbarDashboard, Header } from '../../components'
+import { Header, NavbarDashboard } from '../../components'
 
 interface PageContainerProps {
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export const PageContainer = ({ children }: PageContainerProps) => {
@@ -12,12 +13,11 @@ export const PageContainer = ({ children }: PageContainerProps) => {
     <>
       <Header />
       <Container
-        data-cy="activity-dashboard"
+        data-cy={location ? 'activity-dashboard' : 'todo-page'}
         as="main"
         maxW="container.lg"
         marginBlock={8}
-        px={[8, 6, 4]}
-        sx={{ minHeight: 'calc(100vh - 128px)' }}>
+        px={[8, 6, 4]}>
         {location && <NavbarDashboard />}
         {children}
       </Container>
