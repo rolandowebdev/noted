@@ -2,7 +2,7 @@ import { ChevronLeftIcon, UpDownIcon } from '@chakra-ui/icons'
 import {
   Button,
   HStack,
-  Image,
+  Icon,
   Menu,
   MenuButton,
   MenuItemOption,
@@ -76,7 +76,7 @@ export const MenuSort = ({
                     key={sortOption.text}
                     value={sortOption.value}>
                     <HStack alignItems="center">
-                      <Image src={sortOption.icon} />
+                      <Icon as={sortOption.icon} />
                       <Text>{sortOption.text}</Text>
                     </HStack>
                   </MenuItemOption>

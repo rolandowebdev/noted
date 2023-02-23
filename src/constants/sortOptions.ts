@@ -1,27 +1,42 @@
-export const sortOptions = [
+import { As } from '@chakra-ui/react'
+import {
+  FcAlphabeticalSortingAz,
+  FcAlphabeticalSortingZa,
+  FcGenericSortingAsc,
+  FcGenericSortingDesc,
+  FcNumericalSorting12,
+} from 'react-icons/fc'
+
+interface SortOption {
+  value: string
+  text: string
+  icon: As
+}
+
+export const sortOptions: SortOption[] = [
   {
     value: 'latest',
     text: 'Terbaru',
-    icon: '/icons/sort-new.svg',
+    icon: FcGenericSortingAsc,
   },
   {
     value: 'longest',
     text: 'Terlama',
-    icon: '/icons/sort-old.svg',
+    icon: FcGenericSortingDesc,
   },
   {
     value: 'a-z',
     text: 'A-Z',
-    icon: '/icons/sort-a-z.svg',
+    icon: FcAlphabeticalSortingAz,
   },
   {
     value: 'z-a',
     text: 'Z-A',
-    icon: '/icons/sort-z-a.svg',
+    icon: FcAlphabeticalSortingZa,
   },
   {
     value: 'unfinished',
     text: 'Belum Selesai',
-    icon: '/icons/sort-not-finished.svg',
+    icon: FcNumericalSorting12,
   },
 ]
