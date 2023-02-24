@@ -49,7 +49,7 @@ export const CardActivity = ({ id, title, created_at }: Activity) => {
           as="time"
           data-cy="activity-item-date"
           fontSize="sm"
-          color="gray.500"
+          color="gray.700"
           dateTime={created_at}>
           {formatDate(created_at)}
         </Text>

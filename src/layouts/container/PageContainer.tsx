@@ -15,6 +15,7 @@ export const PageContainer = ({ children }: PageContainerProps) => {
       <Container
         data-cy={location ? 'activity-dashboard' : 'todo-page'}
         as="main"
+        height="container.sm"
         maxW="container.lg"
         marginBlock={8}
         px={[8, 6, 4]}>
