@@ -3,24 +3,24 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { CardTodo, MenuSort } from '../../components'
 
-import { useActivityContext } from '../../context'
-import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
+import { useActivityContext, useTodoContext } from '../../context'
+
 import { sortData } from '../../utils/sortData'
 
 const Detail = () => {
   const { id } = useParams<string>()
-  const { todoItems, getAllTodo } = useTodoContext()
+  const { todos, getTodos } = useTodoContext()
   const { setActivity, getActivity } = useActivityContext()
 
   const [selectedOption, setSelectedOption] = useState<string>('latest')
-  const sortedTodoItems = sortData(todoItems, selectedOption)
+  const sortedTodoItems = sortData(todos, selectedOption)
 
   useEffect(() => {
     getActivity(id).then((activity: any) => setActivity(activity))
   }, [id])
 
   useEffect(() => {
-    getAllTodo(id)
+    getTodos(id)
   }, [id])
 
   return (
@@ -43,7 +43,7 @@ const Detail = () => {
         />
       )}
       <Stack as="section" spacing={4} mt={[16, 14, 12]}>
-        {todoItems.map((todo: any) => (
+        {sortedTodoItems.map((todo: any) => (
           <CardTodo
             key={todo.id}
             id={todo.id}

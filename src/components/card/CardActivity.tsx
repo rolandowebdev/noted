@@ -14,8 +14,8 @@ import { formatDate } from '../../utils/formatDate'
 import { ModalDelete } from '../modal/ModalDelete'
 
 export const CardActivity = ({ id, title, created_at }: Activity) => {
-  const { onClose } = useDisclosure()
   const { setActivities, deleteActivity } = useActivityContext()
+  const { onClose } = useDisclosure()
   const navigate = useNavigate()
   const showToast = useCustomToast()
 

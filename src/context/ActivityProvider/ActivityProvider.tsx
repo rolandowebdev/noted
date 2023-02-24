@@ -1,12 +1,5 @@
-import {
-  createContext,
-  ReactNode,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react'
-import { useActivityData } from '../../hooks'
+import { createContext, ReactNode, useContext, useMemo, useState } from 'react'
+import { useActivity } from '../../hooks'
 import { Activity } from '../../models/activity'
 
 interface ActivityContextType {
@@ -15,7 +8,7 @@ interface ActivityContextType {
   activity: any
   setActivity: any
   createActivity: () => Promise<any>
-  getActivities: () => Promise<any>
+  fetchActivities: () => Promise<any>
   getActivity: (id: any) => Promise<any>
   updateActivity: (updateActivity: Activity) => Promise<any>
   deleteActivity: (id: number) => Promise<any>
@@ -31,7 +24,7 @@ const ActivityContext = createContext<ActivityContextType>({
   activity: {},
   setActivity: {},
   createActivity: async () => {},
-  getActivities: async () => {},
+  fetchActivities: async () => {},
   getActivity: async () => {},
   updateActivity: async () => {},
   deleteActivity: async () => {},
@@ -44,15 +37,11 @@ export const ActivityProvider = ({ children }: ActivityProviderProps) => {
   const [activity, setActivity] = useState<Activity | null>(null)
   const {
     createActivity,
-    getActivities,
+    fetchActivities,
     getActivity,
     updateActivity,
     deleteActivity,
-  } = useActivityData()
-
-  useEffect(() => {
-    getActivities().then((activity) => setActivities(activity))
-  }, [])
+  } = useActivity()
 
   const values = useMemo(
     () => ({
@@ -61,7 +50,7 @@ export const ActivityProvider = ({ children }: ActivityProviderProps) => {
       activity,
       setActivity,
       createActivity,
-      getActivities,
+      fetchActivities,
       getActivity,
       updateActivity,
       deleteActivity,
@@ -72,7 +61,7 @@ export const ActivityProvider = ({ children }: ActivityProviderProps) => {
       activity,
       setActivity,
       createActivity,
-      getActivities,
+      fetchActivities,
       getActivity,
       updateActivity,
       deleteActivity,

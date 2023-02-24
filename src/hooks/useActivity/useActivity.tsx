@@ -2,7 +2,7 @@ import axios from 'axios'
 import { activityUrl, EMAIL } from '../../constants/apiUrl'
 import { Activity, ResponseActivity } from '../../models/activity'
 
-export const useActivityData = () => {
+export const useActivity = () => {
   const defaultActivity = {
     title: 'New Activity',
     email: EMAIL,
@@ -20,7 +20,7 @@ export const useActivityData = () => {
     }
   }
 
-  const getActivities = async () => {
+  const fetchActivities = async () => {
     try {
       const response = await axios.get<ResponseActivity>(activityUrl.GET_ALL)
       return response.data.data
@@ -60,7 +60,7 @@ export const useActivityData = () => {
 
   return {
     createActivity,
-    getActivities,
+    fetchActivities,
     getActivity,
     updateActivity,
     deleteActivity,

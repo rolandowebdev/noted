@@ -26,7 +26,7 @@ import {
 import { useEffect, useRef, useState } from 'react'
 
 import { priorities } from '../../constants/todoPriority'
-import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
+import { useTodoContext } from '../../context'
 import { Todo } from '../../models/todo'
 
 export const ModalTodo = ({ type, title, priority, id }: Todo) => {

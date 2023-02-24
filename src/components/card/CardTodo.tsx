@@ -8,7 +8,7 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useState } from 'react'
-import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
+import { useTodoContext } from '../../context'
 import { useCustomToast } from '../../hooks'
 import { Todo } from '../../models/todo'
 import { ModalDelete } from '../modal/ModalDelete'

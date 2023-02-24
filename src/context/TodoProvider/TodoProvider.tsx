@@ -1,11 +1,11 @@
 import { createContext, ReactNode, useContext, useMemo } from 'react'
-import { useTodoData } from '../../hooks/useTodoData/useTodoData'
+import { useTodo } from '../../hooks'
 import { Todo } from '../../models/todo'
 
 interface TodoContextType {
-  todoItems: Todo[]
+  todos: Todo[]
   createTodo: (newTodo: Todo) => Promise<void>
-  getAllTodo: (id: any) => Promise<void>
+  getTodos: (id: any) => Promise<void>
   updateTodo: (updateTodo: Todo) => Promise<void>
   deleteTodo: (id: number) => Promise<void>
 }
@@ -15,9 +15,9 @@ interface TodoProviderProps {
 }
 
 const TodoContext = createContext<TodoContextType>({
-  todoItems: [],
+  todos: [],
   createTodo: async () => {},
-  getAllTodo: async () => {},
+  getTodos: async () => {},
   updateTodo: async () => {},
   deleteTodo: async () => {},
 })
@@ -25,18 +25,17 @@ const TodoContext = createContext<TodoContextType>({
 export const useTodoContext = () => useContext(TodoContext)
 
 export const TodoProvider = ({ children }: TodoProviderProps) => {
-  const { todoItems, createTodo, getAllTodo, updateTodo, deleteTodo } =
-    useTodoData()
+  const { todos, createTodo, getTodos, updateTodo, deleteTodo } = useTodo()
 
   const values = useMemo(
     () => ({
-      todoItems,
+      todos,
       createTodo,
-      getAllTodo,
+      getTodos,
       updateTodo,
       deleteTodo,
     }),
-    [todoItems, createTodo, getAllTodo, updateTodo, deleteTodo]
+    [todos, createTodo, getTodos, updateTodo, deleteTodo]
   )
 
   return <TodoContext.Provider value={values}>{children}</TodoContext.Provider>
