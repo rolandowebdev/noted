@@ -6,7 +6,7 @@ import { useActivityContext, useTodoContext } from '../../context'
 import { sortData } from '../../utils/sortData'
 
 const Detail = () => {
-  const { id } = useParams<string>()
+  const { activityId } = useParams<string>()
   const { todos, getTodos } = useTodoContext()
   const { getActivity } = useActivityContext()
 
@@ -14,12 +14,12 @@ const Detail = () => {
   const sortedTodoItems = sortData(todos, selectedOption)
 
   useEffect(() => {
-    getActivity(id)
-  }, [id])
+    getActivity(activityId)
+  }, [activityId])
 
   useEffect(() => {
-    getTodos(id)
-  }, [id])
+    getTodos(activityId)
+  }, [activityId])
 
   return (
     <>

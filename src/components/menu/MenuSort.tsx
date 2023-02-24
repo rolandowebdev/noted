@@ -29,7 +29,7 @@ export const MenuSort = ({
   selectedOption,
   setSelectedOption,
 }: MenuSortProps) => {
-  const { id } = useParams()
+  const { activityId } = useParams()
   const { setActivity } = useActivityContext()
 
   const handleInputChange = (newValue: string) => {
@@ -51,7 +51,7 @@ export const MenuSort = ({
           _hover={{ textDecor: 'underline', color: 'brand.primary' }}>
           <ChevronLeftIcon data-cy="todo-back-button" fontSize="5xl" />
         </Link>
-        <EditableText id={id} onChange={handleInputChange} />
+        <EditableText id={activityId} onChange={handleInputChange} />
       </HStack>
       <Stack direction="row" alignItems="center" spacing={3}>
         {sortedTodoItems?.length < 1 ? null : (
@@ -86,7 +86,7 @@ export const MenuSort = ({
             </MenuList>
           </Menu>
         )}
-        <ModalTodo type="create" id={id} />
+        <ModalTodo type="create" id={activityId} />
       </Stack>
     </HStack>
   )

@@ -12,7 +12,7 @@ export const App = () => (
       <Suspense fallback={<Box display="none" />}>
         <Routes>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/detail/:id" element={<Detail />} />
+          <Route path="/detail/:activityId" element={<Detail />} />
         </Routes>
       </Suspense>
     </PageContainer>
