@@ -30,15 +30,16 @@ import { useTodoContext } from '../../context/TodoProvider/TodoProvider'
 import { Todo } from '../../models/todo'
 
 export const ModalTodo = ({ type, title, priority, id }: Todo) => {
+  const selectedPriorityUpdate = type === 'update' ? priority : 'normal'
   const initialRef = useRef<HTMLInputElement>(null)
   const finalRef = useRef<HTMLButtonElement>(null)
-  const selectedPriorityUpdate = type === 'update' ? priority : 'normal'
 
   const { createTodo, updateTodo } = useTodoContext()
   const { isOpen, onOpen, onClose } = useDisclosure()
+
   const [input, setInput] = useState<any>(title)
   const [isDisabled, setIsDisabled] = useState<boolean>(true)
-  const [selectedOption, setSelectedOption] = useState<any>(
+  const [selectedPriority, setSelectedPriority] = useState<any>(
     selectedPriorityUpdate
   )
 
@@ -47,16 +48,17 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
   }
 
   const handleSelectChange = (value: any) => {
-    setSelectedOption(value)
+    setSelectedPriority(value)
   }
 
   const handleCreateTodo = () => {
     createTodo({
       title: input,
       activity_group_id: id,
-      priority: selectedOption,
+      priority: selectedPriority,
     })
     setInput('')
+    setSelectedPriority(selectedPriorityUpdate)
     onClose()
   }
 
@@ -64,14 +66,14 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
     updateTodo({
       id,
       title: input,
-      priority: selectedOption,
+      priority: selectedPriority,
     })
     onClose()
   }
 
   const handleCloseModal = () => {
     setInput('')
-    setSelectedOption(selectedPriorityUpdate)
+    setSelectedPriority(selectedPriorityUpdate)
     onClose()
   }
 
@@ -169,16 +171,16 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
                         width={3}
                         height={3}
                         rounded="full"
-                        bgColor={`brand.${selectedOption}`}
+                        bgColor={`brand.${selectedPriority}`}
                       />
-                      <Text>{selectedOption}</Text>
+                      <Text>{selectedPriority}</Text>
                     </HStack>
                   </MenuButton>
                   <MenuList>
                     <MenuOptionGroup
                       type="radio"
                       onChange={handleSelectChange}
-                      value={selectedOption}>
+                      value={selectedPriority}>
                       {priorities.map((priority) => (
                         <MenuItemOption
                           data-cy="modal-add-priority-item"
