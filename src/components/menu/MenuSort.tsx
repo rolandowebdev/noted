@@ -14,7 +14,6 @@ import {
 } from '@chakra-ui/react'
 import { Link as RouterLink, useParams } from 'react-router-dom'
 import { sortOptions } from '../../constants/sortOptions'
-import { useActivityContext } from '../../context'
 import { EditableText } from '../controls/EditableText'
 import { ModalTodo } from '../modal/ModalTodo'
 
@@ -30,12 +29,6 @@ export const MenuSort = ({
   setSelectedOption,
 }: MenuSortProps) => {
   const { activityId } = useParams()
-  const { setActivity } = useActivityContext()
-
-  const handleInputChange = (newValue: string) => {
-    setActivity({ title: newValue })
-  }
-
   return (
     <HStack as="nav" justify="space-between" align="center" height="50px">
       <HStack alignItems="center">
@@ -51,7 +44,7 @@ export const MenuSort = ({
           _hover={{ textDecor: 'underline', color: 'brand.primary' }}>
           <ChevronLeftIcon data-cy="todo-back-button" fontSize="5xl" />
         </Link>
-        <EditableText id={activityId} onChange={handleInputChange} />
+        <EditableText id={activityId} />
       </HStack>
       <Stack direction="row" alignItems="center" spacing={3}>
         {sortedTodoItems?.length < 1 ? null : (
@@ -86,7 +79,7 @@ export const MenuSort = ({
             </MenuList>
           </Menu>
         )}
-        <ModalTodo type="create" id={activityId} />
+        <ModalTodo type="create" activityId={activityId} />
       </Stack>
     </HStack>
   )

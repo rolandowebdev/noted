@@ -27,9 +27,22 @@ import { useEffect, useRef, useState } from 'react'
 
 import { priorities } from '../../constants/todoPriority'
 import { useTodoContext } from '../../context'
-import { Todo } from '../../models/todo'
 
-export const ModalTodo = ({ type, title, priority, id }: Todo) => {
+interface ModalTodoProps {
+  activityId?: string
+  todoId?: number
+  title?: string
+  priority?: string
+  type: string
+}
+
+export const ModalTodo = ({
+  activityId,
+  todoId,
+  type,
+  title,
+  priority,
+}: ModalTodoProps) => {
   const selectedPriorityUpdate = type === 'update' ? priority : 'normal'
   const initialRef = useRef<HTMLInputElement>(null)
   const finalRef = useRef<HTMLButtonElement>(null)
@@ -54,7 +67,7 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
   const handleCreateTodo = () => {
     createTodo({
       title: input,
-      activity_group_id: id,
+      activity_group_id: activityId,
       priority: selectedPriority,
     })
     setInput('')
@@ -64,7 +77,7 @@ export const ModalTodo = ({ type, title, priority, id }: Todo) => {
 
   const handleUpdateTodo = () => {
     updateTodo({
-      id,
+      id: todoId,
       title: input,
       priority: selectedPriority,
     })

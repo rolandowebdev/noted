@@ -8,24 +8,23 @@ import { KeyboardEvent, useRef } from 'react'
 import { useActivityContext } from '../../context'
 import { EditableControls } from './EditableControls'
 
-interface EditableTextProps {
-  id: any
-  onChange: (value: string) => void
-}
-
-export const EditableText = ({ id, onChange }: EditableTextProps) => {
-  const { activity, updateActivity } = useActivityContext()
+export const EditableText = ({ id }: any) => {
+  const { activity, setActivity, updateActivity } = useActivityContext()
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleSubmit = () => {
     updateActivity({ ...activity, title: activity?.title, id })
   }
 
+  const handleInputChange = (newValue: string) => {
+    setActivity({ title: newValue })
+  }
+
   const handleEnterKey = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
       event.preventDefault()
       if (inputRef.current) {
-        onChange(inputRef.current.value)
+        handleInputChange(inputRef.current.value)
         inputRef.current.blur()
       }
     }
@@ -41,7 +40,7 @@ export const EditableText = ({ id, onChange }: EditableTextProps) => {
       value={activity?.title}
       fontSize="3xl"
       selectAllOnFocus={false}
-      onChange={onChange}
+      onChange={handleInputChange}
       onSubmit={handleSubmit}>
       <EditablePreview data-cy="todo-title" fontSize="4xl" />
       <Input as={EditableInput} ref={inputRef} onKeyDown={handleEnterKey} />

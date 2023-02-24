@@ -61,7 +61,7 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
               {title}
             </Text>
             <ModalTodo
-              id={id}
+              todoId={id}
               title={title}
               priority={priority}
               type="update"
