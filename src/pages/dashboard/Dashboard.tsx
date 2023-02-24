@@ -4,19 +4,14 @@ import { CardActivity } from '../../components'
 import { useActivityContext } from '../../context'
 
 const Dashboard = () => {
-  const { activities, setActivities, getActivities, createActivity } =
-    useActivityContext()
+  const { activities, getActivities, createActivity } = useActivityContext()
 
   const handleCreateActivity = () => {
-    createActivity().then((activity) =>
-      setActivities((prevActivity: any) =>
-        [...prevActivity, activity].sort((a: any, b: any) => b.id - a.id)
-      )
-    )
+    createActivity()
   }
 
   useEffect(() => {
-    getActivities().then((activity) => setActivities(activity))
+    getActivities()
   }, [])
 
   if (activities?.length < 1) {

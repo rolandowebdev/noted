@@ -3,14 +3,10 @@ import { Button, Heading, HStack } from '@chakra-ui/react'
 import { useActivityContext } from '../../context'
 
 export const NavbarDashboard = () => {
-  const { createActivity, setActivities } = useActivityContext()
+  const { createActivity } = useActivityContext()
 
   const handleCreateActivity = () => {
-    createActivity().then((activity) =>
-      setActivities((prevActivity: any) =>
-        [...prevActivity, activity].sort((a: any, b: any) => b.id - a.id)
-      )
-    )
+    createActivity()
   }
 
   return (

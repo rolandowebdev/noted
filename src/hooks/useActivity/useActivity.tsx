@@ -1,8 +1,11 @@
 import axios from 'axios'
+import { useState } from 'react'
 import { activityUrl, EMAIL } from '../../constants/apiUrl'
 import { Activity, ResponseActivity } from '../../models/activity'
 
 export const useActivity = () => {
+  const [activities, setActivities] = useState<Activity[]>([])
+  const [activity, setActivity] = useState<Activity | null>(null)
   const defaultActivity = {
     title: 'New Activity',
     email: EMAIL,
@@ -14,7 +17,9 @@ export const useActivity = () => {
         activityUrl.POST,
         defaultActivity
       )
-      return response.data
+      setActivities((prevActivity) =>
+        [...prevActivity, response.data].sort((a: any, b: any) => b.id - a.id)
+      )
     } catch (error) {
       throw new Error('Failed to create activity')
     }
@@ -23,7 +28,7 @@ export const useActivity = () => {
   const getActivities = async () => {
     try {
       const response = await axios.get<ResponseActivity>(activityUrl.GET_ALL)
-      return response.data.data
+      setActivities(response.data.data)
     } catch (error) {
       throw new Error('Failed to fetch all activity')
     }
@@ -32,7 +37,7 @@ export const useActivity = () => {
   const getActivity = async (id: string) => {
     try {
       const response = await axios.get<Activity>(activityUrl.GET_ONE(id))
-      return response.data
+      setActivity(response.data)
     } catch (error) {
       throw new Error('Failed to fetch one activity')
     }
@@ -44,7 +49,11 @@ export const useActivity = () => {
         activityUrl.UPDATE(updateActivity),
         updateActivity
       )
-      return response.data
+      setActivities((prevActivity) =>
+        prevActivity.map((activity) =>
+          activity.id === response.data.id ? response.data : activity
+        )
+      )
     } catch (error) {
       throw new Error('Failed to update activity')
     }
@@ -53,12 +62,18 @@ export const useActivity = () => {
   const deleteActivity = async (id: number) => {
     try {
       await axios.delete(activityUrl.DELETE(id))
+      setActivities((prevActivity) =>
+        prevActivity.filter((activity) => activity.id !== id)
+      )
     } catch (error) {
       throw new Error('Failed to delete activity')
     }
   }
 
   return {
+    activities,
+    activity,
+    setActivity,
     createActivity,
     getActivities,
     getActivity,

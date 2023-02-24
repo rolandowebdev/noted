@@ -14,16 +14,13 @@ import { formatDate } from '../../utils/formatDate'
 import { ModalDelete } from '../modal/ModalDelete'
 
 export const CardActivity = ({ id, title, created_at }: Activity) => {
-  const { setActivities, deleteActivity } = useActivityContext()
+  const { deleteActivity } = useActivityContext()
   const { onClose } = useDisclosure()
   const navigate = useNavigate()
   const showToast = useCustomToast()
 
   const handleDeleteActivity = () => {
     deleteActivity(id)
-    setActivities((prevActivity: any) =>
-      prevActivity.filter((activity: any) => activity.id !== id)
-    )
     onClose()
     showToast('Activity berhasil dihapus', 'success')
   }

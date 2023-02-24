@@ -14,18 +14,11 @@ interface EditableTextProps {
 }
 
 export const EditableText = ({ id, onChange }: EditableTextProps) => {
-  const { activity, setActivities, updateActivity } = useActivityContext()
+  const { activity, updateActivity } = useActivityContext()
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleSubmit = () => {
-    updateActivity({ ...activity, title: activity?.title, id }).then(
-      (response: any) =>
-        setActivities((prevActivity: any) =>
-          prevActivity.map((activity: any) =>
-            activity.id === response.id ? activity : activity
-          )
-        )
-    )
+    updateActivity({ ...activity, title: activity?.title, id })
   }
 
   const handleEnterKey = (event: KeyboardEvent<HTMLInputElement>) => {
