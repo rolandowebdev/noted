@@ -23,6 +23,8 @@ const Dashboard = () => {
     return (
       <Image
         data-cy="activity-empty-state"
+        loading="lazy"
+        mt={12}
         boxSize="sm"
         objectFit="contain"
         mx="auto"

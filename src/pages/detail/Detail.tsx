@@ -34,6 +34,7 @@ const Detail = () => {
         <Image
           data-cy="todo-empty-state"
           loading="lazy"
+          mt={12}
           boxSize="sm"
           objectFit="contain"
           mx="auto"
