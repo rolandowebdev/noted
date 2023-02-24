@@ -33,7 +33,7 @@ const Detail = () => {
       {sortedTodoItems?.length < 1 && (
         <Image
           data-cy="todo-empty-state"
-          loading="lazy"
+          loading="eager"
           mt={12}
           boxSize="sm"
           objectFit="contain"

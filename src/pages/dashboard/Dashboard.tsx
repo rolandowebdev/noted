@@ -4,7 +4,7 @@ import { CardActivity } from '../../components'
 import { useActivityContext } from '../../context'
 
 const Dashboard = () => {
-  const { activities, setActivities, fetchActivities, createActivity } =
+  const { activities, setActivities, getActivities, createActivity } =
     useActivityContext()
 
   const handleCreateActivity = () => {
@@ -16,14 +16,14 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    fetchActivities().then((activity) => setActivities(activity))
+    getActivities().then((activity) => setActivities(activity))
   }, [])
 
   if (activities?.length < 1) {
     return (
       <Image
         data-cy="activity-empty-state"
-        loading="lazy"
+        loading="eager"
         mt={12}
         boxSize="sm"
         objectFit="contain"

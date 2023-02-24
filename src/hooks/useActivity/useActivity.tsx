@@ -20,7 +20,7 @@ export const useActivity = () => {
     }
   }
 
-  const fetchActivities = async () => {
+  const getActivities = async () => {
     try {
       const response = await axios.get<ResponseActivity>(activityUrl.GET_ALL)
       return response.data.data
@@ -60,7 +60,7 @@ export const useActivity = () => {
 
   return {
     createActivity,
-    fetchActivities,
+    getActivities,
     getActivity,
     updateActivity,
     deleteActivity,

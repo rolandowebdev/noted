@@ -1,4 +1,11 @@
-import { createContext, ReactNode, useContext, useMemo, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useMemo,
+  useState,
+  useEffect,
+} from 'react'
 import { useActivity } from '../../hooks'
 import { Activity } from '../../models/activity'
 
@@ -8,7 +15,7 @@ interface ActivityContextType {
   activity: any
   setActivity: any
   createActivity: () => Promise<any>
-  fetchActivities: () => Promise<any>
+  getActivities: () => Promise<any>
   getActivity: (id: any) => Promise<any>
   updateActivity: (updateActivity: Activity) => Promise<any>
   deleteActivity: (id: number) => Promise<any>
@@ -24,7 +31,7 @@ const ActivityContext = createContext<ActivityContextType>({
   activity: {},
   setActivity: {},
   createActivity: async () => {},
-  fetchActivities: async () => {},
+  getActivities: async () => {},
   getActivity: async () => {},
   updateActivity: async () => {},
   deleteActivity: async () => {},
@@ -37,11 +44,15 @@ export const ActivityProvider = ({ children }: ActivityProviderProps) => {
   const [activity, setActivity] = useState<Activity | null>(null)
   const {
     createActivity,
-    fetchActivities,
+    getActivities,
     getActivity,
     updateActivity,
     deleteActivity,
   } = useActivity()
+
+  useEffect(() => {
+    getActivities().then((activity) => setActivities(activity))
+  }, [])
 
   const values = useMemo(
     () => ({
@@ -50,7 +61,7 @@ export const ActivityProvider = ({ children }: ActivityProviderProps) => {
       activity,
       setActivity,
       createActivity,
-      fetchActivities,
+      getActivities,
       getActivity,
       updateActivity,
       deleteActivity,
@@ -61,7 +72,7 @@ export const ActivityProvider = ({ children }: ActivityProviderProps) => {
       activity,
       setActivity,
       createActivity,
-      fetchActivities,
+      getActivities,
       getActivity,
       updateActivity,
       deleteActivity,
