@@ -1,4 +1,4 @@
-import { Image, Stack } from '@chakra-ui/react'
+import { Box, Image, Stack } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { CardTodo, MenuSort } from '../../components'
@@ -10,16 +10,17 @@ const Detail = () => {
   const { todos, getTodos } = useTodoContext()
   const { getActivity } = useActivityContext()
 
+  const [loading, setLoading] = useState(true)
   const [selectedOption, setSelectedOption] = useState<string>('latest')
   const sortedTodoItems = sortData(todos, selectedOption)
 
   useEffect(() => {
-    getActivity(activityId)
+    Promise.all([getActivity(activityId), getTodos(activityId)]).then(() =>
+      setLoading(false)
+    )
   }, [activityId])
 
-  useEffect(() => {
-    getTodos(activityId)
-  }, [activityId])
+  if (loading) return <Box display="none" />
 
   return (
     <>

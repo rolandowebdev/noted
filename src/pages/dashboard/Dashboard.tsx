@@ -1,9 +1,10 @@
-import { Grid, Image } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { Box, Grid, Image } from '@chakra-ui/react'
+import { useEffect, useState } from 'react'
 import { CardActivity } from '../../components'
 import { useActivityContext } from '../../context'
 
 const Dashboard = () => {
+  const [loading, setLoading] = useState(true)
   const { activities, getActivities, createActivity } = useActivityContext()
 
   const handleCreateActivity = () => {
@@ -11,8 +12,10 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    getActivities()
+    getActivities().then(() => setLoading(false))
   }, [])
+
+  if (loading) return <Box display="none" />
 
   if (activities?.length < 1) {
     return (
