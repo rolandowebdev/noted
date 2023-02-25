@@ -14,15 +14,16 @@ import { useTodoContext } from '@/context'
 import { Todo } from '@/models'
 
 export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
-  const [isChecked, setIsChecked] = useState(is_active === 0)
-  const { updateTodo, deleteTodo } = useTodoContext()
-  const { onClose } = useDisclosure()
   const showToast = useCustomToast()
+  const { onClose } = useDisclosure()
+  const { updateTodo, deleteTodo } = useTodoContext()
+  const [isChecked, setIsChecked] = useState(is_active === 0)
 
   const handleDeleteTodo = () => {
-    deleteTodo(id)
-    onClose()
-    showToast('Todo berhasil dihapus', 'success')
+    deleteTodo(id).then(
+      () => onClose(),
+      showToast('Todo berhasil dihapus', 'success')
+    )
   }
 
   const handleCheckboxChange = async () => {

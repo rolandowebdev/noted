@@ -2,13 +2,17 @@ import { Box, Grid, Image } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { CardActivity } from '@/components'
 import { useActivityContext } from '@/context'
+import { useCustomToast } from '@/hooks'
 
 export const Dashboard = () => {
+  const showToast = useCustomToast()
   const [loading, setLoading] = useState(true)
   const { activities, getActivities, createActivity } = useActivityContext()
 
   const handleCreateActivity = () => {
-    createActivity()
+    createActivity().then(() =>
+      showToast('Activity berhasil dibuat', 'success')
+    )
   }
 
   useEffect(() => {

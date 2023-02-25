@@ -26,6 +26,7 @@ import {
 import { useEffect, useRef, useState } from 'react'
 import { priorities } from '@/constants'
 import { useTodoContext } from '@/context'
+import { useCustomToast } from '@/hooks'
 
 interface ModalTodoProps {
   activityId?: string
@@ -43,6 +44,7 @@ export const ModalTodo = ({
   priority,
 }: ModalTodoProps) => {
   const selectedPriorityUpdate = type === 'update' ? priority : 'normal'
+  const showToast = useCustomToast()
   const initialRef = useRef<HTMLInputElement>(null)
   const finalRef = useRef<HTMLButtonElement>(null)
 
@@ -68,10 +70,9 @@ export const ModalTodo = ({
       title: input,
       activity_group_id: activityId,
       priority: selectedPriority,
-    })
+    }).then(() => onClose(), showToast('Todo berhasil dibuat', 'success'))
     setInput('')
     setSelectedPriority(selectedPriorityUpdate)
-    onClose()
   }
 
   const handleUpdateTodo = () => {
@@ -79,8 +80,7 @@ export const ModalTodo = ({
       id: todoId,
       title: input,
       priority: selectedPriority,
-    })
-    onClose()
+    }).then(() => onClose(), showToast('Todo berhasil diupdate', 'success'))
   }
 
   const handleCloseModal = () => {

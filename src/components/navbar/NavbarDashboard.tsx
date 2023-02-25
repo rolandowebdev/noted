@@ -1,12 +1,16 @@
 import { AddIcon } from '@chakra-ui/icons'
 import { Button, Heading, HStack } from '@chakra-ui/react'
 import { useActivityContext } from '@/context'
+import { useCustomToast } from '@/hooks'
 
 export const NavbarDashboard = () => {
+  const showToast = useCustomToast()
   const { createActivity } = useActivityContext()
 
   const handleCreateActivity = () => {
-    createActivity()
+    createActivity().then(() =>
+      showToast('Activity berhasil dibuat', 'success')
+    )
   }
 
   return (

@@ -7,17 +7,23 @@ import {
 import { KeyboardEvent, useRef } from 'react'
 import { useActivityContext } from '@/context'
 import { EditableControls } from '@/components'
+import { useCustomToast } from '@/hooks'
 
 export const EditableText = ({ activityId }: any) => {
-  const { activity, setActivity, updateActivity } = useActivityContext()
+  const showToast = useCustomToast()
   const inputRef = useRef<HTMLInputElement>(null)
-
-  const handleSubmit = () => {
-    updateActivity({ ...activity, id: activityId, title: activity?.title })
-  }
+  const { activity, setActivity, updateActivity } = useActivityContext()
 
   const handleInputChange = (newValue: string) => {
     setActivity({ title: newValue })
+  }
+
+  const handleSubmit = () => {
+    updateActivity({
+      ...activity,
+      id: activityId,
+      title: activity?.title,
+    }).then(() => showToast('Activity berhasil diupdate', 'success'))
   }
 
   const handleEnterKey = (event: KeyboardEvent<HTMLInputElement>) => {
