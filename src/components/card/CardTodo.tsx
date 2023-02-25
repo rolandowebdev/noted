@@ -3,15 +3,15 @@ import {
   Card,
   CardBody,
   Checkbox,
+  Heading,
   HStack,
-  Text,
   useDisclosure,
 } from '@chakra-ui/react'
 import { useState } from 'react'
-import { useTodoContext } from '@/context'
-import { useCustomToast } from '@/hooks'
-import { Todo } from '@/models/todo'
 import { ModalDelete, ModalTodo } from '@/components'
+import { useCustomToast } from '@/hooks'
+import { useTodoContext } from '@/context'
+import { Todo } from '@/models'
 
 export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
   const [isChecked, setIsChecked] = useState(is_active === 0)
@@ -52,13 +52,13 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
               rounded="full"
               bgColor={`brand.${priority}`}
             />
-            <Text
+            <Heading
               data-cy="todo-item-title"
-              fontSize="lg"
-              decoration={isChecked ? 'line-through' : 'none'}
+              size="md"
+              textDecoration={isChecked ? 'line-through' : 'none'}
               color={isChecked ? 'gray.500' : 'black'}>
               {title}
-            </Text>
+            </Heading>
             <ModalTodo
               todoId={id}
               title={title}

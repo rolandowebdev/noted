@@ -42,7 +42,7 @@ export const EditableText = ({ activityId }: any) => {
       selectAllOnFocus={false}
       onChange={handleInputChange}
       onSubmit={handleSubmit}>
-      <EditablePreview data-cy="todo-title" fontSize="4xl" />
+      <EditablePreview as="h1" data-cy="todo-title" fontSize="4xl" />
       <Input as={EditableInput} ref={inputRef} onKeyDown={handleEnterKey} />
       <EditableControls />
     </Editable>
