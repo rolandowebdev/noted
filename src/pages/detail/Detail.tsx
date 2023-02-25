@@ -34,7 +34,7 @@ export const Detail = () => {
     Promise.all([getActivity(activityId), getTodos(activityId)]).then(() =>
       setLoading(false)
     )
-  }, [activityId])
+  }, [])
 
   if (loading) return <Box display="none" />
 

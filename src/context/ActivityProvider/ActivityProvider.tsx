@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useMemo, useEffect } from 'react'
+import { createContext, ReactNode, useContext, useMemo } from 'react'
 import { useActivity } from '@/hooks'
 import { Activity } from '@/models'
 
@@ -41,10 +41,6 @@ export const ActivityProvider = ({ children }: ActivityProviderProps) => {
     updateActivity,
     deleteActivity,
   } = useActivity()
-
-  useEffect(() => {
-    getActivities()
-  }, [])
 
   const values = useMemo(
     () => ({
