@@ -8,12 +8,12 @@ import { KeyboardEvent, useRef } from 'react'
 import { useActivityContext } from '../../context'
 import { EditableControls } from './EditableControls'
 
-export const EditableText = ({ id }: any) => {
+export const EditableText = ({ activityId }: any) => {
   const { activity, setActivity, updateActivity } = useActivityContext()
   const inputRef = useRef<HTMLInputElement>(null)
 
   const handleSubmit = () => {
-    updateActivity({ ...activity, title: activity?.title, id })
+    updateActivity({ ...activity, id: activityId, title: activity?.title })
   }
 
   const handleInputChange = (newValue: string) => {
