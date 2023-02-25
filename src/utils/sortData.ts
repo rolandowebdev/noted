@@ -1,4 +1,4 @@
-import { Todo } from '../models/todo'
+import { Todo } from '@/models'
 
 export const sortData = (data: Todo[], criteria: string): any => {
   switch (criteria) {

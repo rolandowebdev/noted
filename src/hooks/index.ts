@@ -1,3 +1,3 @@
-export * from './useActivity/useActivity'
-export * from './useCustomToast/useCustomToast'
-export * from './useTodo/useTodo'
+export * from './useActivity'
+export * from './useCustomToast'
+export * from './useTodo'

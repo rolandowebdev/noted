@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
-import { activityUrl, EMAIL } from '../../constants/apiUrl'
-import { Activity, ResponseActivity } from '../../models/activity'
+import { activityUrl, EMAIL } from '@/constants'
+import { Activity, ResponseActivity } from '@/models'
 
 export const useActivity = () => {
   const [activities, setActivities] = useState<Activity[]>([])

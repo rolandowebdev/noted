@@ -8,11 +8,10 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useState } from 'react'
-import { useTodoContext } from '../../context'
-import { useCustomToast } from '../../hooks'
-import { Todo } from '../../models/todo'
-import { ModalDelete } from '../modal/ModalDelete'
-import { ModalTodo } from '../modal/ModalTodo'
+import { useTodoContext } from '@/context'
+import { useCustomToast } from '@/hooks'
+import { Todo } from '@/models/todo'
+import { ModalDelete, ModalTodo } from '@/components'
 
 export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
   const [isChecked, setIsChecked] = useState(is_active === 0)

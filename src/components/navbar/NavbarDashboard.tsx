@@ -1,6 +1,6 @@
 import { AddIcon } from '@chakra-ui/icons'
 import { Button, Heading, HStack } from '@chakra-ui/react'
-import { useActivityContext } from '../../context'
+import { useActivityContext } from '@/context'
 
 export const NavbarDashboard = () => {
   const { createActivity } = useActivityContext()

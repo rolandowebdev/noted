@@ -1,9 +1,9 @@
 import { Box, Grid, Image } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { CardActivity } from '../../components'
-import { useActivityContext } from '../../context'
+import { CardActivity } from '@/components'
+import { useActivityContext } from '@/context'
 
-const Dashboard = () => {
+export const Dashboard = () => {
   const [loading, setLoading] = useState(true)
   const { activities, getActivities, createActivity } = useActivityContext()
 
@@ -56,5 +56,3 @@ const Dashboard = () => {
     </Grid>
   )
 }
-
-export default Dashboard

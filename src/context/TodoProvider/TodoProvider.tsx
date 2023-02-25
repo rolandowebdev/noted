@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useMemo } from 'react'
-import { useTodo } from '../../hooks'
-import { Todo } from '../../models/todo'
+import { useTodo } from '@/hooks'
+import { Todo } from '@/models'
 
 interface TodoContextType {
   todos: Todo[]

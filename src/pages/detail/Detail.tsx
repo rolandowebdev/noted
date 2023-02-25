@@ -16,12 +16,12 @@ import {
 } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { Link as RouterLink, useParams } from 'react-router-dom'
-import { CardTodo, EditableText, ModalTodo } from '../../components'
-import { sortOptions } from '../../constants/sortOptions'
-import { useActivityContext, useTodoContext } from '../../context'
-import { sortData } from '../../utils/sortData'
+import { CardTodo, EditableText, ModalTodo } from '@/components'
+import { sortOptions } from '@/constants'
+import { useActivityContext, useTodoContext } from '@/context'
+import { sortData } from '@/utils'
 
-const Detail = () => {
+export const Detail = () => {
   const { activityId } = useParams<string>()
   const { todos, getTodos } = useTodoContext()
   const { getActivity } = useActivityContext()
@@ -118,5 +118,3 @@ const Detail = () => {
     </>
   )
 }
-
-export default Detail

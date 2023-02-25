@@ -5,8 +5,8 @@ import {
   Input,
 } from '@chakra-ui/react'
 import { KeyboardEvent, useRef } from 'react'
-import { useActivityContext } from '../../context'
-import { EditableControls } from './EditableControls'
+import { useActivityContext } from '@/context'
+import { EditableControls } from '@/components'
 
 export const EditableText = ({ activityId }: any) => {
   const { activity, setActivity, updateActivity } = useActivityContext()

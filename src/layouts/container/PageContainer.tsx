@@ -1,7 +1,7 @@
 import { Container } from '@chakra-ui/react'
 import { ReactNode } from 'react'
 import { useLocation } from 'react-router-dom'
-import { Header, NavbarDashboard } from '../../components'
+import { Header, NavbarDashboard } from '@/components'
 
 interface PageContainerProps {
   children: ReactNode

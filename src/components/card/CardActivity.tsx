@@ -7,11 +7,11 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
-import { useActivityContext } from '../../context'
-import { useCustomToast } from '../../hooks'
-import { Activity } from '../../models/activity'
-import { formatDate } from '../../utils/formatDate'
-import { ModalDelete } from '../modal/ModalDelete'
+import { useActivityContext } from '@/context'
+import { useCustomToast } from '@/hooks'
+import { Activity } from '@/models'
+import { formatDate } from '@/utils'
+import { ModalDelete } from '@/components'
 
 export const CardActivity = ({ id, title, created_at }: Activity) => {
   const { deleteActivity } = useActivityContext()

@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useContext, useMemo, useEffect } from 'react'
-import { useActivity } from '../../hooks'
-import { Activity } from '../../models/activity'
+import { useActivity } from '@/hooks'
+import { Activity } from '@/models'
 
 interface ActivityContextType {
   activities: Activity[]

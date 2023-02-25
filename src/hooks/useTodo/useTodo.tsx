@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useState } from 'react'
-import { todoUrl } from '../../constants/apiUrl'
-import { ResponseTodo, Todo } from '../../models/todo'
+import { todoUrl } from '@/constants'
+import { ResponseTodo, Todo } from '@/models'
 
 export const useTodo = () => {
   const [todos, setTodos] = useState<Todo[]>([])
