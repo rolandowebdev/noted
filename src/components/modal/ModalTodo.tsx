@@ -109,7 +109,7 @@ export const ModalTodo = ({
           bgColor="brand.primary"
           color="white"
           letterSpacing="wider"
-          fontWeight="semibold"
+          fontWeight="500"
           borderRadius="full"
           transition="background-color 150ms ease"
           leftIcon={<AddIcon />}
@@ -151,7 +151,7 @@ export const ModalTodo = ({
               <InputGroup display="flex" flexDirection="column" gap={2}>
                 <FormLabel
                   data-cy="modal-add-name-title"
-                  fontWeight="semibold"
+                  fontWeight="500"
                   mb={0}>
                   Nama list item
                 </FormLabel>
@@ -166,7 +166,7 @@ export const ModalTodo = ({
               <InputGroup display="flex" flexDirection="column" gap={2} mt={6}>
                 <FormLabel
                   data-cy="modal-add-priority-title"
-                  fontWeight="semibold"
+                  fontWeight="500"
                   mb={0}>
                   Priority
                 </FormLabel>

@@ -35,7 +35,7 @@ export const EditableText = ({ activityId }: any) => {
       display="flex"
       alignItems="center"
       gap={3}
-      fontWeight="semibold"
+      fontWeight="700"
       textAlign="center"
       value={activity?.title}
       fontSize="3xl"

@@ -100,7 +100,7 @@ export const Detail = () => {
           boxSize="sm"
           objectFit="contain"
           mx="auto"
-          src="/todo.svg"
+          src="/assets/todo.svg"
           alt="todo illustration"
         />
       )}

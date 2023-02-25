@@ -16,11 +16,7 @@ export const NavbarDashboard = () => {
       justify="space-between"
       align="center"
       height="50px">
-      <Heading
-        data-cy="activity-title"
-        as="h1"
-        fontSize="4xl"
-        fontWeight="bold">
+      <Heading data-cy="activity-title" as="h1" fontSize="4xl" fontWeight="700">
         Activity
       </Heading>
       <Button
@@ -31,7 +27,7 @@ export const NavbarDashboard = () => {
         bgColor="brand.primary"
         color="white"
         letterSpacing="wider"
-        fontWeight="semibold"
+        fontWeight="500"
         borderRadius="full"
         transition="background-color 150ms ease"
         leftIcon={<AddIcon />}

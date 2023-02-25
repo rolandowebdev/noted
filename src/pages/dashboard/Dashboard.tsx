@@ -27,7 +27,7 @@ export const Dashboard = () => {
         objectFit="contain"
         mx="auto"
         cursor="pointer"
-        src="/activity.svg"
+        src="/assets/activity.svg"
         alt="activity illustration"
         onClick={handleCreateActivity}
       />

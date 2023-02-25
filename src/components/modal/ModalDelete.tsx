@@ -63,7 +63,7 @@ export const ModalDelete = ({
           <ModalCloseButton />
           <ModalBody data-cy="modal-delete-title">
             Apakah anda yakin menghapus {type}
-            <Text as="span" display="block" fontWeight="bold">
+            <Text as="span" display="block" fontWeight="700">
               {`"${title}"`}?
             </Text>
           </ModalBody>
