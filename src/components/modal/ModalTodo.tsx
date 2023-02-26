@@ -66,8 +66,7 @@ export const ModalTodo = ({
     })
       .then(() => onClose())
       .then(() => showToast('Todo berhasil dibuat', 'success'))
-    setInput('')
-    setSelectedPriority(selectedPriorityUpdate)
+      .then(() => setSelectedPriority(selectedPriorityUpdate))
   }
 
   const handleUpdateTodo = () => {
@@ -81,8 +80,8 @@ export const ModalTodo = ({
   }
 
   const handleCloseModal = () => {
-    setInput('')
     setSelectedPriority(selectedPriorityUpdate)
+    setInput('')
     onClose()
   }
 
