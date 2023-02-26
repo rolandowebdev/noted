@@ -34,7 +34,11 @@ export const CardActivity = ({ id, title, created_at }: Activity) => {
       _hover={{ boxShadow: '4px 4px 4px 2px rgba(181,181,181,0.23)' }}
       onClick={() => navigate(`/detail/${id}`)}>
       <CardHeader height="full">
-        <Heading as="h2" data-cy="activity-item-title" size="md">
+        <Heading
+          as="h2"
+          data-cy="activity-item-title"
+          size="md"
+          color="blackAlpha.800">
           {title}
         </Heading>
       </CardHeader>

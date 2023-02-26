@@ -61,7 +61,7 @@ export const ModalDelete = ({
             />
           </ModalHeader>
           <ModalCloseButton />
-          <ModalBody data-cy="modal-delete-title">
+          <ModalBody data-cy="modal-delete-title" color="blackAlpha.800">
             Apakah anda yakin menghapus {type}
             <Text as="span" display="block" fontWeight="700">
               {`"${title}"`}?

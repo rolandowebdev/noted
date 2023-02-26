@@ -20,7 +20,12 @@ export const NavbarDashboard = () => {
       justify="space-between"
       align="center"
       height="50px">
-      <Heading data-cy="activity-title" as="h1" fontSize="4xl" fontWeight="700">
+      <Heading
+        data-cy="activity-title"
+        color="blackAlpha.800"
+        as="h1"
+        fontSize="4xl"
+        fontWeight="700">
         Activity
       </Heading>
       <Button

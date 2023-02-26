@@ -82,7 +82,9 @@ export const Detail = () => {
                       value={sortOption.value}>
                       <HStack alignItems="center">
                         <Icon as={sortOption.icon} />
-                        <Text>{sortOption.text}</Text>
+                        <Text color="blackAlpha.800" fontWeight="semibold">
+                          {sortOption.text}
+                        </Text>
                       </HStack>
                     </MenuItemOption>
                   ))}

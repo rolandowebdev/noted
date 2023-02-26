@@ -9,8 +9,8 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { ModalDelete, ModalTodo } from '@/components'
-import { useTodoContext } from '@/context'
 import { useCustomToast } from '@/hooks'
+import { useTodoContext } from '@/context'
 import { Todo } from '@/models'
 
 export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
@@ -57,7 +57,7 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
               data-cy="todo-item-title"
               size="md"
               textDecoration={isChecked ? 'line-through' : 'none'}
-              color={isChecked ? 'gray.500' : 'black'}>
+              color={isChecked ? 'gray.500' : 'blackAlpha.800'}>
               {title}
             </Heading>
             <ModalTodo

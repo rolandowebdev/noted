@@ -132,7 +132,7 @@ export const ModalTodo = ({
         <ModalOverlay />
         <ModalContent data-cy="modal-add">
           <ModalHeader>
-            <Text data-cy="modal-add-title">
+            <Text data-cy="modal-add-title" color="blackAlpha.800">
               {type === 'update' && 'Update'} {type === 'create' && 'Create'}{' '}
               Todo
             </Text>
@@ -178,7 +178,7 @@ export const ModalTodo = ({
                         rounded="full"
                         bgColor={`brand.${selectedPriority}`}
                       />
-                      <Text>{selectedPriority}</Text>
+                      <Text color="blackAlpha.800">{selectedPriority}</Text>
                     </HStack>
                   </MenuButton>
                   <MenuList>
@@ -198,7 +198,9 @@ export const ModalTodo = ({
                               rounded="full"
                               bgColor={`brand.${priority.priority}`}
                             />
-                            <Text>{priority.priority}</Text>
+                            <Text color="blackAlpha.800">
+                              {priority.priority}
+                            </Text>
                           </HStack>
                         </MenuItemOption>
                       ))}
