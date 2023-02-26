@@ -38,10 +38,12 @@ export const ModalDelete = ({
             ? 'activity-item-delete-button'
             : 'todo-item-delete-button'
         }
+        aria-label="delete-button"
         size="xs"
         variant="unstyled"
         onClick={handleOpenModal}>
         <DeleteIcon
+          aria-label="delete-icon"
           color="gray.500"
           fontSize="xl"
           transition="color 150ms ease-in-out"
@@ -64,7 +66,7 @@ export const ModalDelete = ({
             />
           </ModalHeader>
           <ModalCloseButton />
-          <ModalBody data-cy="modal-delete-title" color="blackAlpha.800">
+          <ModalBody data-cy="modal-delete-title" color="brand.primary">
             Apakah anda yakin menghapus {type}
             <Text as="span" display="block" fontWeight="700">
               {`"${title}"`}?

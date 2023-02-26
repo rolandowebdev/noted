@@ -99,6 +99,7 @@ export const ModalTodo = ({
       {type === 'create' && (
         <Button
           data-cy="todo-add-button"
+          aria-label="add-button"
           type="button"
           paddingX="7"
           paddingY="6"
@@ -108,15 +109,20 @@ export const ModalTodo = ({
           fontWeight="500"
           borderRadius="full"
           transition="background-color 150ms ease"
-          leftIcon={<AddIcon />}
+          leftIcon={<AddIcon aria-label="add-icon" />}
           _hover={{ bgColor: 'brand.lightPrimary' }}
           onClick={onOpen}>
           Tambah
         </Button>
       )}
       {type === 'update' && (
-        <Button data-cy="todo-item-edit-button" size="xs" variant="unstyled">
+        <Button
+          data-cy="todo-item-edit-button"
+          aria-label="todo-item-edit-button"
+          size="xs"
+          variant="unstyled">
           <EditIcon
+            aria-label="todo-item-edit-icon"
             fontSize="lg"
             color="gray.500"
             transition="color 150ms ease-in-out"
@@ -135,7 +141,7 @@ export const ModalTodo = ({
         <ModalOverlay />
         <ModalContent data-cy="modal-add">
           <ModalHeader>
-            <Text data-cy="modal-add-title" color="blackAlpha.800">
+            <Text data-cy="modal-add-title" color="brand.primary">
               {type === 'update' && 'Update'} {type === 'create' && 'Create'}{' '}
               Todo
             </Text>
@@ -153,6 +159,7 @@ export const ModalTodo = ({
                 </FormLabel>
                 <Input
                   data-cy="modal-add-name-input"
+                  focusBorderColor="brand.primary"
                   ref={initialRef}
                   value={type === 'update' ? input : undefined}
                   onChange={handleChange}
@@ -181,7 +188,7 @@ export const ModalTodo = ({
                         rounded="full"
                         bgColor={`brand.${selectedPriority}`}
                       />
-                      <Text color="blackAlpha.800">{selectedPriority}</Text>
+                      <Text color="brand.primary">{selectedPriority}</Text>
                     </HStack>
                   </MenuButton>
                   <MenuList>
@@ -201,7 +208,7 @@ export const ModalTodo = ({
                               rounded="full"
                               bgColor={`brand.${priority.priority}`}
                             />
-                            <Text color="blackAlpha.800">
+                            <Text color="brand.primary">
                               {priority.priority}
                             </Text>
                           </HStack>
@@ -217,8 +224,10 @@ export const ModalTodo = ({
             <Button
               data-cy="modal-add-save-button"
               onClick={type === 'create' ? handleCreateTodo : handleUpdateTodo}
-              colorScheme="blue"
+              backgroundColor="brand.primary"
+              color="white"
               mr={3}
+              _hover={{ bg: 'brand.lightPrimary' }}
               isDisabled={isDisabled}>
               Simpan
             </Button>

@@ -56,7 +56,7 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
               data-cy="todo-item-title"
               size="md"
               textDecoration={isChecked ? 'line-through' : 'none'}
-              color={isChecked ? 'gray.500' : 'blackAlpha.800'}>
+              color={isChecked ? 'gray.500' : 'brand.primary'}>
               {title}
             </Heading>
             <ModalTodo

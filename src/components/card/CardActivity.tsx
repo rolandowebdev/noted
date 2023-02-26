@@ -38,7 +38,7 @@ export const CardActivity = ({ id, title, created_at }: Activity) => {
           as="h2"
           data-cy="activity-item-title"
           size="md"
-          color="blackAlpha.800">
+          color="brand.primary">
           {title}
         </Heading>
       </CardHeader>

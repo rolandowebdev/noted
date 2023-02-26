@@ -41,7 +41,11 @@ export const EditableText = ({ activityId }: EditableTextProps) => {
       onChange={handleInputChange}
       onSubmit={handleSubmit}>
       <EditablePreview as="h1" data-cy="todo-title" fontSize="4xl" />
-      <Input as={EditableInput} ref={inputRef} />
+      <Input
+        as={EditableInput}
+        ref={inputRef}
+        focusBorderColor="brand.primary"
+      />
       <EditableControls />
     </Editable>
   )

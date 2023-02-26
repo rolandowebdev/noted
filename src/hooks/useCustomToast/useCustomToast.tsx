@@ -10,7 +10,7 @@ export const useCustomToast = (): any => {
       render: () => (
         <Alert data-cy="modal-information" status="success">
           <AlertIcon data-cy="modal-information-icon" />
-          <Text data-cy="modal-information-title" as="p" color="blackAlpha.800">
+          <Text data-cy="modal-information-title" as="p" color="brand.primary">
             {title}
           </Text>
         </Alert>

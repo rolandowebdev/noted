@@ -17,6 +17,7 @@ export const Header = () => {
         <Text
           as="span"
           data-cy="header-title"
+          aria-label="header-title"
           fontSize="2xl"
           fontWeight="900"
           color="white"

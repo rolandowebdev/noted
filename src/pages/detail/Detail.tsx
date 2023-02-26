@@ -53,7 +53,11 @@ export const Detail = () => {
               alignItems: 'center',
             }}
             _hover={{ textDecor: 'underline', color: 'brand.primary' }}>
-            <ChevronLeftIcon data-cy="todo-back-button" fontSize="5xl" />
+            <ChevronLeftIcon
+              data-cy="todo-back-button"
+              aria-label="todo-back-button"
+              fontSize="5xl"
+            />
           </Link>
           <EditableText activityId={activityId || ''} />
         </HStack>
@@ -82,7 +86,7 @@ export const Detail = () => {
                       value={sortOption.value}>
                       <HStack alignItems="center">
                         <Icon as={sortOption.icon} />
-                        <Text color="blackAlpha.800" fontWeight="semibold">
+                        <Text color="brand.primary" fontWeight="semibold">
                           {sortOption.text}
                         </Text>
                       </HStack>

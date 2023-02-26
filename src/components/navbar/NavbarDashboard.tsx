@@ -22,7 +22,7 @@ export const NavbarDashboard = () => {
       height="50px">
       <Heading
         data-cy="activity-title"
-        color="blackAlpha.800"
+        color="brand.primary"
         as="h1"
         fontSize="4xl"
         fontWeight="700">
@@ -30,6 +30,7 @@ export const NavbarDashboard = () => {
       </Heading>
       <Button
         data-cy="activity-add-button"
+        aria-label="add-button"
         type="button"
         paddingX="7"
         paddingY="6"
@@ -39,7 +40,7 @@ export const NavbarDashboard = () => {
         fontWeight="500"
         borderRadius="full"
         transition="background-color 150ms ease"
-        leftIcon={<AddIcon />}
+        leftIcon={<AddIcon aria-label="add-icon" />}
         _hover={{ bgColor: 'brand.lightPrimary' }}
         onClick={handleCreateActivity}>
         Tambah
