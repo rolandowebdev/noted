@@ -20,10 +20,9 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
   const [isChecked, setIsChecked] = useState(is_active === 0)
 
   const handleDeleteTodo = () => {
-    deleteTodo(id).then(
-      () => onClose(),
-      showToast('Todo berhasil dihapus', 'success')
-    )
+    deleteTodo(id)
+      .then(() => onClose())
+      .then(() => showToast('Todo berhasil dihapus', 'success'))
   }
 
   const handleCheckboxChange = async () => {

@@ -21,8 +21,8 @@ export const CardActivity = ({ id, title, created_at }: Activity) => {
 
   const handleDeleteActivity = () => {
     deleteActivity(id)
-    onClose()
-    showToast('Activity berhasil dihapus', 'success')
+      .then(() => onClose())
+      .then(() => showToast('Activity berhasil dihapus', 'success'))
   }
 
   return (

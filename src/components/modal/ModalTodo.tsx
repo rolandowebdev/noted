@@ -63,7 +63,9 @@ export const ModalTodo = ({
       title: input,
       activity_group_id,
       priority: selectedPriority,
-    }).then(() => onClose(), showToast('Todo berhasil dibuat', 'success'))
+    })
+      .then(() => onClose())
+      .then(() => showToast('Todo berhasil dibuat', 'success'))
     setInput('')
     setSelectedPriority(selectedPriorityUpdate)
   }
@@ -73,7 +75,9 @@ export const ModalTodo = ({
       id,
       title: input,
       priority: selectedPriority,
-    }).then(() => onClose(), showToast('Todo berhasil diupdate', 'success'))
+    })
+      .then(() => onClose())
+      .then(() => showToast('Todo berhasil diupdate', 'success'))
   }
 
   const handleCloseModal = () => {

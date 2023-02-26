@@ -4,17 +4,15 @@ import {
   EditablePreview,
   Input,
 } from '@chakra-ui/react'
-import { KeyboardEvent, useRef } from 'react'
+import { useRef } from 'react'
 import { useActivityContext } from '@/context'
 import { EditableControls } from '@/components'
-import { useCustomToast } from '@/hooks'
 
 interface EditableTextProps {
   activityId: string
 }
 
 export const EditableText = ({ activityId }: EditableTextProps) => {
-  const showToast = useCustomToast()
   const inputRef = useRef<HTMLInputElement>(null)
   const { activity, setActivity, updateActivity } = useActivityContext()
 
@@ -27,17 +25,7 @@ export const EditableText = ({ activityId }: EditableTextProps) => {
       ...activity,
       id: activityId,
       title: activity?.title,
-    }).then(() => showToast('Activity berhasil diupdate', 'success'))
-  }
-
-  const handleEnterKey = (event: KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      event.preventDefault()
-      if (inputRef.current) {
-        handleInputChange(inputRef.current.value)
-        inputRef.current.blur()
-      }
-    }
+    })
   }
 
   return (
@@ -53,7 +41,7 @@ export const EditableText = ({ activityId }: EditableTextProps) => {
       onChange={handleInputChange}
       onSubmit={handleSubmit}>
       <EditablePreview as="h1" data-cy="todo-title" fontSize="4xl" />
-      <Input as={EditableInput} ref={inputRef} onKeyDown={handleEnterKey} />
+      <Input as={EditableInput} ref={inputRef} />
       <EditableControls />
     </Editable>
   )
