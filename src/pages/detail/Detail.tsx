@@ -17,8 +17,8 @@ import {
 import { useEffect, useState } from 'react'
 import { Link as RouterLink, useParams } from 'react-router-dom'
 import { CardTodo, EditableText, ModalTodo } from '@/components'
-import { sortOptions } from '@/constants'
 import { useActivityContext, useTodoContext } from '@/context'
+import { sortOptions } from '@/constants'
 import { sortData } from '@/utils'
 import { Todo } from '@/models'
 

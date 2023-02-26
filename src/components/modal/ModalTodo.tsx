@@ -24,8 +24,8 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import { useEffect, useRef, useState } from 'react'
-import { priorities } from '@/constants'
 import { useTodoContext } from '@/context'
+import { priorities } from '@/constants'
 import { useCustomToast } from '@/hooks'
 import { Todo } from '@/models'
 

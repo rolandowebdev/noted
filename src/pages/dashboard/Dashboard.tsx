@@ -1,7 +1,7 @@
 import { Box, Grid, Image } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
-import { CardActivity } from '@/components'
 import { useActivityContext } from '@/context'
+import { CardActivity } from '@/components'
 import { useCustomToast } from '@/hooks'
 import { Activity } from '@/models'
 

@@ -14,10 +14,10 @@ import { formatDate } from '@/utils'
 import { Activity } from '@/models'
 
 export const CardActivity = ({ id, title, created_at }: Activity) => {
-  const { deleteActivity } = useActivityContext()
-  const { onClose } = useDisclosure()
   const navigate = useNavigate()
   const showToast = useCustomToast()
+  const { deleteActivity } = useActivityContext()
+  const { onClose } = useDisclosure()
 
   const handleDeleteActivity = () => {
     deleteActivity(id)

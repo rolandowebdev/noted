@@ -24,6 +24,12 @@ export const ModalDelete = ({
   handleDelete,
 }: ModalDeleteProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+  const handleOpenModal = (e: { stopPropagation: () => void }) => {
+    e.stopPropagation()
+    onOpen()
+  }
+
   return (
     <>
       <Button
@@ -34,10 +40,7 @@ export const ModalDelete = ({
         }
         size="xs"
         variant="unstyled"
-        onClick={(e) => {
-          e.stopPropagation()
-          onOpen()
-        }}>
+        onClick={handleOpenModal}>
         <DeleteIcon
           color="gray.500"
           fontSize="xl"
