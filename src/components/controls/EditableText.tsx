@@ -9,13 +9,17 @@ import { useActivityContext } from '@/context'
 import { EditableControls } from '@/components'
 import { useCustomToast } from '@/hooks'
 
-export const EditableText = ({ activityId }: any) => {
+interface EditableTextProps {
+  activityId: string
+}
+
+export const EditableText = ({ activityId }: EditableTextProps) => {
   const showToast = useCustomToast()
   const inputRef = useRef<HTMLInputElement>(null)
   const { activity, setActivity, updateActivity } = useActivityContext()
 
   const handleInputChange = (newValue: string) => {
-    setActivity({ title: newValue })
+    setActivity({ id: activityId, title: newValue })
   }
 
   const handleSubmit = () => {

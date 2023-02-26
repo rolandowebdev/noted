@@ -1,6 +1,6 @@
 export interface Activity {
-  id: any
-  title: string
+  id: string
+  title?: string | undefined
   created_at?: string
   updated_at?: string
   email?: string

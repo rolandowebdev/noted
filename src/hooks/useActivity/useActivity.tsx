@@ -5,7 +5,7 @@ import { Activity, ResponseActivity } from '@/models'
 
 export const useActivity = () => {
   const [activities, setActivities] = useState<Activity[]>([])
-  const [activity, setActivity] = useState<Activity | null>(null)
+  const [activity, setActivity] = useState<Activity>()
   const defaultActivity = {
     title: 'New Activity',
     email: EMAIL,
@@ -34,9 +34,11 @@ export const useActivity = () => {
     }
   }
 
-  const getActivity = async (id: string) => {
+  const getActivity = async (activity_group_id: string) => {
     try {
-      const response = await axios.get<Activity>(activityUrl.GET_ONE(id))
+      const response = await axios.get<Activity>(
+        activityUrl.GET_ONE(activity_group_id)
+      )
       setActivity(response.data)
     } catch (error) {
       throw new Error('Failed to fetch one activity')
@@ -59,7 +61,7 @@ export const useActivity = () => {
     }
   }
 
-  const deleteActivity = async (id: number) => {
+  const deleteActivity = async (id: string) => {
     try {
       await axios.delete(activityUrl.DELETE(id))
       setActivities((prevActivity) =>

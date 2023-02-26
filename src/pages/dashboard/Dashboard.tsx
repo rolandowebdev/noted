@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { CardActivity } from '@/components'
 import { useActivityContext } from '@/context'
 import { useCustomToast } from '@/hooks'
+import { Activity } from '@/models'
 
 export const Dashboard = () => {
   const showToast = useCustomToast()
@@ -49,7 +50,7 @@ export const Dashboard = () => {
       ]}
       gap={4}
       mt={[16, 14, 12]}>
-      {activities.map((activity) => (
+      {activities.map((activity: Activity) => (
         <CardActivity
           key={activity.id}
           id={activity.id}

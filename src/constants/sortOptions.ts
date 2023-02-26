@@ -7,13 +7,13 @@ import {
   FcNumericalSorting12,
 } from 'react-icons/fc'
 
-interface SortOption {
+interface SortOptionType {
   value: string
   text: string
   icon: As
 }
 
-export const sortOptions: SortOption[] = [
+export const sortOptions: SortOptionType[] = [
   {
     value: 'latest',
     text: 'Terbaru',

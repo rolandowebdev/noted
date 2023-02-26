@@ -13,9 +13,9 @@ import {
 } from '@chakra-ui/react'
 
 interface ModalDeleteProps {
-  title: string
   type: string
-  handleDelete: (e: any) => void
+  title: string | undefined
+  handleDelete: () => void
 }
 
 export const ModalDelete = ({

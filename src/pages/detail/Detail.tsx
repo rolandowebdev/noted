@@ -20,6 +20,7 @@ import { CardTodo, EditableText, ModalTodo } from '@/components'
 import { sortOptions } from '@/constants'
 import { useActivityContext, useTodoContext } from '@/context'
 import { sortData } from '@/utils'
+import { Todo } from '@/models'
 
 export const Detail = () => {
   const { activityId } = useParams<string>()
@@ -54,7 +55,7 @@ export const Detail = () => {
             _hover={{ textDecor: 'underline', color: 'brand.primary' }}>
             <ChevronLeftIcon data-cy="todo-back-button" fontSize="5xl" />
           </Link>
-          <EditableText activityId={activityId} />
+          <EditableText activityId={activityId || ''} />
         </HStack>
         <Stack direction="row" alignItems="center" spacing={3}>
           {sortedTodoItems?.length < 1 ? null : (
@@ -89,7 +90,7 @@ export const Detail = () => {
               </MenuList>
             </Menu>
           )}
-          <ModalTodo type="create" activityId={activityId} />
+          <ModalTodo type="create" activity_group_id={activityId} />
         </Stack>
       </HStack>
       {sortedTodoItems?.length < 1 && (
@@ -105,7 +106,7 @@ export const Detail = () => {
         />
       )}
       <Stack as="section" spacing={4} mt={[16, 14, 12]}>
-        {sortedTodoItems.map((todo: any) => (
+        {sortedTodoItems.map((todo: Todo) => (
           <CardTodo
             key={todo.id}
             id={todo.id}

@@ -1,9 +1,9 @@
-export interface Todo {
+export type Todo = {
   type?: string
   id?: any
-  title?: any
-  activity_group_id?: any
-  is_active?: any
+  title?: string
+  activity_group_id?: string
+  is_active?: number
   priority?: string
 }
 

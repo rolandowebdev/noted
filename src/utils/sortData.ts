@@ -1,6 +1,8 @@
 import { Todo } from '@/models'
 
-export const sortData = (data: Todo[], criteria: string): any => {
+type SortCriteria = 'latest' | 'longest' | 'a-z' | 'z-a' | 'unfinished'
+
+export const sortData = (data: Todo[], criteria: SortCriteria): Todo[] => {
   switch (criteria) {
     case 'latest':
       data.sort((a: any, b: any) => b.id - a.id)

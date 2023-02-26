@@ -5,7 +5,7 @@ import { Todo } from '@/models'
 interface TodoContextType {
   todos: Todo[]
   createTodo: (newTodo: Todo) => Promise<void>
-  getTodos: (id: any) => Promise<void>
+  getTodos: (activity_group_id: any) => Promise<void>
   updateTodo: (updateTodo: Todo) => Promise<void>
   deleteTodo: (id: number) => Promise<void>
 }

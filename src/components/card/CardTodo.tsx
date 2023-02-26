@@ -9,8 +9,8 @@ import {
 } from '@chakra-ui/react'
 import { useState } from 'react'
 import { ModalDelete, ModalTodo } from '@/components'
-import { useCustomToast } from '@/hooks'
 import { useTodoContext } from '@/context'
+import { useCustomToast } from '@/hooks'
 import { Todo } from '@/models'
 
 export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
@@ -61,7 +61,7 @@ export const CardTodo = ({ id, title, priority, is_active }: Todo) => {
               {title}
             </Heading>
             <ModalTodo
-              todoId={id}
+              id={id}
               title={title}
               priority={priority}
               type="update"

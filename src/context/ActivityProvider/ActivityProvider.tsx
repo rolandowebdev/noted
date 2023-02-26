@@ -1,16 +1,23 @@
-import { createContext, ReactNode, useContext, useMemo } from 'react'
+import {
+  Dispatch,
+  SetStateAction,
+  ReactNode,
+  useContext,
+  useMemo,
+  createContext,
+} from 'react'
 import { useActivity } from '@/hooks'
 import { Activity } from '@/models'
 
 interface ActivityContextType {
   activities: Activity[]
-  activity: any
-  setActivity: any
-  createActivity: () => Promise<any>
-  getActivities: () => Promise<any>
-  getActivity: (id: any) => Promise<any>
-  updateActivity: (updateActivity: Activity) => Promise<any>
-  deleteActivity: (id: number) => Promise<any>
+  activity: Activity | undefined
+  setActivity: Dispatch<SetStateAction<Activity | undefined>>
+  createActivity: () => Promise<void>
+  getActivities: () => Promise<void>
+  getActivity: (activity_group_id: any) => Promise<void>
+  updateActivity: (updateActivity: Activity) => Promise<void>
+  deleteActivity: (id: string) => Promise<void>
 }
 
 interface ActivityProviderProps {
@@ -19,7 +26,7 @@ interface ActivityProviderProps {
 
 const ActivityContext = createContext<ActivityContextType>({
   activities: [],
-  activity: {},
+  activity: { id: '' },
   setActivity: () => {},
   createActivity: async () => {},
   getActivities: async () => {},

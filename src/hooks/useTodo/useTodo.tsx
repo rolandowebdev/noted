@@ -15,9 +15,11 @@ export const useTodo = () => {
     }
   }
 
-  const getTodos = async (id: any) => {
+  const getTodos = async (activity_group_id: string) => {
     try {
-      const response = await axios.get<ResponseTodo>(todoUrl.GET(id))
+      const response = await axios.get<ResponseTodo>(
+        todoUrl.GET(activity_group_id)
+      )
       setTodos(response.data.data)
     } catch (error) {
       throw new Error('Failed to fetch todoItems')
