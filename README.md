@@ -1,6 +1,6 @@
 # Noted
 
-[![Noted Image](public/noted.png)](https://noted-todo-app.netlify.app/)
+[![Noted Image](public/assets/noted.png)](https://noted-todo-app.netlify.app/)
 
 ## Developing
 
